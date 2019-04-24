@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://bjj.dropsec.xyz/about/index.html</loc>
+    
+    <lastmod>2019-04-24T13:54:58.132Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://bjj.dropsec.xyz/2019/04/11/mode/</loc>
     
     <lastmod>2019-04-24T13:51:21.712Z</lastmod>
@@ -40,13 +47,6 @@
     <loc>https://bjj.dropsec.xyz/2018/12/29/Celery%E5%88%9D%E4%BD%93%E9%AA%8C/</loc>
     
     <lastmod>2019-04-24T13:48:28.853Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bjj.dropsec.xyz/about/index.html</loc>
-    
-    <lastmod>2019-04-23T09:23:18.414Z</lastmod>
     
   </url>
   
