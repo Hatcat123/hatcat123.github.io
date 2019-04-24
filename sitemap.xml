@@ -2,9 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://bjj.dropsec.xyz/2019/04/11/mode/</loc>
+    
+    <lastmod>2019-04-24T13:51:21.712Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://bjj.dropsec.xyz/2019/04/11/%E7%BE%8E%E5%9B%A2token/</loc>
     
-    <lastmod>2019-04-24T13:18:37.522Z</lastmod>
+    <lastmod>2019-04-24T13:50:45.563Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://bjj.dropsec.xyz/2018/12/07/%E5%8D%8E%E4%B8%BA%E4%BA%A4%E6%8D%A2%E6%9C%BAACL%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2019-04-24T13:49:50.669Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://bjj.dropsec.xyz/2018/11/13/Ubuntu%E6%9B%B4%E6%8D%A2%E9%98%BF%E9%87%8C%E6%BA%90/</loc>
+    
+    <lastmod>2019-04-24T13:49:17.863Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://bjj.dropsec.xyz/2017/12/11/Git%20desktop/</loc>
+    
+    <lastmod>2019-04-24T13:48:57.626Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://bjj.dropsec.xyz/2018/12/29/Celery%E5%88%9D%E4%BD%93%E9%AA%8C/</loc>
+    
+    <lastmod>2019-04-24T13:48:28.853Z</lastmod>
     
   </url>
   
@@ -12,34 +47,6 @@
     <loc>https://bjj.dropsec.xyz/about/index.html</loc>
     
     <lastmod>2019-04-23T09:23:18.414Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bjj.dropsec.xyz/2017/12/11/Git%20desktop/</loc>
-    
-    <lastmod>2019-01-01T14:21:16.336Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bjj.dropsec.xyz/2018/12/29/Celery%E5%88%9D%E4%BD%93%E9%AA%8C/</loc>
-    
-    <lastmod>2019-01-01T14:17:06.985Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bjj.dropsec.xyz/2018/11/13/Ubuntu%E6%9B%B4%E6%8D%A2%E9%98%BF%E9%87%8C%E6%BA%90/</loc>
-    
-    <lastmod>2018-12-29T05:53:15.767Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bjj.dropsec.xyz/2018/12/07/%E5%8D%8E%E4%B8%BA%E4%BA%A4%E6%8D%A2%E6%9C%BAACL%E4%BD%BF%E7%94%A8/</loc>
-    
-    <lastmod>2018-12-12T12:43:52.634Z</lastmod>
     
   </url>
   

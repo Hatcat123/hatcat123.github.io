@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="更换阿里源笔记 1.备份系统自带源 mv /etc/apt/sources.list /etc/apt/sources.list.bak">
+<meta name="description" content="更换阿里源笔记">
 <meta name="keywords" content="Ubuntu,阿里源">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu更换阿里源">
 <meta property="og:url" content="https://bjj.dropsec.xyz/2018/11/13/Ubuntu更换阿里源/index.html">
 <meta property="og:site_name" content="AJay13">
-<meta property="og:description" content="更换阿里源笔记 1.备份系统自带源 mv /etc/apt/sources.list /etc/apt/sources.list.bak">
+<meta property="og:description" content="更换阿里源笔记">
 <meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
-<meta property="og:updated_time" content="2018-12-29T05:53:15.767Z">
+<meta property="og:updated_time" content="2019-04-24T13:49:17.863Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu更换阿里源">
-<meta name="twitter:description" content="更换阿里源笔记 1.备份系统自带源 mv /etc/apt/sources.list /etc/apt/sources.list.bak">
+<meta name="twitter:description" content="更换阿里源笔记">
 
 
 
@@ -352,11 +352,10 @@
       
 
       
-        <p>更换阿里源笔记</p>
+        <p>更换阿里源笔记<br><a id="more"></a><br>更换阿里源笔记</p>
 <p>1.备份系统自带源</p>
 <pre><code>mv /etc/apt/sources.list /etc/apt/sources.list.bak
-</code></pre><a id="more"></a>
-<p>2.修改/etc/apt/sources.list文件</p>
+</code></pre><p>2.修改/etc/apt/sources.list文件</p>
 <pre><code>vim /etc/apt/sources.list  
 </code></pre><p>加入如下内容</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">deb-src http://archive.ubuntu.com/ubuntu xenial main restricted #Added by software-properties</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial main restricted multiverse universe #Added by software-properties</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted multiverse universe #Added by software-properties</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse #Added by software-properties</span><br><span class="line">deb http://archive.canonical.com/ubuntu xenial partner</span><br><span class="line">deb-src http://archive.canonical.com/ubuntu xenial partner</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted multiverse universe #Added by software-properties</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse</span><br></pre></td></tr></table></figure>
@@ -474,7 +473,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -485,7 +484,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
