@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Ubuntu,阿里源,">
+  <meta name="keywords" content="python,爬虫,">
 
 
 
@@ -79,18 +79,21 @@
 
 
 
-<meta name="description" content="更换阿里源笔记">
-<meta name="keywords" content="Ubuntu,阿里源">
+<meta name="description" content="写了一个异步爬取闲鱼商品最新信息推送到钉钉">
+<meta name="keywords" content="python,爬虫">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu更换阿里源">
-<meta property="og:url" content="https://bjj.dropsec.xyz/2018/11/13/Ubuntu更换阿里源/index.html">
+<meta property="og:title" content="闲鱼数据爬取">
+<meta property="og:url" content="https://bjj.dropsec.xyz/2019/04/26/xianyu/index.html">
 <meta property="og:site_name" content="AJay13">
-<meta property="og:description" content="更换阿里源笔记">
+<meta property="og:description" content="写了一个异步爬取闲鱼商品最新信息推送到钉钉">
 <meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
-<meta property="og:updated_time" content="2019-04-24T13:49:17.863Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img/20190425195555.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img/20190426111615.png">
+<meta property="og:updated_time" content="2019-04-26T08:15:56.706Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu更换阿里源">
-<meta name="twitter:description" content="更换阿里源笔记">
+<meta name="twitter:title" content="闲鱼数据爬取">
+<meta name="twitter:description" content="写了一个异步爬取闲鱼商品最新信息推送到钉钉">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img/20190425195555.png">
 
 
 
@@ -120,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://bjj.dropsec.xyz/2018/11/13/Ubuntu更换阿里源/">
+  <link rel="canonical" href="https://bjj.dropsec.xyz/2019/04/26/xianyu/">
 
 
 
 
 
-  <title>Ubuntu更换阿里源 | AJay13</title>
+  <title>闲鱼数据爬取 | AJay13</title>
   
 
 
@@ -263,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2018/11/13/Ubuntu更换阿里源/">
+    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2019/04/26/xianyu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="朴阿杰">
@@ -280,7 +283,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Ubuntu更换阿里源</h2>
+          <h2 class="post-title" itemprop="name headline">闲鱼数据爬取</h2>
         
 
         <div class="post-meta">
@@ -292,8 +295,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-13T12:36:28+08:00">
-                2018-11-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-26T13:14:00+08:00">
+                2019-04-26
               </time>
             
 
@@ -315,8 +318,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">Ubuntu</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -352,16 +355,57 @@
       
 
       
-        <p>更换阿里源笔记<br><a id="more"></a><br>更换阿里源笔记</p>
-<p>1.备份系统自带源</p>
-<pre><code>mv /etc/apt/sources.list /etc/apt/sources.list.bak
-</code></pre><p>2.修改/etc/apt/sources.list文件</p>
-<pre><code>vim /etc/apt/sources.list  
-</code></pre><p>加入如下内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">deb-src http://archive.ubuntu.com/ubuntu xenial main restricted #Added by software-properties</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial main restricted multiverse universe #Added by software-properties</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted multiverse universe #Added by software-properties</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse #Added by software-properties</span><br><span class="line">deb http://archive.canonical.com/ubuntu xenial partner</span><br><span class="line">deb-src http://archive.canonical.com/ubuntu xenial partner</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted multiverse universe #Added by software-properties</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse</span><br></pre></td></tr></table></figure>
-<p>3.更新生效</p>
-<pre><code>apt-get update
-</code></pre>
+        <p>写了一个异步爬取闲鱼商品最新信息推送到钉钉<br><a id="more"></a></p>
+<p>随便写的，想到哪写到哪</p>
+<p><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img/20190425195555.png" alt></p>
+<p>图中的需求有两个部分值得学习。</p>
+<ul>
+<li>多线程爬取最新关键字的商品信息</li>
+<li>python对钉钉的操作</li>
+</ul>
+<h3 id="多线程爬取最新关键字的商品信息"><a href="#多线程爬取最新关键字的商品信息" class="headerlink" title="多线程爬取最新关键字的商品信息"></a>多线程爬取最新关键字的商品信息</h3><p>这个多线程是依靠关键字的数量，启动线程。比如可以是<code>线程数</code>=关键字的数量/5。具体接口参考github组织中的例子，24小时采集 然后将线程加入到while True中。关键字与价格区间可以在闲鱼接口链接中自定义。</p>
+<h3 id="python对钉钉的操作"><a href="#python对钉钉的操作" class="headerlink" title="python对钉钉的操作"></a>python对钉钉的操作</h3><p>针对钉钉是一个很好的信息传输方式，钉钉的开发文档详细讲述了如何调用钉钉的api。</p>
+<ul>
+<li>注册钉钉账号</li>
+<li>手机创建钉钉组织</li>
+<li>用自己创建的组织登录桌面版的钉钉应用（要用自己创建组织的钉钉才能登录带有自己权限的管理后台-web端亦是如此）</li>
+<li>创建群聊。在群聊中找到机器人，自定义机器人，找到webhook（这便是钉钉的发送信息的api）</li>
+<li>查阅钉钉<a href="https://open-doc.dingtalk.com/microapp/serverapi2/qf2nxq" target="_blank" rel="noopener">开发者文档</a></li>
+</ul>
+<p>虽然没有python版的介绍。可是api是通用的。api介绍也是很丰富。</p>
+<p>推荐看下web版的后台管理，这是一个很好的开发场地。</p>
+<p><strong>如何知道获取最新的商品数据</strong></p>
+<p>使用数据库，将爬取商品的详情链接存储到数据库中，每次判断数据库中是否有此商品链接数据，若存在，便不是最新。若不存在，推送到钉钉群，然后数据插入数据库。</p>
+<p>优化数库的存储方式</p>
+<h3 id="暂停与开始"><a href="#暂停与开始" class="headerlink" title="暂停与开始"></a>暂停与开始</h3><p>这个方面我没有深入思考，简单的把关键字存到数据库中，没一次线程爬取从数据库中读取现有的数据库关键字。</p>
+<p>暂停就是数据库中的某个关键字的字段删除。</p>
+<p>（这点为了不值得使用吧！）</p>
+<h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><p>本项目采用异步爬取，对于闲鱼速度快，效率高。</p>
+<p><strong>注意事项</strong></p>
+<ul>
+<li>钉钉接口每个机器人每分钟只能发送20条信息。次数太多会被限制。一个群聊可以创建6个机器人的webhook。建议将次6条都加入到程序的机器人队列</li>
+<li>钉钉接口存在敏感字检测。当爬取的信息触发了阿里系的检测系统，信息不能发送。这里在日志面板给出已经提示。</li>
+<li>经过测试100多关键字的爬取效率在8-10s内完成。</li>
+<li>给出的关键字描述尽可能精确，避免大范围的搜索。如错误示例：关键字‘空调’ 范围广与‘空调’+品牌  或 ’空调‘+ 功能部件，缩小搜索范围。</li>
+<li>程序的爬取频率设定时间尽量多一些。否者爬取的发送信息很多，将导致钉钉接口失效。这里爬取频率代表一个全部爬虫结束到下一次爬虫开始的时间。建议设置为10s左右。将会10秒后进行下一次执行。</li>
+<li>发送方式 ：1-单文本发送（若消息过多，钉钉接口限制），2-连接文本发送（手机端不支持跳转闲鱼app），3-markdown文本（推荐、将一次爬取的消息汇聚到个文本中，较少钉钉接口压力）</li>
+<li>添加关键字：关键字不为空，价格若不填则搜索时为全价。</li>
+<li>删除关键字：选中关键字任务，点击删除，确认删除。</li>
+<li>单项开启：选中关键字任务，点击开启，任务单独开启</li>
+<li>单项关闭：选中关键字任务，点击关闭，任务单独关闭</li>
+<li>一键开启：点击一键开启，默认开启全部任务</li>
+<li>一键关闭：点击一键关闭，默认关闭全部任务</li>
+<li>更新配置：实时更新爬取频率，发送方式</li>
+<li>清除缓存：清除缓存文件。软件长时间使用产生大量缓存文件，硬件运行效率下降</li>
+<li>清空配置：清除所有配置选项+缓存文件。一般不建议使用</li>
+<li>日志文件：输出日志信息</li>
+<li>系统日志：输入操作信息</li>
+<li>钉钉机器人-添加机器人：添加钉钉机器人的webhook完整链接</li>
+<li>钉钉机器人-删除机器人：选中机器人链接，点击删除，删除成功</li>
+<li>钉钉机器人-测试机器人：测试插入的webhook是否有效。将发送’欢迎测试闲鱼信息及时推送器-机器人验证’到钉钉群</li>
+</ul>
+<h2 id="推荐数据"><a href="#推荐数据" class="headerlink" title="推荐数据"></a>推荐数据</h2><p><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img/20190426111615.png" alt></p>
+
       
     </div>
     
@@ -378,9 +422,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
+            <a href="/tags/python/" rel="tag"># python</a>
           
-            <a href="/tags/阿里源/" rel="tag"># 阿里源</a>
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
           
         </div>
       
@@ -393,8 +437,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/11/支付宝自动化薅羊毛/" rel="next" title="支付宝自动化薅羊毛">
-                <i class="fa fa-chevron-left"></i> 支付宝自动化薅羊毛
+              <a href="/2019/04/11/美团token/" rel="next" title="美团店铺数据token解析与生成">
+                <i class="fa fa-chevron-left"></i> 美团店铺数据token解析与生成
               </a>
             
           </div>
@@ -403,8 +447,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/07/华为交换机ACL使用/" rel="prev" title="华为交换机ACL使用">
-                华为交换机ACL使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/05/20/First/" rel="prev" title="置顶">
+                置顶 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -457,8 +501,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -534,6 +587,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程爬取最新关键字的商品信息"><span class="nav-number">1.</span> <span class="nav-text">多线程爬取最新关键字的商品信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python对钉钉的操作"><span class="nav-number">2.</span> <span class="nav-text">python对钉钉的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#暂停与开始"><span class="nav-number">3.</span> <span class="nav-text">暂停与开始</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#使用说明"><span class="nav-number"></span> <span class="nav-text">使用说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐数据"><span class="nav-number"></span> <span class="nav-text">推荐数据</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
