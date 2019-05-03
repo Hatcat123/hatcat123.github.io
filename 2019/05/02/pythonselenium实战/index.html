@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="python,selenium,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="基于Selenium模拟浏览器爬虫详解 一.背景 Selenium 是一个用于web应用程序自动化测试的工具，直接运行在浏览器当中，支持chrome、firefox等主流浏览器。可以通过代码控制与页面上元素进行交互（点击、输入等），也可以获取指定元素的内容。 劣势： 相比于抓包→构造请求→解析返回值的爬虫，由于Selenium需要生成一个浏览器环境，所有操作（与元素交互、获取元素内容等）均需要等待">
+<meta name="description" content="Selenium 是一个用于web应用程序自动化测试的工具，直接运行在浏览器当中，支持chrome、firefox等主流浏览器。可以通过代码控制与页面上元素进行交互（点击、输入等），也可以获取指定元素的内容。">
+<meta name="keywords" content="python,selenium">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AJay13">
-<meta property="og:url" content="https://bjj.dropsec.xyz/2019/05/03/pythonselenium实战/index.html">
+<meta property="og:title" content="基于Selenium模拟浏览器爬虫详解">
+<meta property="og:url" content="https://bjj.dropsec.xyz/2019/05/02/pythonselenium实战/index.html">
 <meta property="og:site_name" content="AJay13">
-<meta property="og:description" content="基于Selenium模拟浏览器爬虫详解 一.背景 Selenium 是一个用于web应用程序自动化测试的工具，直接运行在浏览器当中，支持chrome、firefox等主流浏览器。可以通过代码控制与页面上元素进行交互（点击、输入等），也可以获取指定元素的内容。 劣势： 相比于抓包→构造请求→解析返回值的爬虫，由于Selenium需要生成一个浏览器环境，所有操作（与元素交互、获取元素内容等）均需要等待">
+<meta property="og:description" content="Selenium 是一个用于web应用程序自动化测试的工具，直接运行在浏览器当中，支持chrome、firefox等主流浏览器。可以通过代码控制与页面上元素进行交互（点击、输入等），也可以获取指定元素的内容。">
 <meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
-<meta property="og:updated_time" content="2019-05-03T10:46:24.169Z">
+<meta property="og:updated_time" content="2019-05-03T11:05:00.941Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AJay13">
-<meta name="twitter:description" content="基于Selenium模拟浏览器爬虫详解 一.背景 Selenium 是一个用于web应用程序自动化测试的工具，直接运行在浏览器当中，支持chrome、firefox等主流浏览器。可以通过代码控制与页面上元素进行交互（点击、输入等），也可以获取指定元素的内容。 劣势： 相比于抓包→构造请求→解析返回值的爬虫，由于Selenium需要生成一个浏览器环境，所有操作（与元素交互、获取元素内容等）均需要等待">
+<meta name="twitter:title" content="基于Selenium模拟浏览器爬虫详解">
+<meta name="twitter:description" content="Selenium 是一个用于web应用程序自动化测试的工具，直接运行在浏览器当中，支持chrome、firefox等主流浏览器。可以通过代码控制与页面上元素进行交互（点击、输入等），也可以获取指定元素的内容。">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://bjj.dropsec.xyz/2019/05/03/pythonselenium实战/">
+  <link rel="canonical" href="https://bjj.dropsec.xyz/2019/05/02/pythonselenium实战/">
 
 
 
 
 
-  <title> | AJay13</title>
+  <title>基于Selenium模拟浏览器爬虫详解 | AJay13</title>
   
 
 
@@ -262,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2019/05/03/pythonselenium实战/">
+    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2019/05/02/pythonselenium实战/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="朴阿杰">
@@ -279,7 +280,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline"></h2>
+          <h2 class="post-title" itemprop="name headline">基于Selenium模拟浏览器爬虫详解</h2>
         
 
         <div class="post-meta">
@@ -291,8 +292,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-03T18:45:48+08:00">
-                2019-05-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-02T13:14:00+08:00">
+                2019-05-02
               </time>
             
 
@@ -301,6 +302,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -329,7 +352,7 @@
       
 
       
-        <p>基于Selenium模拟浏览器爬虫详解</p>
+        <p>Selenium 是一个用于web应用程序自动化测试的工具，直接运行在浏览器当中，支持chrome、firefox等主流浏览器。可以通过代码控制与页面上元素进行交互（点击、输入等），也可以获取指定元素的内容。<br><a id="more"></a></p>
 <p>一.背景</p>
 <p>Selenium 是一个用于web应用程序自动化测试的工具，直接运行在浏览器当中，支持chrome、firefox等主流浏览器。可以通过代码控制与页面上元素进行交互（点击、输入等），也可以获取指定元素的内容。</p>
 <p>劣势：</p>
@@ -475,6 +498,14 @@ print(&quot;已经抓取酒店&quot;,i,&quot;家&quot;)
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/selenium/" rel="tag"># selenium</a>
+          
+        </div>
+      
 
       
       
@@ -484,8 +515,8 @@ print(&quot;已经抓取酒店&quot;,i,&quot;家&quot;)
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/03/pythonSelenium实战跳坑/" rel="next" title="pythonSelenium实战跳坑">
-                <i class="fa fa-chevron-left"></i> pythonSelenium实战跳坑
+              <a href="/2019/05/02/python切换宽带/" rel="next" title="python切换宽带账号">
+                <i class="fa fa-chevron-left"></i> python切换宽带账号
               </a>
             
           </div>
@@ -494,8 +525,8 @@ print(&quot;已经抓取酒店&quot;,i,&quot;家&quot;)
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/05/20/First/" rel="prev" title="置顶">
-                置顶 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/03/pythonSelenium实战跳坑/" rel="prev" title="pythonSelenium实战跳坑">
+                pythonSelenium实战跳坑 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -595,7 +626,7 @@ print(&quot;已经抓取酒店&quot;,i,&quot;家&quot;)
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
