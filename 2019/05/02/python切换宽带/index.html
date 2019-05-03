@@ -87,10 +87,12 @@
 <meta property="og:site_name" content="AJay13">
 <meta property="og:description" content="在一次实战中客户要求切换vps的宽带账号，使用windows命令操作">
 <meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
-<meta property="og:updated_time" content="2019-05-03T11:03:05.525Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img/20190503210347.gif">
+<meta property="og:updated_time" content="2019-05-03T13:06:04.791Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python切换宽带账号">
 <meta name="twitter:description" content="在一次实战中客户要求切换vps的宽带账号，使用windows命令操作">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img/20190503210347.gif">
 
 
 
@@ -359,6 +361,9 @@
 </code></pre><p><strong>断开连接</strong></p>
 <pre><code>rasdial 宽带连接 /disconnect
 </code></pre><h3 id="集成到脚本中"><a href="#集成到脚本中" class="headerlink" title="集成到脚本中"></a>集成到脚本中</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">def connect(self):</span><br><span class="line">    name = &quot;宽带连接&quot;</span><br><span class="line">    username =&apos;057128280802&apos;#  填写你的宽带名字</span><br><span class="line">    password = &quot;34795&quot;# 填写你的宽带密码</span><br><span class="line">    cmd_str = &quot;rasdial %s %s %s&quot; % (name, username, password)</span><br><span class="line">    res = os.system(cmd_str)</span><br><span class="line">    if res == 0:</span><br><span class="line">        print(&quot;connect successful&quot;)</span><br><span class="line">    else:</span><br><span class="line">        print(res)</span><br><span class="line">    time.sleep(5)</span><br><span class="line"></span><br><span class="line">def disconnect(self):</span><br><span class="line">    name = &quot;宽带连接&quot;</span><br><span class="line">    cmdstr = &quot;rasdial %s /disconnect&quot; % name</span><br><span class="line">    os.system(cmdstr)</span><br><span class="line">    time.sleep(5)</span><br><span class="line">def check_kuandai(self):</span><br><span class="line">    self.disconnect()</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<p><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img/20190503210347.gif" alt></p>
+
       
     </div>
     
