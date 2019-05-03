@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="python,main,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="分析if  name  ==’ main ‘ 刚开始学习python的时候看到其中的if  name ==’ main ‘这个代码，（当时模糊理解为类似于c的主函数）不知道它真正是干嘛的，什么作用？ “Make a script both importable and executable”">
-<meta name="keywords" content="python,main">
+<meta name="description" content="基于Selenium模拟浏览器爬虫详解 一.背景 Selenium 是一个用于web应用程序自动化测试的工具，直接运行在浏览器当中，支持chrome、firefox等主流浏览器。可以通过代码控制与页面上元素进行交互（点击、输入等），也可以获取指定元素的内容。 劣势： 相比于抓包→构造请求→解析返回值的爬虫，由于Selenium需要生成一个浏览器环境，所有操作（与元素交互、获取元素内容等）均需要等待">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分析if__name__==__main__">
-<meta property="og:url" content="https://bjj.dropsec.xyz/2017/07/14/分析if-name-main/index.html">
+<meta property="og:title" content="AJay13">
+<meta property="og:url" content="https://bjj.dropsec.xyz/2019/05/03/pythonselenium实战/index.html">
 <meta property="og:site_name" content="AJay13">
-<meta property="og:description" content="分析if  name  ==’ main ‘ 刚开始学习python的时候看到其中的if  name ==’ main ‘这个代码，（当时模糊理解为类似于c的主函数）不知道它真正是干嘛的，什么作用？ “Make a script both importable and executable”">
+<meta property="og:description" content="基于Selenium模拟浏览器爬虫详解 一.背景 Selenium 是一个用于web应用程序自动化测试的工具，直接运行在浏览器当中，支持chrome、firefox等主流浏览器。可以通过代码控制与页面上元素进行交互（点击、输入等），也可以获取指定元素的内容。 劣势： 相比于抓包→构造请求→解析返回值的爬虫，由于Selenium需要生成一个浏览器环境，所有操作（与元素交互、获取元素内容等）均需要等待">
 <meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
-<meta property="og:updated_time" content="2018-12-11T08:55:03.473Z">
+<meta property="og:updated_time" content="2019-05-03T10:46:24.169Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分析if__name__==__main__">
-<meta name="twitter:description" content="分析if  name  ==’ main ‘ 刚开始学习python的时候看到其中的if  name ==’ main ‘这个代码，（当时模糊理解为类似于c的主函数）不知道它真正是干嘛的，什么作用？ “Make a script both importable and executable”">
+<meta name="twitter:title" content="AJay13">
+<meta name="twitter:description" content="基于Selenium模拟浏览器爬虫详解 一.背景 Selenium 是一个用于web应用程序自动化测试的工具，直接运行在浏览器当中，支持chrome、firefox等主流浏览器。可以通过代码控制与页面上元素进行交互（点击、输入等），也可以获取指定元素的内容。 劣势： 相比于抓包→构造请求→解析返回值的爬虫，由于Selenium需要生成一个浏览器环境，所有操作（与元素交互、获取元素内容等）均需要等待">
 
 
 
@@ -120,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://bjj.dropsec.xyz/2017/07/14/分析if-name-main/">
+  <link rel="canonical" href="https://bjj.dropsec.xyz/2019/05/03/pythonselenium实战/">
 
 
 
 
 
-  <title>分析if__name__==__main__ | AJay13</title>
+  <title> | AJay13</title>
   
 
 
@@ -263,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2017/07/14/分析if-name-main/">
+    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2019/05/03/pythonselenium实战/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="朴阿杰">
@@ -280,7 +279,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">分析if__name__==__main__</h2>
+          <h2 class="post-title" itemprop="name headline"></h2>
         
 
         <div class="post-meta">
@@ -292,8 +291,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-14T17:47:37+08:00">
-                2017-07-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-03T18:45:48+08:00">
+                2019-05-03
               </time>
             
 
@@ -302,28 +301,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -352,64 +329,137 @@
       
 
       
-        <h1 id="分析if-name-’-main-‘"><a href="#分析if-name-’-main-‘" class="headerlink" title="分析if  name  ==’ main ‘"></a>分析if <strong> name </strong> ==’<strong> main </strong>‘</h1><hr>
-<p>刚开始学习python的时候看到其中的if <strong> name </strong>==’ <strong>main </strong>‘这个代码，（当时模糊理解为类似于c的主函数）不知道它真正是干嘛的，什么作用？</p>
-<h4 id="“Make-a-script-both-importable-and-executable”"><a href="#“Make-a-script-both-importable-and-executable”" class="headerlink" title="“Make a script both importable and executable”"></a><strong>“Make a script both importable and executable”</strong></h4><a id="more"></a>
-<p>最经典的就是这就话意思是 “<strong>让你写的脚本模块不仅可以导入到别人的模块中使用，也能自己去执行</strong>”。不明白也没关系，下面就来举几个最简单的例子</p>
-<p>首先，创建一个a.py的文件</p>
-<pre><code>print(&apos;this is my      a         .py************************&apos;)
-print(&apos;a.py__name__: %s&apos; %__name__)
-</code></pre><p>这里是先确定在什么都没有的情况下，输出<strong> name </strong> 是什么？输出后发现是缺省的<strong> main </strong> </p>
-<pre><code>this is my      a         .py************************
-a.py__name__: __main__
-</code></pre><p>这就是最基础的:’这句话为什么会执行它下面的内容’,因为’name==main’啊！验证一下：</p>
-<pre><code>print(&apos;this is my      a         .py************************&apos;)
-print(&apos;a.py__name__: %s&apos; %__name__)
-if __name__==&apos;__main__&apos;:
-    print(&apos;this is a.py--------------&apos;)
-</code></pre><p>同时if条件执行，输出’this is a.py———‘，文件a.py的name为main</p>
-<pre><code>this is my      a         .py************************
-a.py__name__: __main__
-this is a.py--------------
-</code></pre><p>这时创建另一个b.py文件（先类似于a.py），来弄清两者之间的关系</p>
-<pre><code>print(&apos;this is my b.py************************&apos;)
-print(&apos;b.py__name__:%s&apos; %__name__)
-if __name__==&apos;__main__&apos;:
-    print(&apos;this is b.py------------&apos;)
-</code></pre><p>毫无疑问他的输出完全和a.py类似，此时在它的头加上import a，再分析其中的变化</p>
-<pre><code>import a
-print(&apos;this is my     b.    py************************&apos;)
-print(&apos;b.py__name__: %s&apos; %__name__)
-if __name__==&apos;__main__&apos;:
-    print(&apos;this is b.py------------&apos;)
-</code></pre><p>输出后：</p>
-<pre><code>this is my      a         .py************************
-a.py__name__: a
-this is my     b.    py************************
-b.py__name__: __main__
-this is b.py------------
-</code></pre><p>调用a.py后会生成一个名为“<strong> pycache </strong>”的文件夹，里面pyc文件“a.cpython-35.pyc”，输出同时也发生了变化。</p>
-<p>只打印了a.py文件if前面的语句，说明if语句并没有执行，也就是a.py中的name！==main，找下原因，原来b.py的输出–&gt;a.py__ name <strong> : a，在之前a.py中输出的a.py</strong> name <strong>:main 。就可以认定为此时被通过import导入文佳模块 </strong> name <strong> 的值就是我们这个文件名字而不是 </strong> main __；所以它不能执行a.py的if语句，就只能输出a中if前面的语句，b.py的name此时是main，执行了if语句，就打印了“this is b.py”如此类推我们我们再去新建一个c.py，去把带有a模块的模块b.py加入到c.py中应该也是同样的原理。</p>
-<p>验证c.py</p>
-<pre><code>import b
-print(&apos;this is my      c.       py************************&apos;)
-print(&apos;c.py__name__:  %s&apos; %__name__)
-if __name__==&apos;__main__&apos;:
-    print(&apos;this is c.py------------&apos;)
-</code></pre><p>输出c.py</p>
-<pre><code>this is my      a         .py************************
-a.py__name__: a
-this is my     b.    py************************
-b.py__name__: b
-this is my      c.       py************************
-c.py__name__:  __main__
-this is c.py------------
-</code></pre><hr>
-<p>异想天开的想法：如果我把a.py文件改名为 <strong> main </strong> .py会不会就能在b.py调用模块<strong> main </strong>.py（改名a.py）的时候就直接能能是if成立呢？（思路：b.py中返回的name就是被调用模块文件的名字）</p>
-<p> <strong>往往现实是这样的提示“invalid syntax”哈哈！mdzz想想人家怎么会给你留这样的bug呢？失败告终，所以创建名字的时候老老实实的，避开”<strong> main</strong>.py”的奇葩名</strong></p>
-<hr>
-<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p><strong>每个python的模块都包含一个默认的变量<strong> main</strong>，模块中的name的值取决于如何运用模块。1、当模块a（上面自己创建的py文件）被自身运行的时候，理解为main就是main，if的返回结果为true,执行其下面的条件。2、如果a被调用import到其他的模块b中去，此时a的mian的值就变成了文件名，a模块中if条件返回flase，便不能执行被调用函数a中的if条件下的函数，只执行模块a中if前面的语句和调用它的函数b中的语句，理解为：a模块变残缺，b模块正常运行标准程序</strong></p>
-<p><strong>此函数理解为：可以保留一个模块脚本能独立的运行，又能使得该模块脚本的函数能够成为其他模块脚本的拓展，如果给一个模块做测试，不想让它运行的函数将不会被执行</strong></p>
+        <p>基于Selenium模拟浏览器爬虫详解</p>
+<p>一.背景</p>
+<p>Selenium 是一个用于web应用程序自动化测试的工具，直接运行在浏览器当中，支持chrome、firefox等主流浏览器。可以通过代码控制与页面上元素进行交互（点击、输入等），也可以获取指定元素的内容。</p>
+<p>劣势：</p>
+<p>相比于抓包→构造请求→解析返回值的爬虫，由于Selenium需要生成一个浏览器环境，所有操作（与元素交互、获取元素内容等）均需要等待页面加载完毕后才可以继续进行，所以速度相比构造请求的慢很多。对于为了反爬做了特殊处理的展示内容，如字体加密（参考猫眼）、图片替换数字（参考自如）等，可能取不到想要的数据。</p>
+<p>使用图片替换数字的自如：</p>
+<p>image-20190107215702089</p>
+<p>优势：</p>
+<p>a. 不需要做复杂的抓包、构造请求、解析数据等，开发难度相对要低一些。</p>
+<p>b. 其访问参数跟使用浏览器的正常用户一模一样，访问行为也相对更像正常用户，不容易被反爬虫策略命中。</p>
+<p>c.生成的浏览器环境可以自动运行 JS 文件，所以不用担心如何逆向混淆过的JS文件生成用作人机校验的参数，如马蜂窝酒店评论的人机校验参数_sn，网易云音乐评论的人机校验参数params、encSecKey。可以自行抓包查看。</p>
+<p>d. 如果需要抓取同一个前端页面上面来自不同后端接口的信息，如OTA酒店详情页的酒店基础信息、价格、评论等，使用Selenium可以在一次请求中同时完成对三个接口的调用，相对方便。</p>
+<p>二、实现</p>
+<p>1.环境<br>python3.6<br>Macos<br>Selenium<br>3.浏览器驱动（webdriver）</p>
+<p>加载浏览器环境需要下载对应的浏览器驱动，此处选择 Chrome。</p>
+<p>下载地址：<a href="http://npm.taobao.org/mirrors/chromedriver/" target="_blank" rel="noopener">http://npm.taobao.org/mirrors/chromedriver/</a> ，</p>
+<p>选择合适的版本下载解压后放在随便一个位置即可。</p>
+<p>4.hello world</p>
+<p>from selenium import webdriver</p>
+<p> 这里填刚刚下载的驱动的路径 </p>
+<p>path =  /Applications/Google Chrome.app/Contents/chromedriver </p>
+<p>driver = webdriver.Chrome(executable_path=path)</p>
+<p>url =  <a href="http://hotel.qunar.com/city/beijing_city/" target="_blank" rel="noopener">http://hotel.qunar.com/city/beijing_city/</a> </p>
+<p>driver.get(url)</p>
+<p> 运行上述代码，会打开一个浏览器，并且加载去哪儿的酒店列表页 </p>
+<p>这时候可以通过webdriver自带的一些的一些方法获取元素内容或者与元素进行交互。</p>
+<p>image-20190108224445170</p>
+<p>#返回ID = js_block_beijing_city_7810的元素信息</p>
+<p>hotel_info = driver.find_element_by_id( js_block_beijing_city_7810 )</p>
+<p>print(hotel_info.text)</p>
+<p>#返回 展示在列表页的酒店信息</p>
+<p>#同理，可以find_element_by_[class_name|name] 等，均可完成查询。</p>
+<p>也可以通过方法 find_elements查找符合某条件的一组元素，以列表的形式返回。</p>
+<p>image-20190108225039418</p>
+<p>#当需要查询的唯一标识带有空格时，可以使用find_elements_by_css_selector，否则会报错。</p>
+<p>hotel_list = driver.find_elements_by_css_selector(“[class= b_result_box js_list_block  b_result_commentbox ]”)</p>
+<p>print(hotel_list)</p>
+<p>#返回酒店列表的全部信息。</p>
+<p>5.关闭图片加载</p>
+<p>在不需要抓取图片的情况下，可以设置不加载图片，节约时间，这样属于调整本地设置，在传参上并不会有异常。</p>
+<p>from selenium import webdriver</p>
+<p>chrome_opt = webdriver.ChromeOptions()</p>
+<p>prefs={“profile.managed_default_content_settings.images”:2}</p>
+<p>chrome_opt.add_experimental_option(“prefs”,prefs)</p>
+<p>path =   #驱动路径</p>
+<p>browser_noPic = webdriver.Chrome(executable_path=path,chrome_options=chrome_opt)</p>
+<p>三、使用webdriver与元素进行交互</p>
+<p>1.模拟鼠标点击</p>
+<p>image-20190108230139238</p>
+<p>hotel_info = driver.find_element_by_id(“js_plugin_tag_beijing_city_7810”)</p>
+<p>hotel.info.click()</p>
+<p>#进入酒店详情页</p>
+<p>2.模拟键盘输入</p>
+<p>hotel_search = driver.find_element_by_id(“jxQ”)</p>
+<p>hotel_search.send_keys(“如”)</p>
+<p>hotel_search.send_keys(“如家”)</p>
+<p>#由于搜索框输入的第一个字会被选中，所以需要第二次才能完整输入，当然也可以模拟按键盘的 →(右键)取消选中后再次输入。</p>
+<p>3.模拟下拉</p>
+<p>webdriver中对鼠标的操作的方法封装在ActionChains类中 ，使用前要先导入ActionChains类：</p>
+<p>from selenium.webdriver.common.action_chains import  ActionChains</p>
+<p>“””在页面顶部、底部个找了一个元素，并模拟鼠标从顶到底的滑动”””</p>
+<p>start = driver.find_element_by_class_name( e_above_header )</p>
+<p>target = driver.find_element_by_class_name( qn_footer )</p>
+<p>ActionChains(driver).drag_and_drop(start,target).perform()</p>
+<p>此外，webdiver还提供丰富的交互功能，比如鼠标悬停、双击、按住左键等等，此处不展开介绍。</p>
+<p>四、一个完整的模拟浏览器爬虫</p>
+<p>from selenium import webdriver</p>
+<p>from selenium.webdriver.common.action_chains import  ActionChains</p>
+<p>import time</p>
+<p> 这里填刚刚下载的驱动的路径 </p>
+<p>path =  /Users/./Desktop/chromedriver </p>
+<p>driver = webdriver.Chrome(executable_path=path)</p>
+<p>url =  <a href="http://hotel.qunar.com/city/beijing_city/" target="_blank" rel="noopener">http://hotel.qunar.com/city/beijing_city/</a> </p>
+<p>driver.get(url) </p>
+<p>time.sleep(6) #等待页面加载完再进行后续操作</p>
+<p>“””在页面顶部、底部个找了一个元素，并模拟鼠标从顶到底的滑动”””</p>
+<p>start = driver.find_element_by_class_name( e_above_header )</p>
+<p>target = driver.find_element_by_class_name( qn_footer )</p>
+<p>ActionChains(driver).drag_and_drop(start,target).perform()</p>
+<p>time.sleep(5) #等待页面加载完再进行后续操作</p>
+<p>hotel_link_list = driver.find_elements_by_css_selector(“[class= item_price js_hasprice ]”)</p>
+<p>print(“在此页面共有酒店”,len(hotel_link_list),”家”)</p>
+<p>windows = driver.window_handles</p>
+<p>#此处可以爬整个页面任何想要想要的元素</p>
+<p>list_hotel_info=[]</p>
+<p>def hotel_info_clawer():</p>
+<pre><code>list_hotel_info.append([driver.find_element_by_class_name(&quot;info&quot;).text,
+
+                        driver.find_element_by_class_name(&quot;js-room-table&quot;).text,
+
+                        driver.find_element_by_class_name(&quot;dt-module&quot;).text])
+</code></pre><p>for i in range(len(hotel_link_list)):</p>
+<pre><code>hotel_link_list[i].click()
+
+driver.switch_to.window(windows[-1]) #切换到刚打开的酒店详情页
+
+hotel_info_clawer()
+
+driver.close() #关闭已经爬完的酒店详情页    
+
+print(&quot;已经抓取酒店&quot;,i,&quot;家&quot;)
+</code></pre><p>#后面可以补充翻页继续抓取的部分</p>
+<p>五、使用截图+OCR抓取关键数据</p>
+<p>对于做了特殊处理的信息，如上述的猫眼电影的票房信息、自如的价格等，不适用于直接获取制定元素的信息进行抓取，可以使用截图+OCR的方式抓取此类数据。</p>
+<p>以自如的房租为例：</p>
+<p>image-20190112201939908</p>
+<p>from selenium import webdriver</p>
+<p> 这里填刚刚下载的驱动的路径 </p>
+<p>path =  /Applications/Google Chrome.app/Contents/chromedriver </p>
+<p>driver = webdriver.Chrome(executable_path=path)</p>
+<p>url =  <a href="http://www.ziroom.com/z/vr/61715463.html" target="_blank" rel="noopener">http://www.ziroom.com/z/vr/61715463.html</a> </p>
+<p>driver.get(url)</p>
+<p>price = diver.find_element_by_class_name( room_price )</p>
+<p>print(price.text)#由于自如的价格用图片做了替换，这样并不能获取到实际价格，需要获取图片再做ocr处理</p>
+<p>“对指定元素部分截图再保存”</p>
+<p>price.screenshot( /Users/./Desktop/price.png )</p>
+<p>安装ocr工具：</p>
+<p>Tesseract是一个开源的OCR引擎，能识别100多种语言（中，英，韩，日，德，法…等等），但是Tesseract对手写的识别能力较差，仅适用于打印字体。</p>
+<p>//仅安装tesseract，不安装训练工具和其他语音包，需要识别中文的话得额外下载</p>
+<p>//下载地址：<a href="https://github.com/tesseract-ocr/tessdata" target="_blank" rel="noopener">https://github.com/tesseract-ocr/tessdata</a></p>
+<p>brew install tesseract</p>
+<p>使用Tesseract：</p>
+<p>tesseract ~/price.png result</p>
+<p>//识别图片并将结果存在result里面</p>
+<p>在python下使用Tesseract：</p>
+<p>首先安装依赖包：pip install pytesseract</p>
+<p>import pytesseract</p>
+<p>from PIL import Image</p>
+<h1 id="open-image"><a href="#open-image" class="headerlink" title="open image"></a>open image</h1><p>image = Image.open( price.png )</p>
+<p>code = pytesseract.image_to_string(image)</p>
+<p>print(code)</p>
 
       
     </div>
@@ -425,14 +475,6 @@ this is c.py------------
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/python/" rel="tag"># python</a>
-          
-            <a href="/tags/main/" rel="tag"># main</a>
-          
-        </div>
-      
 
       
       
@@ -442,8 +484,8 @@ this is c.py------------
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/09/搭建博客/" rel="next" title="使用github与Hexo搭建个人博客">
-                <i class="fa fa-chevron-left"></i> 使用github与Hexo搭建个人博客
+              <a href="/2019/05/03/pythonSelenium实战跳坑/" rel="next" title="pythonSelenium实战跳坑">
+                <i class="fa fa-chevron-left"></i> pythonSelenium实战跳坑
               </a>
             
           </div>
@@ -452,8 +494,8 @@ this is c.py------------
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/22/服务器定时发送邮件爬虫/" rel="prev" title="服务器定时发送邮件爬虫">
-                服务器定时发送邮件爬虫 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/05/20/windows_serv/" rel="prev" title="windows 服务">
+                windows 服务 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -602,7 +644,7 @@ this is c.py------------
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分析if-name-’-main-‘"><span class="nav-number">1.</span> <span class="nav-text">分析if  name  ==’ main ‘</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#“Make-a-script-both-importable-and-executable”"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">“Make a script both importable and executable”</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#总结："><span class="nav-number">1.1.</span> <span class="nav-text">总结：</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#open-image"><span class="nav-number">1.</span> <span class="nav-text">open image</span></a></li></ol></div>
             
 
           </div>
