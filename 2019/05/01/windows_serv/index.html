@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Ubuntu,阿里源,">
+  <meta name="keywords" content="windows,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="更换阿里源笔记">
-<meta name="keywords" content="Ubuntu,阿里源">
+<meta name="description" content="快速创建windows服务,节约启动服务的时间">
+<meta name="keywords" content="windows">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu更换阿里源">
-<meta property="og:url" content="https://bjj.dropsec.xyz/2018/11/13/Ubuntu更换阿里源/index.html">
+<meta property="og:title" content="windows 服务">
+<meta property="og:url" content="https://bjj.dropsec.xyz/2019/05/01/windows_serv/index.html">
 <meta property="og:site_name" content="AJay13">
-<meta property="og:description" content="更换阿里源笔记">
+<meta property="og:description" content="快速创建windows服务,节约启动服务的时间">
 <meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
-<meta property="og:updated_time" content="2019-04-24T13:49:17.863Z">
+<meta property="og:updated_time" content="2019-05-03T10:56:08.244Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu更换阿里源">
-<meta name="twitter:description" content="更换阿里源笔记">
+<meta name="twitter:title" content="windows 服务">
+<meta name="twitter:description" content="快速创建windows服务,节约启动服务的时间">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://bjj.dropsec.xyz/2018/11/13/Ubuntu更换阿里源/">
+  <link rel="canonical" href="https://bjj.dropsec.xyz/2019/05/01/windows_serv/">
 
 
 
 
 
-  <title>Ubuntu更换阿里源 | AJay13</title>
+  <title>windows 服务 | AJay13</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2018/11/13/Ubuntu更换阿里源/">
+    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2019/05/01/windows_serv/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="朴阿杰">
@@ -280,7 +280,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Ubuntu更换阿里源</h2>
+          <h2 class="post-title" itemprop="name headline">windows 服务</h2>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-13T12:36:28+08:00">
-                2018-11-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-01T13:14:00+08:00">
+                2019-05-01
               </time>
             
 
@@ -315,8 +315,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">Ubuntu</span>
+                  <a href="/categories/windows/" itemprop="url" rel="index">
+                    <span itemprop="name">windows</span>
                   </a>
                 </span>
 
@@ -352,16 +352,18 @@
       
 
       
-        <p>更换阿里源笔记<br><a id="more"></a><br>更换阿里源笔记</p>
-<p>1.备份系统自带源</p>
-<pre><code>mv /etc/apt/sources.list /etc/apt/sources.list.bak
-</code></pre><p>2.修改/etc/apt/sources.list文件</p>
-<pre><code>vim /etc/apt/sources.list  
-</code></pre><p>加入如下内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">deb-src http://archive.ubuntu.com/ubuntu xenial main restricted #Added by software-properties</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial main restricted multiverse universe #Added by software-properties</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted multiverse universe #Added by software-properties</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse #Added by software-properties</span><br><span class="line">deb http://archive.canonical.com/ubuntu xenial partner</span><br><span class="line">deb-src http://archive.canonical.com/ubuntu xenial partner</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted multiverse universe #Added by software-properties</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse</span><br></pre></td></tr></table></figure>
-<p>3.更新生效</p>
-<pre><code>apt-get update
-</code></pre>
+        <p>快速创建windows服务,节约启动服务的时间</p>
+<a id="more"></a>
+<p><strong>添加的服务</strong></p>
+<ul>
+<li style="list-style: none"><input type="checkbox" checked> Redis数据库服务</li>
+<li style="list-style: none"><input type="checkbox" checked> Mysql数据库服务</li>
+<li style="list-style: none"><input type="checkbox" checked> MongoDB数据库服务</li>
+</ul>
+<h2 id="创建服务"><a href="#创建服务" class="headerlink" title="创建服务"></a>创建服务</h2><h3 id="添加redis服务"><a href="#添加redis服务" class="headerlink" title="添加redis服务"></a>添加redis服务</h3><h3 id="添加mongodb服务"><a href="#添加mongodb服务" class="headerlink" title="添加mongodb服务"></a>添加mongodb服务</h3><h3 id="添加mysql服务"><a href="#添加mysql服务" class="headerlink" title="添加mysql服务"></a>添加mysql服务</h3><h2 id="服务操作"><a href="#服务操作" class="headerlink" title="服务操作"></a>服务操作</h2><p>启动服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net start ServiceName</span><br></pre></td></tr></table></figure></p>
+<p>停止服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net stop ServiceName</span><br></pre></td></tr></table></figure></p>
+<h2 id="删除服务"><a href="#删除服务" class="headerlink" title="删除服务"></a>删除服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc delete ServiceName</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -378,9 +380,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
-          
-            <a href="/tags/阿里源/" rel="tag"># 阿里源</a>
+            <a href="/tags/windows/" rel="tag"># windows</a>
           
         </div>
       
@@ -393,8 +393,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/11/支付宝自动化薅羊毛/" rel="next" title="支付宝自动化薅羊毛">
-                <i class="fa fa-chevron-left"></i> 支付宝自动化薅羊毛
+              <a href="/2019/04/26/python异步编程/" rel="next" title="python异步编程">
+                <i class="fa fa-chevron-left"></i> python异步编程
               </a>
             
           </div>
@@ -403,8 +403,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/07/华为交换机ACL使用/" rel="prev" title="华为交换机ACL使用">
-                华为交换机ACL使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/03/pythonSelenium实战跳坑/" rel="prev" title="pythonSelenium实战跳坑">
+                pythonSelenium实战跳坑 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -457,8 +457,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -534,6 +543,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建服务"><span class="nav-number">1.</span> <span class="nav-text">创建服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加redis服务"><span class="nav-number">1.1.</span> <span class="nav-text">添加redis服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加mongodb服务"><span class="nav-number">1.2.</span> <span class="nav-text">添加mongodb服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加mysql服务"><span class="nav-number">1.3.</span> <span class="nav-text">添加mysql服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务操作"><span class="nav-number">2.</span> <span class="nav-text">服务操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除服务"><span class="nav-number">3.</span> <span class="nav-text">删除服务</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
