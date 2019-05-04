@@ -12,6 +12,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[new_post]]></title>
+    <url>%2F2019%2F05%2F04%2F1%2F</url>
+    <content type="text"><![CDATA[人生苦短我用python2&amp;3 life is short, i have python.]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[pythonSelenium实战跳坑]]></title>
     <url>%2F2019%2F05%2F03%2FpythonSelenium%E5%AE%9E%E6%88%98%E8%B7%B3%E5%9D%91%2F</url>
     <content type="text"><![CDATA[pythonSelenium实战跳坑关于启动selenium开启DevTools listening 当我使用selenium操作google浏览器的时候，用pycharm运行没问题，可是用终端运行 就会卡在监听1234def do_work(self,urls): chrome_options = webdriver.ChromeOptions() chrome_options.add_argument(&apos;--disk-cache-dir=./cache&apos;) self.browser = webdriver.Chrome(chrome_options=chrome_options) 终端显示1DevTools listening on ws://127.0.0.1:21466/devtools/browser/a7850440-0dfa-4837-9366-109ca4bbd523 解决方式 关闭已打开的Chrome后台实例，初始化Chrome实例时指定driver的path。]]></content>
