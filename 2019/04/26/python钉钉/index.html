@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="/themes/next/languages/zh-Hans.yml">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python工具,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="记录使用钉钉开发者接口传输信息，比较好用。接口很丰富。">
+<meta name="keywords" content="python工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="钉钉">
+<meta property="og:url" content="https://bjj.dropsec.xyz/2019/04/26/python钉钉/index.html">
+<meta property="og:site_name" content="AJay13">
+<meta property="og:description" content="记录使用钉钉开发者接口传输信息，比较好用。接口很丰富。">
+<meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
+<meta property="og:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img/20190426164106.png">
+<meta property="og:updated_time" content="2019-04-26T08:42:36.654Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="钉钉">
+<meta name="twitter:description" content="记录使用钉钉开发者接口传输信息，比较好用。接口很丰富。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img/20190426164106.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bjj.dropsec.xyz/2019/04/26/python钉钉/">
+
+
+
+
+
+  <title>钉钉 | AJay13</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="/themes/next/languages/zh-Hans.yml">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AJay13</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home  //首页"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags  //标签"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th   //分类"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive //归档"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-知识库">
+          <a href="/know/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wechat //知识库"></i> <br>
+            
+            知识库
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-安全导航">
+          <a href="/sec_web" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-google //安全导航"></i> <br>
+            
+            安全导航
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user  //关于"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2019/04/26/python钉钉/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="朴阿杰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AJay13">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">钉钉</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-26T16:21:50+08:00">
+                2019-04-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>记录使用钉钉开发者接口传输信息，比较好用。接口很丰富。<br><a id="more"></a></p>
+<p><a href="https://open-doc.dingtalk.com/microapp/serverapi2/qf2nxq" target="_blank" rel="noopener">钉钉开发文档-群机器人</a></p>
+<p>钉钉的开发者文档看着比较舒服就仔细看看了</p>
+<h3 id="自定义机器人如何创建"><a href="#自定义机器人如何创建" class="headerlink" title="自定义机器人如何创建"></a>自定义机器人如何创建</h3><p>创建自己的组织-&gt;创建群-&gt;创建添加自定义机器人（最多6个）-&gt;获得机器人的webhook-&gt;编程使用</p>
+<h2 id="机器人发送消息有6种"><a href="#机器人发送消息有6种" class="headerlink" title="机器人发送消息有6种"></a>机器人发送消息有6种</h2><ul>
+<li>text类型</li>
+<li>link类型</li>
+<li>markdow类型</li>
+<li>整体跳转ActionCard类型</li>
+<li>独立跳转ActionCard类型</li>
+<li>FeedCard类型</li>
+</ul>
+<h2 id="每种类型的格式"><a href="#每种类型的格式" class="headerlink" title="每种类型的格式"></a>每种类型的格式</h2><h3 id="text类型"><a href="#text类型" class="headerlink" title="text类型"></a>text类型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;msgtype&quot;: &quot;text&quot;, </span><br><span class="line">    &quot;text&quot;: &#123;</span><br><span class="line">        &quot;content&quot;: &quot;我就是我, 是不一样的烟火@156xxxx8827&quot;</span><br><span class="line">    &#125;, </span><br><span class="line">    &quot;at&quot;: &#123;</span><br><span class="line">        &quot;atMobiles&quot;: [</span><br><span class="line">            &quot;156xxxx8827&quot;, </span><br><span class="line">            &quot;189xxxx8325&quot;</span><br><span class="line">        ], </span><br><span class="line">        &quot;isAtAll&quot;: false</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>text 简单的收发消息，能@成员，钉钉机器人接口有限制，一个机器人一分钟之内只能发送20条信息。对于信息内容阿里做了监控，屏蔽一些不健康的信息。</p>
+<p>这里可以尝试买安恒密盾</p>
+<h3 id="link类型"><a href="#link类型" class="headerlink" title="link类型"></a>link类型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    &quot;msgtype&quot;: &quot;link&quot;, </span><br><span class="line">    &quot;link&quot;: &#123;</span><br><span class="line">        &quot;text&quot;: &quot;这个即将发布的新版本，创始人陈航（花名“无招”）称它为“红树林”。</span><br><span class="line">而在此之前，每当面临重大升级，产品经理们都会取一个应景的代号，这一次，为什么是“红树林”？&quot;, </span><br><span class="line">        &quot;title&quot;: &quot;时代的火车向前开&quot;, </span><br><span class="line">        &quot;picUrl&quot;: &quot;&quot;, </span><br><span class="line">        &quot;messageUrl&quot;: &quot;https://www.dingtalk.com/s?__biz=MzA4NjMwMTA2Ng==&amp;mid=2650316842&amp;idx=1&amp;sn=60da3ea2b29f1dcc43a7c8e4a7c97a16&amp;scene=2&amp;srcid=09189AnRJEdIiWVaKltFzNTw&amp;from=timeline&amp;isappinstalled=0&amp;key=&amp;ascene=2&amp;uin=&amp;devicetype=android-23&amp;version=26031933&amp;nettype=WIFI&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>link不能跳转到app内应用</p>
+<h3 id="markdow类型"><a href="#markdow类型" class="headerlink" title="markdow类型"></a>markdow类型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">     &quot;msgtype&quot;: &quot;markdown&quot;,</span><br><span class="line">     &quot;markdown&quot;: &#123;</span><br><span class="line">         &quot;title&quot;:&quot;杭州天气&quot;,</span><br><span class="line">         &quot;text&quot;: &quot;#### 杭州天气 @156xxxx8827\n&quot; +</span><br><span class="line">                 &quot;&gt; 9度，西北风1级，空气良89，相对温度73%\n\n&quot; +</span><br><span class="line">                 &quot;&gt; ![screenshot](https://gw.alipayobjects.com/zos/skylark-tools/public/files/84111bbeba74743d2771ed4f062d1f25.png)\n&quot;  +</span><br><span class="line">                 &quot;&gt; ###### 10点20分发布 [天气](http://www.thinkpage.cn/) \n&quot;</span><br><span class="line">     &#125;,</span><br><span class="line">    &quot;at&quot;: &#123;</span><br><span class="line">        &quot;atMobiles&quot;: [</span><br><span class="line">            &quot;156xxxx8827&quot;, </span><br><span class="line">            &quot;189xxxx8325&quot;</span><br><span class="line">        ], </span><br><span class="line">        &quot;isAtAll&quot;: false</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>对于分散性的数据，可以集中的推送。减少接口掉的频率，同时增加客观性</p>
+<h3 id="整体跳转ActionCard类型"><a href="#整体跳转ActionCard类型" class="headerlink" title="整体跳转ActionCard类型"></a>整体跳转ActionCard类型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;actionCard&quot;: &#123;</span><br><span class="line">        &quot;title&quot;: &quot;乔布斯 20 年前想打造一间苹果咖啡厅，而它正是 Apple Store 的前身&quot;, </span><br><span class="line">        &quot;text&quot;: &quot;![screenshot](serverapi2/@lADOpwk3K80C0M0FoA) </span><br><span class="line"> ### 乔布斯 20 年前想打造的苹果咖啡厅 </span><br><span class="line"> Apple Store 的设计正从原来满满的科技感走向生活化，而其生活化的走向其实可以追溯到 20 年前苹果一个建立咖啡馆的计划&quot;, </span><br><span class="line">        &quot;hideAvatar&quot;: &quot;0&quot;, </span><br><span class="line">        &quot;btnOrientation&quot;: &quot;0&quot;, </span><br><span class="line">        &quot;singleTitle&quot; : &quot;阅读全文&quot;,</span><br><span class="line">        &quot;singleURL&quot; : &quot;https://www.dingtalk.com/&quot;</span><br><span class="line">    &#125;, </span><br><span class="line">    &quot;msgtype&quot;: &quot;actionCard&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="独立跳转ActionCard类型"><a href="#独立跳转ActionCard类型" class="headerlink" title="独立跳转ActionCard类型"></a>独立跳转ActionCard类型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;actionCard&quot;: &#123;</span><br><span class="line">        &quot;title&quot;: &quot;乔布斯 20 年前想打造一间苹果咖啡厅，而它正是 Apple Store 的前身&quot;, </span><br><span class="line">        &quot;text&quot;: &quot;![screenshot](serverapi2/@lADOpwk3K80C0M0FoA) </span><br><span class="line"> ### 乔布斯 20 年前想打造的苹果咖啡厅 </span><br><span class="line"> Apple Store 的设计正从原来满满的科技感走向生活化，而其生活化的走向其实可以追溯到 20 年前苹果一个建立咖啡馆的计划&quot;, </span><br><span class="line">        &quot;hideAvatar&quot;: &quot;0&quot;, </span><br><span class="line">        &quot;btnOrientation&quot;: &quot;0&quot;, </span><br><span class="line">        &quot;btns&quot;: [</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;title&quot;: &quot;内容不错&quot;, </span><br><span class="line">                &quot;actionURL&quot;: &quot;https://www.dingtalk.com/&quot;</span><br><span class="line">            &#125;, </span><br><span class="line">            &#123;</span><br><span class="line">                &quot;title&quot;: &quot;不感兴趣&quot;, </span><br><span class="line">                &quot;actionURL&quot;: &quot;https://www.dingtalk.com/&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;, </span><br><span class="line">    &quot;msgtype&quot;: &quot;actionCard&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="FeedCard类型"><a href="#FeedCard类型" class="headerlink" title="FeedCard类型"></a>FeedCard类型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;feedCard&quot;: &#123;</span><br><span class="line">        &quot;links&quot;: [</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;title&quot;: &quot;时代的火车向前开&quot;, </span><br><span class="line">                &quot;messageURL&quot;: &quot;https://www.dingtalk.com/s?__biz=MzA4NjMwMTA2Ng==&amp;mid=2650316842&amp;idx=1&amp;sn=60da3ea2b29f1dcc43a7c8e4a7c97a16&amp;scene=2&amp;srcid=09189AnRJEdIiWVaKltFzNTw&amp;from=timeline&amp;isappinstalled=0&amp;key=&amp;ascene=2&amp;uin=&amp;devicetype=android-23&amp;version=26031933&amp;nettype=WIFI&quot;, </span><br><span class="line">                &quot;picURL&quot;: &quot;https://www.dingtalk.com/&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;title&quot;: &quot;时代的火车向前开2&quot;, </span><br><span class="line">                &quot;messageURL&quot;: &quot;https://www.dingtalk.com/s?__biz=MzA4NjMwMTA2Ng==&amp;mid=2650316842&amp;idx=1&amp;sn=60da3ea2b29f1dcc43a7c8e4a7c97a16&amp;scene=2&amp;srcid=09189AnRJEdIiWVaKltFzNTw&amp;from=timeline&amp;isappinstalled=0&amp;key=&amp;ascene=2&amp;uin=&amp;devicetype=android-23&amp;version=26031933&amp;nettype=WIFI&quot;, </span><br><span class="line">                &quot;picURL&quot;: &quot;https://www.dingtalk.com/&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;, </span><br><span class="line">    &quot;msgtype&quot;: &quot;feedCard&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img/20190426164106.png" alt></p>
+<h2 id="代码示例python"><a href="#代码示例python" class="headerlink" title="代码示例python"></a>代码示例python</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line">import json</span><br><span class="line">from datetime import datetime</span><br><span class="line"></span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class DingMsg():</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.HEADERS = &#123;</span><br><span class="line">            &quot;Content-Type&quot;: &quot;application/json ;charset=utf-8 &quot;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    def parse_data(self, data):</span><br><span class="line">        self.keyword = data.get(&apos;keyword&apos;)</span><br><span class="line">        self.img_src = data.get(&apos;img_src&apos;)</span><br><span class="line">        self.title = data.get(&apos;title&apos;)</span><br><span class="line">        self.xianyu_url = data.get(&apos;pic_href&apos;)</span><br><span class="line">        self.pub_time = data.get(&apos;pub_time&apos;)</span><br><span class="line">        self.price = data.get(&apos;price&apos;)</span><br><span class="line">        self.location = data.get(&apos;location&apos;)</span><br><span class="line">        self.desc = data.get(&apos;desc&apos;)</span><br><span class="line"></span><br><span class="line">    def text_msg_content(self):</span><br><span class="line">        self.parse_data(self.data)</span><br><span class="line">        text = &apos;&#123;title&#125;\n&#123;xianyu_url&#125;\n关键字：&#123;keyword&#125;\n价格：&#123;price&#125;  \n时间:&#123;pub_time&#125;&apos;.format(title=self.title,</span><br><span class="line">                                                                                          xianyu_url=self.xianyu_url,</span><br><span class="line">                                                                                          keyword=self.keyword,</span><br><span class="line">                                                                                          price=self.price,</span><br><span class="line">                                                                                          pub_time=self.pub_time)</span><br><span class="line"></span><br><span class="line">        return &#123;</span><br><span class="line">            &quot;msgtype&quot;: &quot;text&quot;,</span><br><span class="line">            &quot;text&quot;: &#123;</span><br><span class="line">                &quot;content&quot;: text</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;at&quot;: &#123;</span><br><span class="line">                # &quot;atMobiles&quot;: [</span><br><span class="line">                # ],</span><br><span class="line">                &quot;isAtAll&quot;: True</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    def link_msg_content(self):</span><br><span class="line">        self.parse_data(self.data)</span><br><span class="line">        # 链接的话，手机端没法直接点进去展示，电脑端可以展示</span><br><span class="line">        link_text = &apos;&#123;title&#125;\n时间：&#123;pub_time&#125;&apos;.format(title=self.title, pub_time=self.pub_time)</span><br><span class="line">        return &#123;</span><br><span class="line">            &quot;msgtype&quot;: &quot;link&quot;,</span><br><span class="line">            &quot;link&quot;: &#123;</span><br><span class="line">                &quot;text&quot;: link_text,</span><br><span class="line">                &quot;title&quot;: &apos;闲鱼&quot;&#123;&#125;&quot;最新商品消息&apos;.format(self.keyword),</span><br><span class="line">                &quot;picUrl&quot;: self.img_src,</span><br><span class="line">                &quot;messageUrl&quot;: self.xianyu_url</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    def markd_msg_content(self):</span><br><span class="line">        markdown_content = &quot;&quot;</span><br><span class="line">        for item in self.data:</span><br><span class="line">            self.parse_data(item)</span><br><span class="line">            markdown_content += &quot;---------------------------------\n \n&quot; \</span><br><span class="line">                                &quot;#### **关键字:** &#123;keyword&#125;\n&quot; \</span><br><span class="line">                                &quot;###### 价格:&#123;price&#125; 时间:&#123;pub_time&#125;\n&quot; \</span><br><span class="line">                                &quot;#### 标题:&#123;title&#125;\n&quot; \</span><br><span class="line">                                &quot;#### 链接:[&#123;xianyu_url&#125;](&#123;xianyu_url&#125;)\n&quot;.format(keyword=self.keyword, price=self.price,</span><br><span class="line">                                                                                pub_time=self.pub_time,</span><br><span class="line">                                                                                title=self.title,</span><br><span class="line">                                                                                xianyu_url=self.xianyu_url)</span><br><span class="line">        return &#123;</span><br><span class="line">            &quot;msgtype&quot;: &quot;markdown&quot;,</span><br><span class="line">            &quot;markdown&quot;: &#123;</span><br><span class="line">                &quot;title&quot;: &quot;新增闲鱼商品&quot;,</span><br><span class="line">                &quot;text&quot;: &quot;## **新增闲鱼商品** \n&quot; +</span><br><span class="line">                        &quot; ###### &#123;&#125; 发布\n&quot;.format(datetime.now().strftime(&apos;%Y-%m-%d %H:%M:%S&apos;)) + markdown_content</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;at&quot;: &#123;</span><br><span class="line">                # &quot;atMobiles&quot;: [</span><br><span class="line">                #     &quot;156xxxx8827&quot;,</span><br><span class="line">                #     &quot;189xxxx8325&quot;</span><br><span class="line">                # ],</span><br><span class="line">                &quot;isAtAll&quot;: True</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    def check_msg_content(self):</span><br><span class="line">        return &#123;</span><br><span class="line">            &quot;msgtype&quot;: &quot;text&quot;,</span><br><span class="line">            &quot;text&quot;: &#123;</span><br><span class="line">                &quot;content&quot;: self.data</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;at&quot;: &#123;</span><br><span class="line">                # &quot;atMobiles&quot;: [</span><br><span class="line">                # ],</span><br><span class="line">                &quot;isAtAll&quot;: True</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    def send_msg(self, webhook_url, data, type):</span><br><span class="line">        # 这里的message是你想要推送的文字消息三种格式 ：text_msg_content  link_msg_content  markd_msg_content</span><br><span class="line">        self.data = data</span><br><span class="line">        if type == 1:</span><br><span class="line">            mesBody = self.text_msg_content()</span><br><span class="line">        elif type == 2:</span><br><span class="line">            mesBody = self.link_msg_content()</span><br><span class="line">        elif type == 3:</span><br><span class="line">            mesBody = self.markd_msg_content()</span><br><span class="line">        else:</span><br><span class="line">            mesBody = self.check_msg_content()</span><br><span class="line">        MessageBody = json.dumps(mesBody)</span><br><span class="line">        result = requests.post(url=webhook_url, data=MessageBody, headers=self.HEADERS)</span><br><span class="line">        print(result.text)</span><br><span class="line">        try:</span><br><span class="line">            if result.json().get(&apos;errmsg&apos;) == &apos;ok&apos;:</span><br><span class="line">                return True</span><br><span class="line">            elif result.json().get(&apos;errmsg&apos;) == &apos;消息中包含不合适的内容&apos;:</span><br><span class="line">                return True</span><br><span class="line">            else:</span><br><span class="line">                return False</span><br><span class="line">        except Exception as e:</span><br><span class="line">            return False</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python工具/" rel="tag" class=" fa  fa-tag  "> python工具</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/26/xianyu/" rel="next" title="闲鱼数据爬取">
+                <i class="fa fa-chevron-left"></i> 闲鱼数据爬取
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/26/mongodb数据库/" rel="prev" title="mongodb数据库">
+                mongodb数据库 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">朴阿杰</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+	<br>
+<br>
+<div class="site-state-item site-state-posts" style="border-left:none;">
+       <span class="site-state-item-count" id="busuanzi_value_site_pv"></span>
+       <span class="site-state-item-name">浏览量</span>
+</div>
+<div class="site-state-item site-state-posts">
+      <span class="site-state-item-count" id="busuanzi_value_site_uv"></span>
+     <span class="site-state-item-name">访客量</span>
+</div>
+<div class="site-state-item site-state-posts">
+      <span class="site-state-item-count">32.9k</span>
+      <span class="site-state-item-name">总字数</span>
+</div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/DropsDevopsOrg" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.dropsec.xyz/" target="_blank" title="团队主页">
+                      
+                        <i class="fa fa-fw fa-dropsec"></i>团队主页</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://thief.one" title="nMask" target="_blank">nMask</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://exam1ple.com/" title="Ti1tle" target="_blank">Ti1tle</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ex2ample.com/" title="Tit2le" target="_blank">Tit2le</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://exam3ple.com/" title="Ti3tle" target="_blank">Ti3tle</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ex4ample.com/" title="Tit4le" target="_blank">Tit4le</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义机器人如何创建"><span class="nav-number">1.</span> <span class="nav-text">自定义机器人如何创建</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#机器人发送消息有6种"><span class="nav-number"></span> <span class="nav-text">机器人发送消息有6种</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#每种类型的格式"><span class="nav-number"></span> <span class="nav-text">每种类型的格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#text类型"><span class="nav-number">1.</span> <span class="nav-text">text类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#link类型"><span class="nav-number">2.</span> <span class="nav-text">link类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#markdow类型"><span class="nav-number">3.</span> <span class="nav-text">markdow类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整体跳转ActionCard类型"><span class="nav-number">4.</span> <span class="nav-text">整体跳转ActionCard类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#独立跳转ActionCard类型"><span class="nav-number">5.</span> <span class="nav-text">独立跳转ActionCard类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FeedCard类型"><span class="nav-number">6.</span> <span class="nav-text">FeedCard类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码示例python"><span class="nav-number"></span> <span class="nav-text">代码示例python</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2016-2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">朴阿杰</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">博客总字数</span>
+    
+    <span title="Site words total count">32.9k</span>
+  
+</div>
+            
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人</span>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="/themes/next/languages/zh-Hans.yml">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,selenium,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Selenium 是一个用于web应用程序自动化测试的工具，直接运行在浏览器当中，支持chrome、firefox等主流浏览器。可以通过代码控制与页面上元素进行交互（点击、输入等），也可以获取指定元素的内容。">
+<meta name="keywords" content="python,selenium">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Selenium模拟浏览器爬虫详解">
+<meta property="og:url" content="https://bjj.dropsec.xyz/2019/05/02/pythonselenium实战/index.html">
+<meta property="og:site_name" content="AJay13">
+<meta property="og:description" content="Selenium 是一个用于web应用程序自动化测试的工具，直接运行在浏览器当中，支持chrome、firefox等主流浏览器。可以通过代码控制与页面上元素进行交互（点击、输入等），也可以获取指定元素的内容。">
+<meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
+<meta property="og:updated_time" content="2019-05-03T11:05:00.941Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于Selenium模拟浏览器爬虫详解">
+<meta name="twitter:description" content="Selenium 是一个用于web应用程序自动化测试的工具，直接运行在浏览器当中，支持chrome、firefox等主流浏览器。可以通过代码控制与页面上元素进行交互（点击、输入等），也可以获取指定元素的内容。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bjj.dropsec.xyz/2019/05/02/pythonselenium实战/">
+
+
+
+
+
+  <title>基于Selenium模拟浏览器爬虫详解 | AJay13</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="/themes/next/languages/zh-Hans.yml">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AJay13</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home  //首页"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags  //标签"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th   //分类"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive //归档"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-知识库">
+          <a href="/know/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wechat //知识库"></i> <br>
+            
+            知识库
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-安全导航">
+          <a href="/sec_web" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-google //安全导航"></i> <br>
+            
+            安全导航
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user  //关于"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2019/05/02/pythonselenium实战/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="朴阿杰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AJay13">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">基于Selenium模拟浏览器爬虫详解</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-02T13:14:00+08:00">
+                2019-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Selenium 是一个用于web应用程序自动化测试的工具，直接运行在浏览器当中，支持chrome、firefox等主流浏览器。可以通过代码控制与页面上元素进行交互（点击、输入等），也可以获取指定元素的内容。<br><a id="more"></a></p>
+<p>一.背景</p>
+<p>Selenium 是一个用于web应用程序自动化测试的工具，直接运行在浏览器当中，支持chrome、firefox等主流浏览器。可以通过代码控制与页面上元素进行交互（点击、输入等），也可以获取指定元素的内容。</p>
+<p>劣势：</p>
+<p>相比于抓包→构造请求→解析返回值的爬虫，由于Selenium需要生成一个浏览器环境，所有操作（与元素交互、获取元素内容等）均需要等待页面加载完毕后才可以继续进行，所以速度相比构造请求的慢很多。对于为了反爬做了特殊处理的展示内容，如字体加密（参考猫眼）、图片替换数字（参考自如）等，可能取不到想要的数据。</p>
+<p>使用图片替换数字的自如：</p>
+<p>image-20190107215702089</p>
+<p>优势：</p>
+<p>a. 不需要做复杂的抓包、构造请求、解析数据等，开发难度相对要低一些。</p>
+<p>b. 其访问参数跟使用浏览器的正常用户一模一样，访问行为也相对更像正常用户，不容易被反爬虫策略命中。</p>
+<p>c.生成的浏览器环境可以自动运行 JS 文件，所以不用担心如何逆向混淆过的JS文件生成用作人机校验的参数，如马蜂窝酒店评论的人机校验参数_sn，网易云音乐评论的人机校验参数params、encSecKey。可以自行抓包查看。</p>
+<p>d. 如果需要抓取同一个前端页面上面来自不同后端接口的信息，如OTA酒店详情页的酒店基础信息、价格、评论等，使用Selenium可以在一次请求中同时完成对三个接口的调用，相对方便。</p>
+<p>二、实现</p>
+<p>1.环境<br>python3.6<br>Macos<br>Selenium<br>3.浏览器驱动（webdriver）</p>
+<p>加载浏览器环境需要下载对应的浏览器驱动，此处选择 Chrome。</p>
+<p>下载地址：<a href="http://npm.taobao.org/mirrors/chromedriver/" target="_blank" rel="noopener">http://npm.taobao.org/mirrors/chromedriver/</a> ，</p>
+<p>选择合适的版本下载解压后放在随便一个位置即可。</p>
+<p>4.hello world</p>
+<p>from selenium import webdriver</p>
+<p> 这里填刚刚下载的驱动的路径 </p>
+<p>path =  /Applications/Google Chrome.app/Contents/chromedriver </p>
+<p>driver = webdriver.Chrome(executable_path=path)</p>
+<p>url =  <a href="http://hotel.qunar.com/city/beijing_city/" target="_blank" rel="noopener">http://hotel.qunar.com/city/beijing_city/</a> </p>
+<p>driver.get(url)</p>
+<p> 运行上述代码，会打开一个浏览器，并且加载去哪儿的酒店列表页 </p>
+<p>这时候可以通过webdriver自带的一些的一些方法获取元素内容或者与元素进行交互。</p>
+<p>image-20190108224445170</p>
+<p>#返回ID = js_block_beijing_city_7810的元素信息</p>
+<p>hotel_info = driver.find_element_by_id( js_block_beijing_city_7810 )</p>
+<p>print(hotel_info.text)</p>
+<p>#返回 展示在列表页的酒店信息</p>
+<p>#同理，可以find_element_by_[class_name|name] 等，均可完成查询。</p>
+<p>也可以通过方法 find_elements查找符合某条件的一组元素，以列表的形式返回。</p>
+<p>image-20190108225039418</p>
+<p>#当需要查询的唯一标识带有空格时，可以使用find_elements_by_css_selector，否则会报错。</p>
+<p>hotel_list = driver.find_elements_by_css_selector(“[class= b_result_box js_list_block  b_result_commentbox ]”)</p>
+<p>print(hotel_list)</p>
+<p>#返回酒店列表的全部信息。</p>
+<p>5.关闭图片加载</p>
+<p>在不需要抓取图片的情况下，可以设置不加载图片，节约时间，这样属于调整本地设置，在传参上并不会有异常。</p>
+<p>from selenium import webdriver</p>
+<p>chrome_opt = webdriver.ChromeOptions()</p>
+<p>prefs={“profile.managed_default_content_settings.images”:2}</p>
+<p>chrome_opt.add_experimental_option(“prefs”,prefs)</p>
+<p>path =   #驱动路径</p>
+<p>browser_noPic = webdriver.Chrome(executable_path=path,chrome_options=chrome_opt)</p>
+<p>三、使用webdriver与元素进行交互</p>
+<p>1.模拟鼠标点击</p>
+<p>image-20190108230139238</p>
+<p>hotel_info = driver.find_element_by_id(“js_plugin_tag_beijing_city_7810”)</p>
+<p>hotel.info.click()</p>
+<p>#进入酒店详情页</p>
+<p>2.模拟键盘输入</p>
+<p>hotel_search = driver.find_element_by_id(“jxQ”)</p>
+<p>hotel_search.send_keys(“如”)</p>
+<p>hotel_search.send_keys(“如家”)</p>
+<p>#由于搜索框输入的第一个字会被选中，所以需要第二次才能完整输入，当然也可以模拟按键盘的 →(右键)取消选中后再次输入。</p>
+<p>3.模拟下拉</p>
+<p>webdriver中对鼠标的操作的方法封装在ActionChains类中 ，使用前要先导入ActionChains类：</p>
+<p>from selenium.webdriver.common.action_chains import  ActionChains</p>
+<p>“””在页面顶部、底部个找了一个元素，并模拟鼠标从顶到底的滑动”””</p>
+<p>start = driver.find_element_by_class_name( e_above_header )</p>
+<p>target = driver.find_element_by_class_name( qn_footer )</p>
+<p>ActionChains(driver).drag_and_drop(start,target).perform()</p>
+<p>此外，webdiver还提供丰富的交互功能，比如鼠标悬停、双击、按住左键等等，此处不展开介绍。</p>
+<p>四、一个完整的模拟浏览器爬虫</p>
+<p>from selenium import webdriver</p>
+<p>from selenium.webdriver.common.action_chains import  ActionChains</p>
+<p>import time</p>
+<p> 这里填刚刚下载的驱动的路径 </p>
+<p>path =  /Users/./Desktop/chromedriver </p>
+<p>driver = webdriver.Chrome(executable_path=path)</p>
+<p>url =  <a href="http://hotel.qunar.com/city/beijing_city/" target="_blank" rel="noopener">http://hotel.qunar.com/city/beijing_city/</a> </p>
+<p>driver.get(url) </p>
+<p>time.sleep(6) #等待页面加载完再进行后续操作</p>
+<p>“””在页面顶部、底部个找了一个元素，并模拟鼠标从顶到底的滑动”””</p>
+<p>start = driver.find_element_by_class_name( e_above_header )</p>
+<p>target = driver.find_element_by_class_name( qn_footer )</p>
+<p>ActionChains(driver).drag_and_drop(start,target).perform()</p>
+<p>time.sleep(5) #等待页面加载完再进行后续操作</p>
+<p>hotel_link_list = driver.find_elements_by_css_selector(“[class= item_price js_hasprice ]”)</p>
+<p>print(“在此页面共有酒店”,len(hotel_link_list),”家”)</p>
+<p>windows = driver.window_handles</p>
+<p>#此处可以爬整个页面任何想要想要的元素</p>
+<p>list_hotel_info=[]</p>
+<p>def hotel_info_clawer():</p>
+<pre><code>list_hotel_info.append([driver.find_element_by_class_name(&quot;info&quot;).text,
+
+                        driver.find_element_by_class_name(&quot;js-room-table&quot;).text,
+
+                        driver.find_element_by_class_name(&quot;dt-module&quot;).text])
+</code></pre><p>for i in range(len(hotel_link_list)):</p>
+<pre><code>hotel_link_list[i].click()
+
+driver.switch_to.window(windows[-1]) #切换到刚打开的酒店详情页
+
+hotel_info_clawer()
+
+driver.close() #关闭已经爬完的酒店详情页    
+
+print(&quot;已经抓取酒店&quot;,i,&quot;家&quot;)
+</code></pre><p>#后面可以补充翻页继续抓取的部分</p>
+<p>五、使用截图+OCR抓取关键数据</p>
+<p>对于做了特殊处理的信息，如上述的猫眼电影的票房信息、自如的价格等，不适用于直接获取制定元素的信息进行抓取，可以使用截图+OCR的方式抓取此类数据。</p>
+<p>以自如的房租为例：</p>
+<p>image-20190112201939908</p>
+<p>from selenium import webdriver</p>
+<p> 这里填刚刚下载的驱动的路径 </p>
+<p>path =  /Applications/Google Chrome.app/Contents/chromedriver </p>
+<p>driver = webdriver.Chrome(executable_path=path)</p>
+<p>url =  <a href="http://www.ziroom.com/z/vr/61715463.html" target="_blank" rel="noopener">http://www.ziroom.com/z/vr/61715463.html</a> </p>
+<p>driver.get(url)</p>
+<p>price = diver.find_element_by_class_name( room_price )</p>
+<p>print(price.text)#由于自如的价格用图片做了替换，这样并不能获取到实际价格，需要获取图片再做ocr处理</p>
+<p>“对指定元素部分截图再保存”</p>
+<p>price.screenshot( /Users/./Desktop/price.png )</p>
+<p>安装ocr工具：</p>
+<p>Tesseract是一个开源的OCR引擎，能识别100多种语言（中，英，韩，日，德，法…等等），但是Tesseract对手写的识别能力较差，仅适用于打印字体。</p>
+<p>//仅安装tesseract，不安装训练工具和其他语音包，需要识别中文的话得额外下载</p>
+<p>//下载地址：<a href="https://github.com/tesseract-ocr/tessdata" target="_blank" rel="noopener">https://github.com/tesseract-ocr/tessdata</a></p>
+<p>brew install tesseract</p>
+<p>使用Tesseract：</p>
+<p>tesseract ~/price.png result</p>
+<p>//识别图片并将结果存在result里面</p>
+<p>在python下使用Tesseract：</p>
+<p>首先安装依赖包：pip install pytesseract</p>
+<p>import pytesseract</p>
+<p>from PIL import Image</p>
+<h1 id="open-image"><a href="#open-image" class="headerlink" title="open image"></a>open image</h1><p>image = Image.open( price.png )</p>
+<p>code = pytesseract.image_to_string(image)</p>
+<p>print(code)</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag" class=" fa  fa-tag  "> python</a>
+          
+            <a href="/tags/selenium/" rel="tag" class=" fa  fa-tag  "> selenium</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/01/windows_serv/" rel="next" title="windows 服务">
+                <i class="fa fa-chevron-left"></i> windows 服务
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/02/python切换宽带/" rel="prev" title="python切换宽带账号">
+                python切换宽带账号 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">朴阿杰</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+	<br>
+<br>
+<div class="site-state-item site-state-posts" style="border-left:none;">
+       <span class="site-state-item-count" id="busuanzi_value_site_pv"></span>
+       <span class="site-state-item-name">浏览量</span>
+</div>
+<div class="site-state-item site-state-posts">
+      <span class="site-state-item-count" id="busuanzi_value_site_uv"></span>
+     <span class="site-state-item-name">访客量</span>
+</div>
+<div class="site-state-item site-state-posts">
+      <span class="site-state-item-count">32.9k</span>
+      <span class="site-state-item-name">总字数</span>
+</div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/DropsDevopsOrg" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.dropsec.xyz/" target="_blank" title="团队主页">
+                      
+                        <i class="fa fa-fw fa-dropsec"></i>团队主页</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://thief.one" title="nMask" target="_blank">nMask</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://exam1ple.com/" title="Ti1tle" target="_blank">Ti1tle</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ex2ample.com/" title="Tit2le" target="_blank">Tit2le</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://exam3ple.com/" title="Ti3tle" target="_blank">Ti3tle</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ex4ample.com/" title="Tit4le" target="_blank">Tit4le</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#open-image"><span class="nav-number">1.</span> <span class="nav-text">open image</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2016-2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">朴阿杰</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">博客总字数</span>
+    
+    <span title="Site words total count">32.9k</span>
+  
+</div>
+            
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人</span>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
