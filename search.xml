@@ -12,9 +12,20 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[python文件路径操作总结]]></title>
+    <url>%2F2019%2F05%2F04%2F1%2F</url>
+    <content type="text"><![CDATA[在读文件的时候往往需要遍历文件夹，python的os.path包含了很多文件、文件夹操作的方法 下面列出： os.path.abspath(path) #返回绝对路径os.path.basename(path) #返回文件名os.path.commonprefix(list) #返回多个路径中，所有path共有的最长的路径。os.path.dirname(path) #返回文件路径os.path.exists(path) #路径存在则返回True,路径损坏返回Falseos.path.lexists #路径存在则返回True,路径损坏也返回Trueos.path.expanduser(path) #把path中包含的”~”和”~user”转换成用户目录os.path.expandvars(path) #根据环境变量的值替换path中包含的”$name”和”${name}”os.path.getatime(path) #返回最后一次进入此path的时间。os.path.getmtime(path) #返回在此path下最后一次修改的时间。os.path.getctime(path) #返回path的大小os.path.getsize(path) #返回文件大小，如果文件不存在就返回错误os.path.isabs(path) #判断是否为绝对路径os.path.isfile(path) #判断路径是否为文件os.path.isdir(path) #判断路径是否为目录os.path.islink(path) #判断路径是否为链接os.path.ismount(path) #判断路径是否为挂载点（）os.path.join(path1[, path2[, …]]) #把目录和文件名合成一个路径os.path.normcase(path) #转换path的大小写和斜杠os.path.normpath(path) #规范path字符串形式os.path.realpath(path) #返回path的真实路径os.path.relpath(path[, start]) #从start开始计算相对路径os.path.samefile(path1, path2) #判断目录或文件是否相同os.path.sameopenfile(fp1, fp2) #判断fp1和fp2是否指向同一文件os.path.samestat(stat1, stat2) #判断stat tuple stat1和stat2是否指向同一个文件os.path.split(path) #把路径分割成dirname和basename，返回一个元组os.path.splitdrive(path) #一般用在windows下，返回驱动器名和路径组成的元组os.path.splitext(path) #分割路径，返回路径名和文件扩展名的元组os.path.splitunc(path) #把路径分割为加载点与文件os.path.walk(path, visit, arg) #遍历path，进入每个目录都调用visit函数，visit函数必须有3个参数(arg, dirname, names)，dirname表示当前目录的目录名，names代表当前目录下的所有文件名，args则为walk的第三个参数os.path.supports_unicode_filenames #设置是否支持unicode路径名]]></content>
+      <categories>
+        <category>python基础</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[new_post]]></title>
     <url>%2F2019%2F05%2F04%2F1%2F</url>
-    <content type="text"><![CDATA[欢迎来到我的博客，输入密码继续阅读. U2FsdGVkX1+9SwvcvOzT4uVXcPgv/2hCYuxBj4PQdIqY98s6Bg2JftJOjrf4e4JKtKWONqqE9nS4h9GCrf4e2yY2Smat6iPVbrMn2t85NGyK/aT0ikmSblwXNH2eEwVrjNRVBD4opc65qy5P1vjjDXeBJlpSn8R3pIMH3TiCe4ab6TffjJAYSyqvC3gpKznE80ncC8j5M73IP0sE5cApiqnHJwXniAy6O76QIld/mcSPGGiNsHdf+QZzJkWlYU2MHebzRndTLHbmyNDx1fw1/wQiQG4WHvkFfOVwOklp0D2Mf4D8HznDQpfejAnO/h+HywqG2L/D8eF7Tax5zy+EDg==]]></content>
+    <content type="text"><![CDATA[欢迎来到我的博客，输入密码继续阅读. U2FsdGVkX19jm62GoWDgFBsdhz4tzphGnkxE3Tqn/8saUjPQulzaLGK9lrOWRf+sUAash/EPQ5JNH1op1H4Sy11yvCnHKSVKTPek7XATw1RbtaeWobZa3NHb/E/XBN/Q0Ax/lyr/c/mRy+dINAzXVlqR6v5Xz/c0M924eC6rzgqgrow4HOKPExoYJEIlrX5G2EiD7cuUVOdau7F0K1qs7Nxf1ZtePEZ5d53zNnWLj8O+eHunQw7N843d9KQaUH7qyhz8zwqaEaD+CxpSqSdCkiyQQt9xvxeqaNs1SrZzIrzKXKhkwHV8MUIb9vffgRyne91JPuYK9MeqNgrufiouRA==]]></content>
       <categories>
         <category>python</category>
       </categories>
