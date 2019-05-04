@@ -100,7 +100,7 @@
     root: '/',
     scheme: 'Mist',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -386,6 +386,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
           
             <div class="post-wordcount">
@@ -435,7 +440,7 @@
       
 
       
-        <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script> <div id="security"> <div class="input-container"> <label for="pass"> 欢迎来到我的博客，输入密码继续阅读. </label> <input type="password" class="form-control" id="pass" placeholder=" 欢迎来到我的博客，输入密码继续阅读. "> <div class="bottom-line"></div> </div> </div> <div id="encrypt-blog" style="display:none"> U2FsdGVkX19U5DTSqk+v4cupfcs2zWovlWQXy3ZMsgSIkVIhhCTtYwzJ8odmxlyZo4DpCbflb9Q/kbj9i11rPUxtIYS2th3KCYwSD6VFCQ2sqUO+6Ju9FgNjRWvqJCzpxPuJmhc5lTW6rH6SOvW2/7MXAaD75VDy9/Ap3FWeOJBQMQl4ym0ioeYeCz+n8P5Gy45RP+WNwuiUv15CmI6KZA3uTbefge5VfXDSPxmXL7B9brk58ygqrVKFoecpneSEmtBZwv8Pe7teNyCJIZQI5qf1gqYNyf48u9xChzL/4dh4E7jLX/QSJ1DfWWj5eiKmyWAz7SyFkxAcS6JTEp8Pew== </div><script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+        <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script> <div id="security"> <div class="input-container"> <label for="pass"> 欢迎来到我的博客，输入密码继续阅读. </label> <input type="password" class="form-control" id="pass" placeholder=" 欢迎来到我的博客，输入密码继续阅读. "> <div class="bottom-line"></div> </div> </div> <div id="encrypt-blog" style="display:none"> U2FsdGVkX19UVe7NUE4N9S38WZsh8zd/oL3t+x+rN2I0sLH43cUDV/W22s/sAhCQWPefpIEB0lj4x8dAwjAhprh8qcgf5Em2edZNF9s0m2wOscEODC3L9qjqKrrQ+AHtqgVrLyEmkl2uDQXBkZ4m2Dag0Btntos3KA5jHAAS9nnYaDyC9jTQnTLyn0mE6HcZmhrwPPabS69x4R8L4TmOLPQJ0LwItvl8BoJn+IN45TckVuLVk/kQONI5KsRJxOy5STv9wJdtTCIdVDCSbKjnqBVunJqXFUTxwkSLFG9NBdecI3lOqLBqmGiwLWlANaMdrK9+GVtHodK8GoqYpfnD4g== </div><script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
       
     </div>
     
@@ -647,6 +652,36 @@
 
           
           
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://example.com/" title="Title" target="_blank">Title</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://exam1ple.com/" title="Ti1tle" target="_blank">Ti1tle</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ex2ample.com/" title="Tit2le" target="_blank">Tit2le</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://exam3ple.com/" title="Ti3tle" target="_blank">Ti3tle</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ex4ample.com/" title="Tit4le" target="_blank">Tit4le</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
 
           
 
@@ -699,6 +734,26 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 
@@ -1199,5 +1254,6 @@
 
   
 
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </body>
 </html>
