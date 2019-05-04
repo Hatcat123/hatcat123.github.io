@@ -12,6 +12,28 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[解决python3_UnicodeEncodeError_'gbk']]></title>
+    <url>%2F2019%2F05%2F04%2F1%2F</url>
+    <content type="text"><![CDATA[从网上抓了一些字节流，想打印出来结果发生了一下错误： UnicodeEncodeError: ‘gbk’ codec can’t encode character ‘\xbb’ in position 8530: illegal multibyte sequence 代码1234import urllib.requestres=urllib.request.urlopen(&apos;http://www.baidu.com&apos;)htmlBytes=res.read()print(htmlBytes.decode(&apos;utf-8&apos;)) 错误信息让人很困惑，为什么用的是’utf-8’解码，错误信息却提示’gbk’错误呢？ 不仅如此，从百度首页的html中发现以下代码：1&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html;charset=utf-8&quot;&gt; 这说明网页的确用的是utf-8，为什么会出现Error呢？ 在python3里，有几点关于编码的常识 字符就是unicode字符，字符串就是unicode字符数组如果用以下代码测试，print(&#39;a&#39;==&#39;\u0061&#39;)会发现结果为True，足以说明两者的等价关系。 str转bytes叫encode，bytes转str叫decode，如上面的代码就是将抓到的字节流给decode成unicode数组我根据上面的错误信息分析了字节流中出现\xbb的地方，发现有个\xc2\xbb的特殊字符»，我怀疑是它无法被解码。用以下代码测试后 1print(b&apos;\xc2\xbb&apos;.decode(&apos;utf-8&apos;)) 它果然报错了:UnicodeEncodeError: &#39;gbk&#39; codec can&#39;t encode character &#39;\xbb&#39; in position 0: illegal multibyte sequence 上网找了下utf-8编码表，发现的确特殊字符»的utf-8形式就是c2bb,unicode是&#39;\u00bb&#39;，为什么无法解码呢。。。仔细看看错误信息，它提示’gbk’无法encode，但是我的代码是utf-8无法decode，压根牛头不对马嘴，终于让我怀疑是print函数出错了。。于是立即有了以下的测试print(&#39;\u00bb&#39;)结果报错了：UnicodeEncodeError: &#39;gbk&#39; codec can&#39;t encode character &#39;\xbb&#39; in position 0: illegal multibyte sequence 原来是print()函数自身有限制，不能完全打印所有的unicode字符。知道原因后，google了一下解决方法，其实print()函数的局限就是Python默认编码的局限，因为系统是win7的，python的默认编码不是’utf-8’,改一下python的默认编码成’utf-8’就行了 1234567import ioimport sysimport urllib.requestsys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding=&apos;utf8&apos;) #改变标准输出的默认编码res=urllib.request.urlopen(&apos;http://www.baidu.com&apos;)htmlBytes=res.read()print(htmlBytes.decode(&apos;utf-8&apos;)) 运行后不报错了，但是居然有好多乱码（英文显示正常，中文则显示乱码）！！又一阵折腾后发现是控制台的问题，具体来说就是我在cmd下运行该脚本会有乱码，而在IDLE下运行却很正常。 由此我推测是cmd不能很好地兼容utf8，而IDLE就可以，甚至在IDLE下运行，连“改变标准输出的默认编码”都不用，因为它默认就是utf8。如果一定要在cmd下运行，那就改一下编码，比如我换成“gb18030”，就能正常显示了： sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding=&#39;gb18030&#39;) 改变标准输出的默认编码最后，附上一些常用的和中文有关的编码的名称，分别赋值给encoding，就可以看到不同的效果了： 编码名称 用途 utf8 所有语言 gbk 简体中文 gb2312 简体中文 gb18030 简体中文 big5 繁体中文 big5hkscs 繁体中文]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python 错误</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[python脚本走ssr代理爬虫]]></title>
+    <url>%2F2019%2F05%2F04%2F1%2F</url>
+    <content type="text"><![CDATA[python脚本走ssr代理爬虫，访问外网,解除了我之前的疑问 在我之前的认知里，我不太了解这个代理的真正含义，总想着用python爬虫爬取外网的话就要本地连接vps，我意识中的代理只用在国内的爬虫，显然到今天才知道这样是不对的。 requests库一样可以ssr的代理。 在我使用代理查看国外的文章时候，无意间f12看到网页请求的地址竟然是本地127.0.0.1:1081，我就尝试使用requests加上代理能不能访问，结果是可以的。 1234567891011import requestsimport timedef req_tianmao(url): proxies = &#123; &quot;http&quot;: &quot;http://127.0.0.1:1080&quot;, &quot;https&quot;: &quot;http://127.0.0.1:1080&quot;, &#125; req = requests.get(url,proxies=proxies) text = req.text return text 然后使用异步协程aiohttp,发现源码里没有使用https代理的的情况，原作者说这将是一件麻烦的事情。 123456789101112 self.proxies = &#123; &quot;http&quot;: &quot;http://127.0.0.1:1081&quot;, &quot;https&quot;: &quot;http://127.0.0.1:1081&quot;, &#125;async def get(self, url): async with aiohttp.ClientSession() as session: async with session.get(url, proxy=self.proxies.get(&apos;http&apos;), timeout=30) as resp: print(&apos;网站的状态&apos;, resp.status) print(resp.url) result = await resp.text() return result 记录开启新世界的一次探索]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[python文件路径操作总结]]></title>
     <url>%2F2019%2F05%2F04%2F1%2F</url>
     <content type="text"><![CDATA[在读文件的时候往往需要遍历文件夹，python的os.path包含了很多文件、文件夹操作的方法 下面列出： os.path.abspath(path) #返回绝对路径os.path.basename(path) #返回文件名os.path.commonprefix(list) #返回多个路径中，所有path共有的最长的路径。os.path.dirname(path) #返回文件路径os.path.exists(path) #路径存在则返回True,路径损坏返回Falseos.path.lexists #路径存在则返回True,路径损坏也返回Trueos.path.expanduser(path) #把path中包含的”~”和”~user”转换成用户目录os.path.expandvars(path) #根据环境变量的值替换path中包含的”$name”和”${name}”os.path.getatime(path) #返回最后一次进入此path的时间。os.path.getmtime(path) #返回在此path下最后一次修改的时间。os.path.getctime(path) #返回path的大小os.path.getsize(path) #返回文件大小，如果文件不存在就返回错误os.path.isabs(path) #判断是否为绝对路径os.path.isfile(path) #判断路径是否为文件os.path.isdir(path) #判断路径是否为目录os.path.islink(path) #判断路径是否为链接os.path.ismount(path) #判断路径是否为挂载点（）os.path.join(path1[, path2[, …]]) #把目录和文件名合成一个路径os.path.normcase(path) #转换path的大小写和斜杠os.path.normpath(path) #规范path字符串形式os.path.realpath(path) #返回path的真实路径os.path.relpath(path[, start]) #从start开始计算相对路径os.path.samefile(path1, path2) #判断目录或文件是否相同os.path.sameopenfile(fp1, fp2) #判断fp1和fp2是否指向同一文件os.path.samestat(stat1, stat2) #判断stat tuple stat1和stat2是否指向同一个文件os.path.split(path) #把路径分割成dirname和basename，返回一个元组os.path.splitdrive(path) #一般用在windows下，返回驱动器名和路径组成的元组os.path.splitext(path) #分割路径，返回路径名和文件扩展名的元组os.path.splitunc(path) #把路径分割为加载点与文件os.path.walk(path, visit, arg) #遍历path，进入每个目录都调用visit函数，visit函数必须有3个参数(arg, dirname, names)，dirname表示当前目录的目录名，names代表当前目录下的所有文件名，args则为walk的第三个参数os.path.supports_unicode_filenames #设置是否支持unicode路径名]]></content>
@@ -25,7 +47,7 @@
   <entry>
     <title><![CDATA[new_post]]></title>
     <url>%2F2019%2F05%2F04%2F1%2F</url>
-    <content type="text"><![CDATA[欢迎来到我的博客，输入密码继续阅读. U2FsdGVkX19jm62GoWDgFBsdhz4tzphGnkxE3Tqn/8saUjPQulzaLGK9lrOWRf+sUAash/EPQ5JNH1op1H4Sy11yvCnHKSVKTPek7XATw1RbtaeWobZa3NHb/E/XBN/Q0Ax/lyr/c/mRy+dINAzXVlqR6v5Xz/c0M924eC6rzgqgrow4HOKPExoYJEIlrX5G2EiD7cuUVOdau7F0K1qs7Nxf1ZtePEZ5d53zNnWLj8O+eHunQw7N843d9KQaUH7qyhz8zwqaEaD+CxpSqSdCkiyQQt9xvxeqaNs1SrZzIrzKXKhkwHV8MUIb9vffgRyne91JPuYK9MeqNgrufiouRA==]]></content>
+    <content type="text"><![CDATA[欢迎来到我的博客，输入密码继续阅读. U2FsdGVkX180Vz9YnIGLAVTTlKheVOW3+CQZYGCug0JuOMzLReC2yhKEusrs3fg4C1W+6HVgN6QfYFLqMFkoZ86P3QyNhRZZYUCd6Xg5zKcSqTkrGDZehVC7yrZ74vX0gLEQADGaDILGZBfPiJk2iPfT0pasPv6bVmgzylDgpU7DvE8qK2C0houWR29/l+gzh46mwvhQGfjbJbnHPC7ChlJccLcjNyORmKv6236rM7ohBPRsMgFvqKUzFgjqtLlf6RkSK4tvnN8N6EnUo18aa7Hq9LihISFn1+n6z35j/p5GDRSB/v/aQgCT4wEVet3462IABSCLnKSSLOWjyM7AWg==]]></content>
       <categories>
         <category>python</category>
       </categories>
