@@ -88,14 +88,17 @@
 
 
 
+<meta name="description" content="AV.initialize(&quot;&quot;, &quot;&quot;); //需要写上leancloud的key    var time=0   var title=&quot;&quot;   var url=&quot;&quot;   var query = new AV.Query(&apos;Counter&apos;);//表名   query.notEqualTo(&apos;id&apos;,0); //id不为0的结果   query.descending(&apos;time&apos;); //结果">
 <meta property="og:type" content="website">
-<meta property="og:title" content="newpage">
+<meta property="og:title" content="AJay13">
 <meta property="og:url" content="https://bjj.dropsec.xyz/newpage/index.html">
 <meta property="og:site_name" content="AJay13">
+<meta property="og:description" content="AV.initialize(&quot;&quot;, &quot;&quot;); //需要写上leancloud的key    var time=0   var title=&quot;&quot;   var url=&quot;&quot;   var query = new AV.Query(&apos;Counter&apos;);//表名   query.notEqualTo(&apos;id&apos;,0); //id不为0的结果   query.descending(&apos;time&apos;); //结果">
 <meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
-<meta property="og:updated_time" content="2019-05-04T09:21:34.414Z">
+<meta property="og:updated_time" content="2019-05-04T09:32:31.552Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="newpage">
+<meta name="twitter:title" content="AJay13">
+<meta name="twitter:description" content="AV.initialize(&quot;&quot;, &quot;&quot;); //需要写上leancloud的key    var time=0   var title=&quot;&quot;   var url=&quot;&quot;   var query = new AV.Query(&apos;Counter&apos;);//表名   query.notEqualTo(&apos;id&apos;,0); //id不为0的结果   query.descending(&apos;time&apos;); //结果">
 
 
 
@@ -131,7 +134,7 @@
 
 
 
-  <title>newpage | AJay13</title>
+  <title> | AJay13</title>
   
 
 
@@ -226,6 +229,26 @@
         </li>
       
         
+        <li class="menu-item menu-item-知识库">
+          <a href="/know/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-know //知识库"></i> <br>
+            
+            知识库
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-search">
+          <a href="/search/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-search //搜索"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-关于">
           <a href="/about/" rel="section">
             
@@ -261,7 +284,7 @@
     <div class="post-block page">
       <header class="post-header">
 
-	<h2 class="post-title" itemprop="name headline">newpage</h2>
+	<h2 class="post-title" itemprop="name headline"></h2>
 
 
 
@@ -273,7 +296,30 @@
       <div class="post-body">
         
         
-          
+          <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("", "");</script> //需要写上leancloud的key
+<script type="text/javascript">
+  var time=0
+  var title=""
+  var url=""
+  var query = new AV.Query('Counter');//表名
+  query.notEqualTo('id',0); //id不为0的结果
+  query.descending('time'); //结果按阅读次数降序排序
+  query.limit(20);  //最终只返回10条结果
+  query.find().then(function (todo) {
+    for (var i=0;i<10;i++){ 
+      var result=todo[i].attributes;
+      time=result.time;  //阅读次数
+      title=result.title; //文章标题
+      url=result.url;     //文章url
+      var content="<p>"+"<font color='#0477ab'>"+"【阅读次数:"+time+"】"+"<a href='"+"http://thief.one"+url+"'>"+title+"</font>"+"</a>"+"</p>";
+      // document.write("<a href='"+"http://thief.one/"+url+"'>"+title+"</a>"+"    Readtimes:"+time+"<br>");
+      document.getElementById("heheda").innerHTML+=content
+    }
+  }, function (error) {
+    console.log("error");
+  });
+</script>
         
       </div>
       
