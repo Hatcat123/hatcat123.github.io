@@ -3,6 +3,8 @@ Allow: /
 Allow: /archives/
 Allow: /categories/
 Allow: /tags/ 
+Allow: /sec_web/ 
+Allow: /know/
 Allow: /resources/ 
 Disallow: /vendors/
 Disallow: /js/
