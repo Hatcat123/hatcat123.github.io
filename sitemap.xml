@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://bjj.dropsec.xyz/about/index.html</loc>
+    
+    <lastmod>2019-05-15T06:55:42.399Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://bjj.dropsec.xyz/2019/05/13/%E8%AE%A8%E8%AE%BAhttp%E4%B8%ADget%E4%B8%8Epost%E7%9A%84%E5%B7%AE%E5%BC%82/</loc>
     
     <lastmod>2019-05-13T03:51:03.067Z</lastmod>
@@ -201,13 +208,6 @@
     <loc>https://bjj.dropsec.xyz/2020/05/20/First/</loc>
     
     <lastmod>2019-04-24T14:11:27.215Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bjj.dropsec.xyz/about/index.html</loc>
-    
-    <lastmod>2019-04-24T13:54:58.132Z</lastmod>
     
   </url>
   
