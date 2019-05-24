@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="AJay13">
 <meta property="og:description" content="在开发过程中经常用到git与github，对于一个稳定的项目常常就用到极少的命令操作，但是仍然会遇到一些奇奇怪怪的现象，就需要对git进行深入的了解。">
 <meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
-<meta property="og:updated_time" content="2019-05-18T14:29:06.911Z">
+<meta property="og:updated_time" content="2019-05-24T02:48:41.651Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git基础操作">
 <meta name="twitter:description" content="在开发过程中经常用到git与github，对于一个稳定的项目常常就用到极少的命令操作，但是仍然会遇到一些奇奇怪怪的现象，就需要对git进行深入的了解。">
@@ -398,7 +398,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.1k
+                  1.8k
                 </span>
               
 
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  4
+                  8
                 </span>
               
             </div>
@@ -455,6 +455,41 @@
 <p>虽然删除了，但是在.git中保存了记录。</p>
 <p><a href="https://help.github.com/en/articles/removing-sensitive-data-from-a-repository" target="_blank" rel="noopener">github官网帮助</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">参考GitHub官网: https://help.github.com/articles/removing-sensitive-data-from-a-repository</span><br><span class="line"></span><br><span class="line">例如, 代码库提交了大量mp3文件, 使用下面命令清除后代码库由233M缩小为1.3M, 提交到GitHub部署博客轻快飞速</span><br><span class="line"># 清除垃圾文件(大量无用的mp3文件)</span><br><span class="line">git filter-branch --force --index-filter &apos;git rm --cached --ignore-unmatch *.mp3&apos; --prune-empty --tag-name-filter cat -- --all</span><br><span class="line"></span><br><span class="line"># 提交到远程仓库(如GitHub, 我再次从git clone GitHub代码库会变小为1.3M)</span><br><span class="line">git push origin --force --all</span><br><span class="line"></span><br><span class="line"># 必须回收垃圾,本地仓库才变小</span><br><span class="line">git for-each-ref --format=&apos;delete %(refname)&apos; refs/original | git update-ref --stdin    </span><br><span class="line">git reflog expire --expire=now --all</span><br><span class="line">git gc --prune=now</span><br><span class="line"></span><br><span class="line">rm -rf .git/refs/original</span><br><span class="line">git reflog expire --expire=now --all</span><br><span class="line">git gc --prune=now</span><br><span class="line">git gc --aggressive --prune=now</span><br></pre></td></tr></table></figure>
+<h3 id="git-rebase-提交干净的主分支"><a href="#git-rebase-提交干净的主分支" class="headerlink" title="git rebase 提交干净的主分支"></a>git rebase 提交干净的主分支</h3><p>在开发的过程中，我们使用master主分支进行开发，在进行一次bug修改多次commit后，便产生了很多的无用的commit日志。这对我们来说不容易进行回滚或者快速定位到版本。</p>
+<p>我们可以使用创建dev分支，当在分支中开发后，也许在dev提交了很多次的commit，这个时候我们如果在master直接mergen，那么在master主分支上也将产生许多的commit记录。这与我们的想法产生了分歧。我们希望在主分支上只进行版本发布推送，一个很<code>干净</code>的master。</p>
+<p>我们先拉取master分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master</span><br></pre></td></tr></table></figure>
+<p>在本地切换到dev分支，没有分支创建</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout dev</span><br></pre></td></tr></table></figure>
+<p>查看dev分支的提交日志<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline</span><br></pre></td></tr></table></figure></p>
+<p>修改任意文件 做3次提交</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git commit -m&quot;xxx&quot;</span><br><span class="line">git commit -m&quot;xxx&quot;</span><br><span class="line">git commit -m&quot;xxx&quot;</span><br></pre></td></tr></table></figure>
+<p>再次查看提交日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline</span><br></pre></td></tr></table></figure>
+<p>使用rebase合并commit</p>
+<blockquote>
+<p>不太明白为啥是master</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase -i master</span><br></pre></td></tr></table></figure>
+<p>这会打开编辑器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">pick 32618c4 Start developing a feature</span><br><span class="line">pick 62eed47 Fix something from the previous commit</span><br><span class="line"> </span><br><span class="line"># Commands:</span><br><span class="line">#  p, pick = use commit</span><br><span class="line">#  r, reword = use commit, but edit the commit message</span><br><span class="line">#  e, edit = use commit, but stop for amending</span><br><span class="line">#  s, squash = use commit, but meld into previous commit</span><br><span class="line">#  f, fixup = like &quot;squash&quot;, but discard this commit&apos;s log message</span><br><span class="line">#  x, exec = run command (the rest of the line) using shell</span><br><span class="line">#</span><br><span class="line"># These lines can be re-ordered; they are executed from top to bottom.</span><br><span class="line">#</span><br><span class="line"># If you remove a line here THAT COMMIT WILL BE LOST.</span><br><span class="line">#</span><br><span class="line"># However, if you remove everything, the rebase will be aborted.</span><br><span class="line">#</span><br><span class="line"># Note that empty commits are commented out</span><br></pre></td></tr></table></figure>
+<p>pick就是使用commit</p>
+<p>squash 将这次的commit合并到上一个commit中</p>
+<p>fixup 和squash一样，但是不显示commit的log</p>
+<p>使用fixup修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">pick 32618c4 Start developing a feature</span><br><span class="line">fixup 62eed47 Fix something from the previous commit</span><br><span class="line"> </span><br><span class="line"># Commands:</span><br><span class="line">#  p, pick = use commit</span><br><span class="line">#  r, reword = use commit, but edit the commit message</span><br><span class="line">#  e, edit = use commit, but stop for amending</span><br><span class="line">#  s, squash = use commit, but meld into previous commit</span><br><span class="line">#  f, fixup = like &quot;squash&quot;, but discard this commit&apos;s log message</span><br><span class="line">#  x, exec = run command (the rest of the line) using shell</span><br><span class="line">#</span><br><span class="line"># These lines can be re-ordered; they are executed from top to bottom.</span><br><span class="line">#</span><br><span class="line"># If you remove a line here THAT COMMIT WILL BE LOST.</span><br><span class="line">#</span><br><span class="line"># However, if you remove everything, the rebase will be aborted.</span><br><span class="line">#</span><br><span class="line"># Note that empty commits are commented out</span><br></pre></td></tr></table></figure>
+<p>然后wq保存</p>
+<p>查看git 提交记录，只看到合并之后的commit了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline</span><br></pre></td></tr></table></figure>
+<p>切换到主分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure>
+<p>将dev分支与master分支合并</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge dev</span><br></pre></td></tr></table></figure>
+<p>查看master的日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ git log --oneline</span><br><span class="line">3fac5ad (HEAD -&gt; master, dev) 修改主readme增加mitmproxy</span><br><span class="line">77625f3 (origin/master, origin/dev, origin/HEAD) Update readme.md</span><br><span class="line">def9d0e Update README.md</span><br><span class="line">f9cd80b Update README.md</span><br><span class="line">290cffd Update README.md</span><br><span class="line">0c8b770 Delete test.py</span><br><span class="line">91e8d1e Update README.md</span><br><span class="line">2cafbde add autohomeCrawler</span><br><span class="line">bab4c67 fix sohu_news select and upadte progress</span><br><span class="line">2fdd921 Delete code_dict.txt</span><br><span class="line">1fdb1fe Rename Readme.md to readme.md</span><br><span class="line">ab88072 Update readme.md</span><br><span class="line">ffe1cae init commit</span><br></pre></td></tr></table></figure>
+<p>推送到github</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -613,7 +648,7 @@
      <span class="site-state-item-name">访客量</span>
 </div>
 <div class="site-state-item site-state-posts">
-      <span class="site-state-item-count">42.4k</span>
+      <span class="site-state-item-count">43k</span>
       <span class="site-state-item-name">总字数</span>
 </div>
           
@@ -687,7 +722,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-git常用操作"><span class="nav-number">1.</span> <span class="nav-text">0x01 git常用操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-git基础操作"><span class="nav-number">2.</span> <span class="nav-text">0x02 git基础操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化仓库"><span class="nav-number">2.1.</span> <span class="nav-text">初始化仓库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-git进阶操作"><span class="nav-number">3.</span> <span class="nav-text">0x03 git进阶操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#远程仓库别名"><span class="nav-number">3.1.</span> <span class="nav-text">远程仓库别名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#日志回滚"><span class="nav-number">3.2.</span> <span class="nav-text">日志回滚</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分支"><span class="nav-number">3.3.</span> <span class="nav-text">分支</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-事件处理"><span class="nav-number">4.</span> <span class="nav-text">0x04 事件处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#合并冲突"><span class="nav-number">4.1.</span> <span class="nav-text">合并冲突</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#xxx"><span class="nav-number">4.2.</span> <span class="nav-text">xxx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清空仓库"><span class="nav-number">4.3.</span> <span class="nav-text">清空仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除敏感文件"><span class="nav-number">4.4.</span> <span class="nav-text">删除敏感文件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-git常用操作"><span class="nav-number">1.</span> <span class="nav-text">0x01 git常用操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-git基础操作"><span class="nav-number">2.</span> <span class="nav-text">0x02 git基础操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化仓库"><span class="nav-number">2.1.</span> <span class="nav-text">初始化仓库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-git进阶操作"><span class="nav-number">3.</span> <span class="nav-text">0x03 git进阶操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#远程仓库别名"><span class="nav-number">3.1.</span> <span class="nav-text">远程仓库别名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#日志回滚"><span class="nav-number">3.2.</span> <span class="nav-text">日志回滚</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分支"><span class="nav-number">3.3.</span> <span class="nav-text">分支</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-事件处理"><span class="nav-number">4.</span> <span class="nav-text">0x04 事件处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#合并冲突"><span class="nav-number">4.1.</span> <span class="nav-text">合并冲突</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#xxx"><span class="nav-number">4.2.</span> <span class="nav-text">xxx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清空仓库"><span class="nav-number">4.3.</span> <span class="nav-text">清空仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除敏感文件"><span class="nav-number">4.4.</span> <span class="nav-text">删除敏感文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-rebase-提交干净的主分支"><span class="nav-number">5.</span> <span class="nav-text">git rebase 提交干净的主分支</span></a></li></ol></div>
             
 
           </div>
@@ -721,7 +756,7 @@
     
       <span class="post-meta-item-text">博客总字数</span>
     
-    <span title="Site words total count">42.4k</span>
+    <span title="Site words total count">43k</span>
   
 </div>
             
