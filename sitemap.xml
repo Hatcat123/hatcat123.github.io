@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://bjj.dropsec.xyz/2019/05/31/CVE-2019-0708%E5%AF%B9windows2008R2%E2%80%A664/</loc>
+    
+    <lastmod>2019-05-31T09:00:42.777Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://bjj.dropsec.xyz/about/index.html</loc>
+    
+    <lastmod>2019-05-31T08:43:05.058Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://bjj.dropsec.xyz/2019/05/18/git%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/</loc>
     
     <lastmod>2019-05-24T02:48:41.651Z</lastmod>
@@ -19,13 +33,6 @@
     <loc>https://bjj.dropsec.xyz/2019/05/18/git%E4%BB%93%E5%BA%93%E6%B8%85%E7%A9%BA/</loc>
     
     <lastmod>2019-05-18T11:20:45.088Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bjj.dropsec.xyz/about/index.html</loc>
-    
-    <lastmod>2019-05-15T06:55:42.399Z</lastmod>
     
   </url>
   
@@ -138,13 +145,6 @@
     <loc>https://bjj.dropsec.xyz/2019/05/04/python%E8%84%9A%E6%9C%AC%E8%B5%B0ssr%E4%BB%A3%E7%90%86%E7%88%AC%E8%99%AB/</loc>
     
     <lastmod>2019-05-04T13:57:19.470Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bjj.dropsec.xyz/2019/05/04/1/</loc>
-    
-    <lastmod>2019-05-04T10:47:23.045Z</lastmod>
     
   </url>
   
