@@ -12,7 +12,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[ctfd搭建优化]]></title>
+    <title><![CDATA[ctfd搭建与优化]]></title>
     <url>%2F2019%2F06%2F05%2Fctfd%E6%90%AD%E5%BB%BA%E4%BC%98%E5%8C%96%2F</url>
     <content type="text"><![CDATA[记录关于uwsgi搭建ctfd平台的方式，以及如何优化速度的方法。人生苦短我用python 0x01 准备环境阿里云Ubuntu服务器已经默认将源为阿里源 更新12apt updateapt upgrade 默认安装python3.5。下载pip3，更新pip3版本12apt install python3-pippip3 install --upgrade pip 此时pip报错from pip import main，更改pip3源码 1sudo vim /usr/bin/pip3 将原来的123from pip import mainif __name__ == &apos;__main__&apos;: sys.exit(main()) 修改为，注意__为两个下划线。123from pip import __main__if __name__ == &apos;__main__&apos;: sys.exit(__main__._main()) 下载ctfd源码，到home下的all路径 1234cd /home/mkdir allcd allgit clone https://github.com/CTFd/CTFd.git 0x02 测试搭建进入到CTFd的路径下，安装requirements.txt包。1pip3 insyall -r requirements.txt 使用python3运行serve.py 1python3 serve.py 不报错，此时为本地127网段4000端口，想要发布到公网需要修改为0.0.0.0 默认访问公网ip加端口4000，便能登录ctfd网站。 当然这样的启动方式是不友好的，首先python启动flask是单线程的，flask中gun服务性能非常低。所能承受的压力非常小，对服务器而言造成资源浪费。其次当服务宕机时，不能快速重启。 下面进行简单优化配置 0x03 使用uwsgi配置uwsgi的好处xxx 下载uwsgi服务12 0x04 nginx服务器0x05 监控0x06 优化]]></content>
       <categories>
