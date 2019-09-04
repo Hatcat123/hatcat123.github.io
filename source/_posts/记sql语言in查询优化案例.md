@@ -19,16 +19,20 @@ date: 2019-08-26 17:50:24
 
 上线之后发现问题，查询速度极度慢。定位代码，找到原因，大概是这样的一个描述吧，关键字替换了！
 
-问题描述：
+### 问题描述：
 
 有一个学校  有一个班级的表 有一个学生的表（学生表的学生id唯一）  学生有外键是班级id 。 和一个学生的分数的表 ， 分数表中存着学生的id（只是id）。但是没有存班级的id。  我想用sqlalchemy中最简单的快速的方法查询到某个班级的分数的集合。之后计算平均分
 
 ![](https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img/20190826180248.png)
 
+### 解决方案
+
+**方案一：**
 
 第一个想法 就是 传入班级的id ，然后根据班级的id获取到班级内的所人的id 再用for循环查询分数表中学生的id 得到结果。
 
 显然这个方式会随着班级人数的增多而变得越来越慢的。
+**方案二：**
 
 优化查询方法是使用sql的`in`语句。查询到班级所有学会说呢过然后再查看分数中存在这个学生的分值。只要两次查询语句。
 
@@ -43,4 +47,10 @@ date: 2019-08-26 17:50:24
 shoes = Shoe.query.filter(Shoe.id.in_(my_list_of_ids)).all()
 
 
-最终我们的语句
+**最终我们的语句**
+
+```
+
+article = WechatArticle.query.filter(WechatArticle.__biz.in_(set([i.account_id for i in cat.accounts]))).filter(
+        rule).order_by(WechatArticle.publish_time.desc())
+```
