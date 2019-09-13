@@ -1,9 +1,24 @@
-
-nginx 重定向 端口丢失解决方案
+---
+title: nginx重定向端口丢失解决方案
+tags:
+    - flask
+    - 运维
+categories:
+  - 运维
+copyright: true
+permalink: nginx重定向端口丢失解决方案
+top: 0
+password: 
+abstract: 输入密码继续阅读.
+message: 欢迎来到我的博客，输入密码继续阅读.
+date: 2019-09-08 23:56:33
+---
 
 场景：在架设nginx反向代理，后端python应用启动在7000端口。python程序中有个302跳转操作。前端ngxin使用8800作为映射端口。
 
 访问xx.xx.xx.xx:8800 出现302重定向 紧接着400 地址为xx.xx.xx.xx丢失了8800端口（就是转向默认的80端口）
+
+<!--more-->
 
 如果手动加上8800端口就可以正常访问
 
