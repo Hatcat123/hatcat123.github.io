@@ -97,7 +97,7 @@ menu:
   标签: /tags/ || tags  //标签
   分类: /categories/ || th   //分类
   归档: /archives/ || archive //归档
-  微信聚合: 47.100.199.103:8000 || wechat //知识库
+  微信聚合: http:47.100.199.103:8000 || wechat //知识库
   安全导航: /sec_web || google //安全导航
   关于: /about/ || user  //关于
 

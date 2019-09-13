@@ -1,7 +1,25 @@
+---
+title: RuntimeError: Working outside of application context.
+tags:
+    - flask
+categories:
+  - flask
+copyright: true
+permalink: RuntimeError: Working outside of application context.
+top: 0
+password: 
+abstract: 输入密码继续阅读.
+message: 欢迎来到我的博客，输入密码继续阅读.
+date: 2019-09-08 23:56:33
+---
 RuntimeError: Working outside of application context.
 
 
 这个问题的原因是在没有激活程序上下文之前进行了一些程序上下文或请求上下文的操作 
+<!--more-->
+
+
+
 解决办法很简单就是推送程序上下文，在获得程序上下文后再执行相应的操作 
 方法 1
 
