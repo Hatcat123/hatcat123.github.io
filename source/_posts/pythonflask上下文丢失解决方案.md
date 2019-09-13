@@ -1,11 +1,11 @@
 ---
-title: RuntimeError: Working outside of application context.
+title: pythonflask上下文丢失解决方案
 tags:
     - flask
 categories:
   - flask
 copyright: true
-permalink: RuntimeError: Working outside of application context.
+permalink: pythonflask上下文丢失解决方案
 top: 0
 password: 
 abstract: 输入密码继续阅读.
