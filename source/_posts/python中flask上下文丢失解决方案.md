@@ -1,11 +1,11 @@
 ---
-title: pythonflask上下文丢失解决方案
+title: python中flask上下文丢失解决方案
 tags:
     - flask
 categories:
   - flask
 copyright: true
-permalink: pythonflask上下文丢失解决方案
+permalink: python中flask上下文丢失解决方案
 top: 0
 password: 
 abstract: 输入密码继续阅读.

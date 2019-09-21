@@ -4,6 +4,7 @@ date: 2019-08-26 16:54:11
 tags:
  - sql
  - flask
+ - 总结
  
 
 categories:
@@ -19,62 +20,62 @@ SQLAlchemy 几种查询方式总结
 from sqlalchemy import or_, and_, any_
 
 
-#简单查询  
+## 简单查询  
 ```  
 print(session.query(User).all())
 print(session.query(User.name, User.fullname).all())    
 print(session.query(User, User.name).all())        
 ```
 
-#带条件查询    
+## 带条件查询    
 ```
 print(session.query(User).filter_by(name='user1').all())    
 print(session.query(User).filter(User.name == "user").all())    
 print(session.query(User).filter(User.name.like("user%")).all())      
 ```
   
-#多条件查询    
+## 多条件查询    
 ```
 print(session.query(User).filter(and_(User.name.like("user%"), User.fullname.like("first%"))).all())    
 print(session.query(User).filter(or_(User.name.like("user%"), User.password != None)).all())        
 
 ```
-#sql过滤    
+## sql过滤    
 ```
 print(session.query(User).filter("id>:id").params(id=1).all())        
 ```
 
-#关联查询     
+## 关联查询     
 ```
 print(session.query(User, Address).filter(User.id == Address.user_id).all())    
 print(session.query(User).join(User.addresses).all())    
 print(session.query(User).outerjoin(User.addresses).all())        
 ```
 
-#聚合查询    
+## 聚合查询    
 ```
 print(session.query(User.name, func.count('*').label("user_count")).group_by(User.name).all())    
 print(session.query(User.name, func.sum(User.id).label("user_id_sum")).group_by(User.name).all())        
 ```
 
-#子查询    
+## 子查询    
 ```
 stmt = session.query(Address.user_id, func.count('*').label("address_count")).group_by(Address.user_id).subquery()    
 print(session.query(User, stmt.c.address_count).outerjoin((stmt, User.id == stmt.c.user_id)).order_by(User.id).all())     
 ```
    
-#exists    
+## exists    
 ```
 print(session.query(User).filter(exists().where(Address.user_id == User.id)))    
 print(session.query(User).filter(User.addresses.any()))
 ```
 
-限制返回字段查询
+## 限制返回字段查询
 ```
 person = session.query(Person.name, Person.created_at,Person.updated_at).filter_by(name="zhongwei").order_by(Person.created_at).first()
 ```
 
-记录总数查询：
+## 记录总数查询：
 ```
 from sqlalchemy import func
 
@@ -94,4 +95,21 @@ from sqlalchemy import distinct
 # count distinct "name" values
 session.query(func.count(distinct(User.name)))
 
+```
+
+##  with_entities()
+通过使用with_entities()方法来获取要在结果中返回的列
+
+** 查询制定的id列**
+```
+result = RiskDataModel.query.with_entities(RiskDataModel.id)  # 返回BaseQuery
+```
+**返回指定的两列**
+```
+result = RiskDataModel.query.with_entities(RiskDataModel.id, RiskDataModel.name)  
+```
+
+**并且去重**
+```
+result  = RiskDataModel.query.with_entities(RiskDataModel.store_st_id).distinct().all()
 ```
