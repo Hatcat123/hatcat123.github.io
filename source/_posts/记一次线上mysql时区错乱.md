@@ -131,3 +131,45 @@ mysql> SELECT
 |                        1567009347 |                            1566988235 |
 +-----------------------------------+---------------------------------------+
 ```
+
+## 在docker中创建mysql容器，容器的时间是utc
+
+在拉取mysql官方镜像的时候，创建的容器时间仍然是utc，解决的方式有
+
+**1、在创建容器的时候就设置容器的时区以及mysql的默认时区**
+
+```
+# docker启动命令
+docker run --name changle-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=changle@1999 -e MYSQL_DATABASE=changle 
+-e TZ=Asia/Shanghai -d mysql:5.6
+ --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-time_zone='+8:00'
+
+```
+参数说明
+
+* MYSQL_ROOT_PASSWORD ： 设置mysql数据库root的密码
+* MYSQL_DATABASE ： 启动时创建数据库
+* TZ=Asia/shanghai ： 设置容器时区
+* character-set-server ： 服务器字符集，在创建数据库和表时不特别指定字符集，这样统一采用character-set-server字符集。
+* character-set-database ： 数据库字符集
+* character-set-table ： 数据库表字符集
+* collation-server ： 排序规则字符集
+* default-time_zone ： mysql的时区
+
+**2、手动进入到容器内部、更改时区**
+
+记得重启容器
+
+**3、在不重启容器情况向下**
+
+可以直接将宿主机文件复制到容器内部
+
+```
+docker cp /etc/localtime [containerId]:/etc/localtime
+```
+
+查看容器的时间
+
+```
+docker exec [containerId] date
+```

@@ -44,3 +44,35 @@ server {
 
 
 其中`        proxy_set_header Host $host:8800;`，存在较大的争议。有人说去掉8800，有人说加上8800。我刚开始没加，不能正常跳转，后来加上也不能正常跳转，然后去掉，还是不能，然后加上……可以了。神奇的操纵？
+
+
+
+## nginx只允许域名访问，禁止ip访问
+
+### 为什么要禁止ip访问页面呢?
+
+这样做是为了避免其他人把未备案的域名解析到自己的服务器IP，而导致服务器被断网，我们可以通过禁止使用ip访问的方法，防止此类事情的发生。
+
+解决方法：
+这里介绍修改配置文件nginx.conf两种方法：
+1）在server段里插入如下正则：
+listen       80;
+server_name  www.yuyangblog.net;
+if ($host != 'www.yuyangblog.net'){
+   return 403;
+}
+
+
+2)添加一个server
+新加的server（注意是新增，并不是在原有的server基础上修改）
+server {
+  listen 80 default;
+  server_name _;
+  return 403;
+}
+原来server里面插入：
+listen       80;
+
+server_name  www.yuyangblog.net;
+
+ 
