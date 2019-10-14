@@ -41,6 +41,16 @@ date: 2019-10-06 23:07:07
 	* [ ][future] 以后计划之中
 ---
 
+* **2019-10-14**
+
+	* [x][finsh] sso部署服务器测试
+	* [x][finsh] 一次mysql数据库全备份与增量实操
+	* [ ][doing] docker中数据文件存储位置的理解
+	* [ ][future] sso客户端bp版本未更新，明天早上补更
+	* [ ][future] 在一个服务器上搭建的项目太多，写个excel表记录服务ip、端口、服务。
+	* [ ][future] 对比jumpserver与webterminal的差异化，就个人现阶段作为工具的解读写博客
+	* [ ][future] gucamole的学习，现了解在web中是js，如何就服务端与web用flask实现
+
 * **2019-10-10**
 
 	* [x][finsh] 完成了什么
