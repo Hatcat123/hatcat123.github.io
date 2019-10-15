@@ -40,20 +40,6 @@ date: 2019-10-06 23:07:07
 	* [ ][doing] 当天正在做什么
 	* [ ][future] 以后计划之中
 ---
-* **2019-10-12**
-
-	* [x][finsh] 微信聚合平台fix全局日期导致每次查询不是当天数据的bug
-	* [ ][doing] awd平台的开发docker库与exsi库
-	* [ ][doing] 测试学习docker-api源码
-	* [ ][doing] 连接exsi服务器
-	* [ ][future] 设计好用的操作方式启动docker与exsi服务，展示界面
-
-* **2019-10-11**
-
-	* [x][finsh] 分享会共同学习与分析巡风扫描器源码
-	* [x][finsh] 完成微信聚合平台日志数据的迁移功能
-
-
 * **2019-10-14**
 
 	* [x][finsh] sso部署服务器测试
@@ -63,6 +49,22 @@ date: 2019-10-06 23:07:07
 	* [ ][future] 在一个服务器上搭建的项目太多，写个excel表记录服务ip、端口、服务。
 	* [ ][future] 对比jumpserver与webterminal的差异化，就个人现阶段作为工具的解读写博客
 	* [ ][future] gucamole的学习，现了解在web中是js，如何就服务端与web用flask实现
+
+
+* **2019-10-12**
+
+	* [x][finsh] 微信聚合平台fix全局日期导致每次查询不是当天数据的bug
+	* [ ][doing] awd平台的开发docker库与exsi库
+	* [ ][doing] 测试学习docker-api源码
+	* [ ][doing] 连接exsi服务器
+	* [ ][future] 设计好用的操作方式启动docker与exsi服务，展示界面
+
+
+* **2019-10-11**
+
+	* [x][finsh] 分享会共同学习与分析巡风扫描器源码
+	* [x][finsh] 完成微信聚合平台日志数据的迁移功
+
 
 * **2019-10-10**
 
