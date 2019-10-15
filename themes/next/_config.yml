@@ -135,7 +135,7 @@ admin:
 # Value before `||` delimeter is the target permalink.
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
 social:
-  GitHub: https://github.com/DropsDevopsOrg || github
+  团队GitHub: https://github.com/DropsDevopsOrg || github
   团队主页: http://www.dropsec.xyz/ ||dropsec
   安全公众号: https://github.com/DropsOfZut/awesome-security-weixin-official-accounts || xx
   #E-Mail: mailto:yourname@gmail.com || envelope
@@ -164,14 +164,14 @@ links:
   瓦都剋: http://byd.dropsec.xyz/
 
   爬虫项目: https://github.com/DropsDevopsOrg/ECommerceCrawlers
- 
 
   九世: https://422926799.github.io/
 
   图先生: http://www.youknowi.xin/ 
   
-  微信聚合平台: 47.100.199.103:8000 
-  
+  微信聚合平台: http://47.100.199.103:8000 
+  hacking8: https://www.hacking8.com/
+
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.gif
 # in site  directory(source/uploads): /uploads/avatar.gif
