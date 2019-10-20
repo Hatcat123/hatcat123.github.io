@@ -3,7 +3,7 @@ title: 实战mysql定时全量备份与增量备份
 tags:
   - mysql
 categories:
-  - mysql
+  - 运维
 copyright: true
 permalink: 实战mysql定时全量备份与增量备份
 top: 0
