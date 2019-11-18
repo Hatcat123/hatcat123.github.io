@@ -10,7 +10,7 @@ categories:
 copyright: true
 permalink: selenium过美团验证笔记
 top: 0
-password: woaini2.
+password: 
 abstract: 输入密码继续阅读.
 message: 欢迎来到我的博客，输入密码继续阅读.
 date: 2019-10-28 10:56:32
@@ -90,7 +90,8 @@ $cdc_asdjflasutopfhvcZLmcfl_
 当请求的连接是包含`/js/yoda.`（也就是这个检测的js），在响应的数据包中将这些特定属性的参数去掉。
 
 windows运行方式
-> mitmproxy在linux运行
+> mitmproxy在linux运行，windows使用mitmweb或mitmdump
+
 ```
 mitmdump.exe -S proxy.py   -p 8888
 ```
