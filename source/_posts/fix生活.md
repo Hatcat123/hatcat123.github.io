@@ -112,3 +112,4 @@ date: 2019-09-23 16:29:33
 
 
 
+{"credsStore":"desktop","stackOrchestrator":"swarm"}
