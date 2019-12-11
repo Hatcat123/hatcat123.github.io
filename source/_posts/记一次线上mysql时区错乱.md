@@ -140,9 +140,7 @@ mysql> SELECT
 
 ```
 # docker启动命令
-docker run --name changle-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=changle@1999 -e MYSQL_DATABASE=changle 
--e TZ=Asia/Shanghai -d mysql:5.6
- --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-time_zone='+8:00'
+docker run --name changle-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=changle@1999 -e MYSQL_USER=user -e MYSQL_PASSWORD=user -e MYSQL_DATABASE=changle  -e TZ=Asia/Shanghai -d mysql:5.7 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-time_zone='+8:00'
 
 ```
 参数说明
