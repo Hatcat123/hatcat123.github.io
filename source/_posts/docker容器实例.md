@@ -72,3 +72,14 @@ cat /proc/1/cgroup
 2:devices:/init.scope
 1:name=systemd:/init.scope
 ```
+
+## docker 导出镜像与导入镜像标签为none
+
+docker导出镜像的方法
+使用具体的镜像名称➕标签不建议使用镜像的id
+
+正确： docker save <repostiory>:<tag> -o <repostiory>.tar
+错误： docker save <ImgaeID> -o <repostiory>.tar
+
+或者手动加入标签 docker tag <ImageID> <repostiory>:<tag>
+

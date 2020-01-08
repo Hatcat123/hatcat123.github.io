@@ -351,3 +351,76 @@ ffe1cae init commit
 ```
 git push
 ```
+
+### git commit 一个标题加一个描述
+
+快速commit -m
+
+方法一：
+```
+git commit -m '' -m ''
+```
+
+方法二：
+```
+git commit  -v
+首行标题 次行换行 接着 描述
+```
+
+方法三： 
+```
+git commit
+直接回车
+```
+
+### commit -m 的内容写错
+
+git commit 提供了一个参数  --amend
+
+可以修改最后一次提交的信息
+
+
+### 写好一个commit的方法
+
+- 格式
+  ```
+  类型 标题
+  // 空一行
+  描述详情
+  ```
+- 类型
+  * init：初始化项目
+  * feat：新功能
+  * fix：修复bug
+  * docs：文档
+  * opt：优化与完善
+  * style：格式变动
+  * refactor：重构
+  * test：测试用例
+  * save：单纯保存
+  * other：难以分类
+
+  ```
+  e.g：
+  feat(#Student):增加学生数据库 --增加学生管理功能
+  ```
+- emoji
+  这个网站是一个很好的类型标识标签图。可以帮助我快速区分每次commit的变动。
+  [https://gitmoji.carloscuesta.me/](https://gitmoji.carloscuesta.me/)
+  常用的几个
+  * :bug: `:bug:` 修复错误。
+  * :fire: `:fire:` 删除代码或文件。
+  * :zap: `:zap:` 提高性能。
+  *  :art:`:art:` 改进代码的结构/格式。
+  * :sparkles: `:sparkles:` 引入新功能。
+  * :pencil: `:pencil:` 编写文档。
+  * :white_check_mark: `:white_check_mark:` 更新测试。
+  * :lock: `:lock:` 解决安全问题。
+  * :penguin: `:penguin:` 在Linux上修复问题。
+  * :checkered_flag: `:checkered_flag:` 在Windows上修复问题。
+  * :whale: `:whale:` 关于Docker的工作。
+  * :wrench: `:wrench:` 更改配置文件。
+  * :pencil2: `:pencil2:` 修正错别字。
+  * :see_no_evil: `:see_no_evil:` 添加或更新.gitignore文件
+  * :triangular_flag_on_post: `:triangular_flag_on_post:` 添加，更新或删除功能标志
+  * :beers: `:beers:` 干杯
