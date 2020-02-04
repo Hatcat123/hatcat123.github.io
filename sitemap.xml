@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://bjj.dropsec.xyz/2019/09/23/fix%E7%94%9F%E6%B4%BB/</loc>
+    
+    <lastmod>2020-02-04T11:30:07.906Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://bjj.dropsec.xyz/2019/10/06/ddaylog/</loc>
+    
+    <lastmod>2020-02-04T11:30:07.900Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://bjj.dropsec.xyz/2020/01/27/2019%E5%B9%B4%E5%AE%89%E5%85%A8%E5%85%AC%E4%BC%97%E5%8F%B7%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</loc>
+    
+    <lastmod>2020-02-04T11:30:07.864Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://bjj.dropsec.xyz/2020/01/18/python%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7/</loc>
     
     <lastmod>2020-01-18T15:03:40.258Z</lastmod>
@@ -40,20 +61,6 @@
     <loc>https://bjj.dropsec.xyz/about/index.html</loc>
     
     <lastmod>2020-01-09T08:09:15.195Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bjj.dropsec.xyz/2019/10/06/ddaylog/</loc>
-    
-    <lastmod>2019-12-31T16:40:41.065Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bjj.dropsec.xyz/2019/09/23/fix%E7%94%9F%E6%B4%BB/</loc>
-    
-    <lastmod>2019-12-31T16:38:01.236Z</lastmod>
     
   </url>
   
