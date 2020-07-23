@@ -158,7 +158,7 @@ iptables -t nat -D PREROUTING -i eth+ -p tcp --destination-port 443 -j DNAT --to
 iptables 基础
 
 ```
-iptables  -nL -t net
+iptables  -nL -t nat
 ```
 
 
