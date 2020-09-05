@@ -54,3 +54,43 @@ shoes = Shoe.query.filter(Shoe.id.in_(my_list_of_ids)).all()
 article = WechatArticle.query.filter(WechatArticle.__biz.in_(set([i.account_id for i in cat.accounts]))).filter(
         rule).order_by(WechatArticle.publish_time.desc())
 ```
+
+
+
+## sql笔记
+
+一个数据库比较大。当我插入一个新的字段的时候，提示
+
+```
+error1114 table is full
+```
+查看数据库，发现竟然网上竟然说的是这样做是压力测试的时候报错。原因有二：1
+
+1 得知是由于内存表的大小超过了规定的范围。经过查看二者值默认均是16M，
+
+2.需要设置tmp_table_size 大于等于max_heap_table_size
+
+首先查看内存表得大小：
+
+在mysql里面查询
+```
+show  VARIABLES like '%%table_size%'
+```
+显示16xxxxxxx
+
+修改 my.cnf 配置文件，并重启 mysql。
+
+- Linux 下 MySQL 的配置文件是 my.cnf，一般会放在 /etc/my.cnf，/etc/mysql/my.cnf。
+
+```
+/etc/mysql/mysql.conf.d# vim mysqld.cnf
+```
+
+添加
+
+```
+
+[mysqld]
+max_heap_table_size = 32M
+tmp_table_size = 64M
+```

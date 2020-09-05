@@ -382,6 +382,11 @@ iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8
 ip6tables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
 ip6tables -t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8080
 ```
+iptables 基础
+
+```
+  iptables  -nL -t nat
+```
 4. mitm开启透明代理模式
 ```
 mitmproxy --mode transparent --showhost
@@ -433,4 +438,9 @@ docker安装
 ```
 略
 ```
+配置手机的vnp配置参考
+`https://github.com/hwdsl2/docker-ipsec-vpn-server/blob/master/README-zh.md`
 
+客户端配置
+
+`https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/docs/clients-zh.md`
