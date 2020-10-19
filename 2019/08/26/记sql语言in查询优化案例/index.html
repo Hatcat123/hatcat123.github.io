@@ -88,7 +88,7 @@
 <meta property="og:description" content="环境描述：使用了一部分别人的数据库，导致和自己的数据库中的表没有关系映射。在写程序的时候依照先跑为主。">
 <meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
 <meta property="og:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img/20190826180248.png">
-<meta property="og:updated_time" content="2019-12-11T02:22:19.224Z">
+<meta property="og:updated_time" content="2020-10-19T10:04:03.234Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记sql语言in查询优化案例">
 <meta name="twitter:description" content="环境描述：使用了一部分别人的数据库，导致和自己的数据库中的表没有关系映射。在写程序的时候依照先跑为主。">
@@ -400,7 +400,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  434
+                  714
                 </span>
               
 
@@ -416,7 +416,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  2
                 </span>
               
             </div>
@@ -452,6 +452,24 @@
 <p>shoes = Shoe.query.filter(Shoe.id.in_(my_list_of_ids)).all()</p>
 <p><strong>最终我们的语句</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">article = WechatArticle.query.filter(WechatArticle.__biz.in_(set([i.account_id for i in cat.accounts]))).filter(</span><br><span class="line">        rule).order_by(WechatArticle.publish_time.desc())</span><br></pre></td></tr></table></figure>
+<h2 id="sql笔记"><a href="#sql笔记" class="headerlink" title="sql笔记"></a>sql笔记</h2><p>一个数据库比较大。当我插入一个新的字段的时候，提示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error1114 table is full</span><br></pre></td></tr></table></figure>
+<p>查看数据库，发现竟然网上竟然说的是这样做是压力测试的时候报错。原因有二：1</p>
+<p>1 得知是由于内存表的大小超过了规定的范围。经过查看二者值默认均是16M，</p>
+<p>2.需要设置tmp_table_size 大于等于max_heap_table_size</p>
+<p>首先查看内存表得大小：</p>
+<p>在mysql里面查询<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show  VARIABLES like &apos;%%table_size%&apos;</span><br></pre></td></tr></table></figure></p>
+<p>显示16xxxxxxx</p>
+<p>修改 my.cnf 配置文件，并重启 mysql。</p>
+<ul>
+<li>Linux 下 MySQL 的配置文件是 my.cnf，一般会放在 /etc/my.cnf，/etc/mysql/my.cnf。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/mysql/mysql.conf.d# vim mysqld.cnf</span><br></pre></td></tr></table></figure>
+<p>添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">max_heap_table_size = 32M</span><br><span class="line">tmp_table_size = 64M</span><br></pre></td></tr></table></figure>
+<h3 id="更新sql某个字段的部分字"><a href="#更新sql某个字段的部分字" class="headerlink" title="更新sql某个字段的部分字"></a>更新sql某个字段的部分字</h3><p>update 表名 set 字段=replace(字段，‘替换的部分’，‘替换后的字符串’)；</p>
+<p>update 表名 set A=replace( A, ‘海淀’, ‘朝阳’) where A like ‘海淀’;  （将A字段中的“海淀”替换成“朝阳”）；<br>update yb_user_img set image=replace( image, ‘<a href="http://192.168.0.126&#39;" target="_blank" rel="noopener">http://192.168.0.126&#39;</a>, ‘<a href="http://yuebei.web66.cn&#39;);将yb_user_img表中image字段所有的“http://192.168.0.126”替换成“http://yuebei.web66.cn”；" target="_blank" rel="noopener">http://yuebei.web66.cn&#39;);将yb_user_img表中image字段所有的“http://192.168.0.126”替换成“http://yuebei.web66.cn”；</a></p>
+
       
     </div>
     
@@ -570,7 +588,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-count">109</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -592,7 +610,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -610,7 +628,7 @@
      <span class="site-state-item-name">访客量</span>
 </div>
 <div class="site-state-item site-state-posts">
-      <span class="site-state-item-count">98.6k</span>
+      <span class="site-state-item-count">104.7k</span>
       <span class="site-state-item-name">总字数</span>
 </div>
           
@@ -718,7 +736,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述："><span class="nav-number">1.</span> <span class="nav-text">问题描述：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述："><span class="nav-number">1.</span> <span class="nav-text">问题描述：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#sql笔记"><span class="nav-number"></span> <span class="nav-text">sql笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更新sql某个字段的部分字"><span class="nav-number">1.</span> <span class="nav-text">更新sql某个字段的部分字</span></a></li></ol></li></div>
             
 
           </div>
@@ -752,7 +770,7 @@
     
       <span class="post-meta-item-text">博客总字数</span>
     
-    <span title="Site words total count">98.6k</span>
+    <span title="Site words total count">104.7k</span>
   
   <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278048714'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1278048714%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 </div>
