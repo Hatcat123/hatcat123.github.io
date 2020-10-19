@@ -94,3 +94,11 @@ show  VARIABLES like '%%table_size%'
 max_heap_table_size = 32M
 tmp_table_size = 64M
 ```
+
+
+### 更新sql某个字段的部分字
+
+update 表名 set 字段=replace(字段，‘替换的部分’，‘替换后的字符串’)；
+
+update 表名 set A=replace( A, '海淀', '朝阳') where A like '海淀';  （将A字段中的“海淀”替换成“朝阳”）；
+update yb_user_img set image=replace( image, 'http://192.168.0.126', 'http://yuebei.web66.cn');将yb_user_img表中image字段所有的“http://192.168.0.126”替换成“http://yuebei.web66.cn”；
