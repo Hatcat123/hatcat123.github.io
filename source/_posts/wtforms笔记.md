@@ -15,7 +15,10 @@ date: 2020-10-19 21:09:05
 
 具体的内容看源码。
 官方文档：https://wtforms.readthedocs.io/en/2.3.x/validators/
+
+<!--more-->
 ## WTForms支持的HTML标准字段
+
 
 |字段对象|说明|
 |:-:|:-:|

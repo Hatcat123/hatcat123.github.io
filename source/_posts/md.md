@@ -1,8 +1,22 @@
 
-
+---
+title: screen使用
+tags:
+  - linux
+categories:
+  - 安全
+copyright: true
+permalink: screen使用
+top: 0
+password: 
+abstract: 输入密码继续阅读.
+message: 欢迎来到我的博客，输入密码继续阅读.
+date: 2020-04-03 21:09:05
+---
 
 今天再帮别人部署项目的时候，见识了几个东西。开发人员给的是root用户，但是权限控制的很低。装个应用都要找运维的审核，所有操作都要问运维的。他们用的窗screen。一直没有理解是怎么玩的。
 
+<!--more-->
 ## linux-使用screen，防止断网导致异常退出
 
 在远程管理服务的时候，偶尔会出现断网导致，脚本或者命令没执行完就异常退出了。为了异常断开导致脚本出现异常，一般都会使用到screen这个工具。
