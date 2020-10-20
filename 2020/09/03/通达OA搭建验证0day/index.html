@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="一、环境搭建：安装11.5版本，官网最新的是11.7版本，从网上找到一个11.5的安装包，直接一键安装成功。默认账户admin，密码 为空登录后，搜索用户，创建一个普通用户，添加用户的信息。然后使用用户登录，创建会议，admin去审核通过。 二、验证漏洞1. sql注入进入到普通用户的界面，然后打开日历。看到日历中心。然后抓包。 123456789101112131415POST /general">
+<meta name="description" content="一、环境搭建：安装11.5版本，官网最新的是11.7版本，从网上找到一个11.5的安装包，直接一键安装成功。默认账户admin，密码 为空登录后，搜索用户，创建一个普通用户，添加用户的信息。然后使用用户登录，创建会议，admin去审核通过。">
 <meta name="keywords" content="通达oa">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通达OA搭建验证0day">
 <meta property="og:url" content="https://bjj.dropsec.xyz/2020/09/03/通达OA搭建验证0day/index.html">
 <meta property="og:site_name" content="AJay13">
-<meta property="og:description" content="一、环境搭建：安装11.5版本，官网最新的是11.7版本，从网上找到一个11.5的安装包，直接一键安装成功。默认账户admin，密码 为空登录后，搜索用户，创建一个普通用户，添加用户的信息。然后使用用户登录，创建会议，admin去审核通过。 二、验证漏洞1. sql注入进入到普通用户的界面，然后打开日历。看到日历中心。然后抓包。 123456789101112131415POST /general">
+<meta property="og:description" content="一、环境搭建：安装11.5版本，官网最新的是11.7版本，从网上找到一个11.5的安装包，直接一键安装成功。默认账户admin，密码 为空登录后，搜索用户，创建一个普通用户，添加用户的信息。然后使用用户登录，创建会议，admin去审核通过。">
 <meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
-<meta property="og:updated_time" content="2020-10-20T07:47:27.403Z">
+<meta property="og:updated_time" content="2020-10-20T08:12:25.377Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通达OA搭建验证0day">
-<meta name="twitter:description" content="一、环境搭建：安装11.5版本，官网最新的是11.7版本，从网上找到一个11.5的安装包，直接一键安装成功。默认账户admin，密码 为空登录后，搜索用户，创建一个普通用户，添加用户的信息。然后使用用户登录，创建会议，admin去审核通过。 二、验证漏洞1. sql注入进入到普通用户的界面，然后打开日历。看到日历中心。然后抓包。 123456789101112131415POST /general">
+<meta name="twitter:description" content="一、环境搭建：安装11.5版本，官网最新的是11.7版本，从网上找到一个11.5的安装包，直接一键安装成功。默认账户admin，密码 为空登录后，搜索用户，创建一个普通用户，添加用户的信息。然后使用用户登录，创建会议，admin去审核通过。">
 
 
 
@@ -436,6 +436,7 @@
 
       
         <h2 id="一、环境搭建："><a href="#一、环境搭建：" class="headerlink" title="一、环境搭建："></a>一、环境搭建：</h2><p>安装11.5版本，官网最新的是11.7版本，从网上找到一个11.5的安装包，直接一键安装成功。<br>默认账户<code>admin</code>，密码 为空<br>登录后，搜索用户，创建一个普通用户，添加用户的信息。然后使用用户登录，创建会议，admin去审核通过。</p>
+<a id="more"></a>
 <h2 id="二、验证漏洞"><a href="#二、验证漏洞" class="headerlink" title="二、验证漏洞"></a>二、验证漏洞</h2><h3 id="1-sql注入"><a href="#1-sql注入" class="headerlink" title="1. sql注入"></a>1. sql注入</h3><p>进入到普通用户的界面，然后打开日历。看到日历中心。然后抓包。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">POST /general/appbuilder/web/calendar/calendarlist/getcallist HTTP/1.1</span><br><span class="line">Host: 192.168.199.208</span><br><span class="line">Content-Length: 69</span><br><span class="line">Accept: */*</span><br><span class="line">X-Requested-With: XMLHttpRequest</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36</span><br><span class="line">Content-Type: application/x-www-form-urlencoded; charset=UTF-8</span><br><span class="line">Origin: http://192.168.199.208</span><br><span class="line">Referer: http://192.168.199.208/general/calendarArrange/calendarArrange.php</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line">Cookie: USER_NAME_COOKIE=%D5%C5%C8%FD; OA_USER_ID=65; PHPSESSID=ojkcbpc7ogtemglvmo48tva5s6; SID_65=bc936732</span><br><span class="line">Connection: close</span><br><span class="line"></span><br><span class="line">view=month&amp;starttime=1595779200&amp;endtime=1599408000&amp;callback=undefined</span><br></pre></td></tr></table></figure>
 <p>注入点在<code>starttime</code>，该漏洞属于bool盲注。</p>
@@ -604,7 +605,7 @@
      <span class="site-state-item-name">访客量</span>
 </div>
 <div class="site-state-item site-state-posts">
-      <span class="site-state-item-count">107.2k</span>
+      <span class="site-state-item-count">107.1k</span>
       <span class="site-state-item-name">总字数</span>
 </div>
           
@@ -746,7 +747,7 @@
     
       <span class="post-meta-item-text">博客总字数</span>
     
-    <span title="Site words total count">107.2k</span>
+    <span title="Site words total count">107.1k</span>
   
   <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278048714'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1278048714%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 </div>

@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="具体内容仍然要看官网的文档。 记录下今天的收获 layuiadmin pro单页版是前后端分离的框架之前尝试搭建源码的过程发现不能像std常规版一样进行查看，因为需求不大没有深入找原因。今天仔细看了看文档， std模式更像是前后端不分离的123将 src 目录中的 views 文件夹整个复制到你 服务端工程 的 view 层中，通过本地 web 服务器访问（Tomcat / IIS / Apach">
+<meta name="description" content="具体内容仍然要看官网的文档。 记录下今天的收获">
 <meta name="keywords" content="layui">
 <meta property="og:type" content="article">
 <meta property="og:title" content="layui_admin_pro学习与搭建部署">
 <meta property="og:url" content="https://bjj.dropsec.xyz/2020/09/04/layui_admin_pro学习与搭建部署/index.html">
 <meta property="og:site_name" content="AJay13">
-<meta property="og:description" content="具体内容仍然要看官网的文档。 记录下今天的收获 layuiadmin pro单页版是前后端分离的框架之前尝试搭建源码的过程发现不能像std常规版一样进行查看，因为需求不大没有深入找原因。今天仔细看了看文档， std模式更像是前后端不分离的123将 src 目录中的 views 文件夹整个复制到你 服务端工程 的 view 层中，通过本地 web 服务器访问（Tomcat / IIS / Apach">
+<meta property="og:description" content="具体内容仍然要看官网的文档。 记录下今天的收获">
 <meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
-<meta property="og:updated_time" content="2020-10-20T07:47:27.341Z">
+<meta property="og:updated_time" content="2020-10-20T08:12:25.345Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="layui_admin_pro学习与搭建部署">
-<meta name="twitter:description" content="具体内容仍然要看官网的文档。 记录下今天的收获 layuiadmin pro单页版是前后端分离的框架之前尝试搭建源码的过程发现不能像std常规版一样进行查看，因为需求不大没有深入找原因。今天仔细看了看文档， std模式更像是前后端不分离的123将 src 目录中的 views 文件夹整个复制到你 服务端工程 的 view 层中，通过本地 web 服务器访问（Tomcat / IIS / Apach">
+<meta name="twitter:description" content="具体内容仍然要看官网的文档。 记录下今天的收获">
 
 
 
@@ -437,6 +437,7 @@
       
         <p>具体内容仍然要看官网的文档。</p>
 <p>记录下今天的收获</p>
+<a id="more"></a>
 <h2 id="layuiadmin-pro单页版是前后端分离的框架"><a href="#layuiadmin-pro单页版是前后端分离的框架" class="headerlink" title="layuiadmin pro单页版是前后端分离的框架"></a>layuiadmin pro单页版是前后端分离的框架</h2><p>之前尝试搭建源码的过程发现不能像std常规版一样进行查看，因为需求不大没有深入找原因。今天仔细看了看文档，</p>
 <p>std模式更像是前后端不分离的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">将 src 目录中的 views 文件夹整个复制到你 服务端工程 的 view 层中，通过本地 web 服务器访问（Tomcat / IIS / Apache / Nginx 等）</span><br><span class="line">确保可以访问后，修改好 HTML 文件中的 JS/CSS 路径，即可正常运行页面。</span><br><span class="line">iframe 常规版 相比于 单页面模式的专业版 ，无论是在目录结构还是开发模式上都要简单很多。因为单页版是接管了服务端 MVC 的视图层，而 iframe 版则将视图交给了服务端来控制和输出，可以避免鉴权的复杂程度，直接可衔接好新老项目（因为你们的大部分老项目都是采用 iframe 模式）。</span><br></pre></td></tr></table></figure></p>
 <p>而pro模式是前后端分离的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于 layuiAdmin 可采用前后端分离开发模式，因此你无需将其放置在你的服务端 MVC 框架中，你只需要给 layuiAdmin 主入口页面（我们也称之为：宿主页面）进行访问解析，它即可全权完成自身路由的跳转和视图的呈现，而数据层则完全通过服务端提供的异步接口来完成。</span><br></pre></td></tr></table></figure></p>
@@ -608,7 +609,7 @@
      <span class="site-state-item-name">访客量</span>
 </div>
 <div class="site-state-item site-state-posts">
-      <span class="site-state-item-count">107.2k</span>
+      <span class="site-state-item-count">107.1k</span>
       <span class="site-state-item-name">总字数</span>
 </div>
           
@@ -750,7 +751,7 @@
     
       <span class="post-meta-item-text">博客总字数</span>
     
-    <span title="Site words total count">107.2k</span>
+    <span title="Site words total count">107.1k</span>
   
   <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278048714'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1278048714%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 </div>
