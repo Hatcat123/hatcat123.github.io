@@ -1,4 +1,17 @@
-
+---
+title: 清理ubuntu磁盘
+tags:
+  - 运维
+categories:
+  - 运维
+copyright: true
+permalink: 清理ubuntu磁盘
+top: 0
+password: 
+abstract: 输入密码继续阅读.
+message: 欢迎来到我的博客，输入密码继续阅读.
+date: 2020-09-30 21:09:05
+---
 服务器的数据库崩了，提示无法载入新的数据。
 
 

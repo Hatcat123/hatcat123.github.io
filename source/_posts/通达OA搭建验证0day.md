@@ -1,4 +1,17 @@
-
+---
+title: 通达OA搭建验证0day
+tags:
+  - 通达oa
+categories:
+  - 安全
+copyright: true
+permalink: 通达OA搭建验证0day
+top: 0
+password: 
+abstract: 输入密码继续阅读.
+message: 欢迎来到我的博客，输入密码继续阅读.
+date: 2020-09-03 21:09:05
+---
 ## 一、环境搭建：
 
 安装11.5版本，官网最新的是11.7版本，从网上找到一个11.5的安装包，直接一键安装成功。
