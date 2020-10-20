@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2020/10/19/layui_admin_pro学习与搭建部署/">
+    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2020/06/28/验证码识别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="朴阿杰">
@@ -330,7 +330,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/10/19/layui_admin_pro学习与搭建部署/" itemprop="url">Untitled</a></h2>
+                <a class="post-title-link" href="/2020/06/28/验证码识别/" itemprop="url">验证码识别</a></h2>
         
 
         <div class="post-meta">
@@ -342,8 +342,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-10-19T18:04:03+08:00">
-                2020-10-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-28T17:48:46+08:00">
+                2020-06-28
               </time>
             
 
@@ -352,6 +352,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -374,7 +396,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  590
+                  0
                 </span>
               
 
@@ -390,7 +412,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  2
+                  1
                 </span>
               
             </div>
@@ -413,20 +435,10 @@
       
         
           
-            <p>具体内容仍然要看官网的文档。</p>
-<p>记录下今天的收获</p>
-<h2 id="layuiadmin-pro单页版是前后端分离的框架"><a href="#layuiadmin-pro单页版是前后端分离的框架" class="headerlink" title="layuiadmin pro单页版是前后端分离的框架"></a>layuiadmin pro单页版是前后端分离的框架</h2><p>之前尝试搭建源码的过程发现不能像std常规版一样进行查看，因为需求不大没有深入找原因。今天仔细看了看文档，</p>
-<p>std模式更像是前后端不分离的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">将 src 目录中的 views 文件夹整个复制到你 服务端工程 的 view 层中，通过本地 web 服务器访问（Tomcat / IIS / Apache / Nginx 等）</span><br><span class="line">确保可以访问后，修改好 HTML 文件中的 JS/CSS 路径，即可正常运行页面。</span><br><span class="line">iframe 常规版 相比于 单页面模式的专业版 ，无论是在目录结构还是开发模式上都要简单很多。因为单页版是接管了服务端 MVC 的视图层，而 iframe 版则将视图交给了服务端来控制和输出，可以避免鉴权的复杂程度，直接可衔接好新老项目（因为你们的大部分老项目都是采用 iframe 模式）。</span><br></pre></td></tr></table></figure></p>
-<p>而pro模式是前后端分离的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于 layuiAdmin 可采用前后端分离开发模式，因此你无需将其放置在你的服务端 MVC 框架中，你只需要给 layuiAdmin 主入口页面（我们也称之为：宿主页面）进行访问解析，它即可全权完成自身路由的跳转和视图的呈现，而数据层则完全通过服务端提供的异步接口来完成。</span><br></pre></td></tr></table></figure></p>
-<p>主要是view视图的区分</p>
-<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">解压文件后，将 layuiAdmin 完整放置在任意目录</span><br><span class="line">通过本地 web 服务器去访问 ./start/index.html 即可运行 Demo</span><br></pre></td></tr></table></figure>
-<p>采用nginx部署，创建一个虚拟的主机配置，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">      listen       80;</span><br><span class="line">       server_name  www.xx.com;	</span><br><span class="line">     </span><br><span class="line">    #    server_name  somename  alias  another.alias;</span><br><span class="line">       location / &#123;</span><br><span class="line">           root   C:\layuiAdmin.pro-v1.2.1;</span><br><span class="line">           index  .\start\index.html index.html index.htm;</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>其他通读了一遍文档，包括最后如何开发，打包</p>
-<p>用到的登录，jwt，localstorage，sessionStorage。等等都经过封装，添加页面只需要些一些html。整理源码中解耦强。看起来比较舒服。</p>
-<p>感受很大一定的架构程度和vue很像。</p>
-<p>网上都说layui垃圾 我的水平还没有到骂layui的程度</p>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://www.cnblogs.com/niuben/p/11038897.html" target="_blank" rel="noopener">https://www.cnblogs.com/niuben/p/11038897.html</a></p>
+            <p><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/1234.jpg" alt="1234"></p>
+<p><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/3333.jpg" alt="3333"></p>
+<p><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/nnn.jpg" alt="nnn"></p>
+<p><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/train.png" alt="train"></p>
 
           
         
@@ -475,7 +487,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2020/10/19/dvwa学习笔记/">
+    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2020/06/20/dvwa/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="朴阿杰">
@@ -494,7 +506,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/10/19/dvwa学习笔记/" itemprop="url">Untitled</a></h2>
+                <a class="post-title-link" href="/2020/06/20/dvwa/" itemprop="url">dvwa</a></h2>
         
 
         <div class="post-meta">
@@ -506,8 +518,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-10-19T18:04:03+08:00">
-                2020-10-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-20T17:48:46+08:00">
+                2020-06-20
               </time>
             
 
@@ -516,6 +528,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/安全/" itemprop="url" rel="index">
+                    <span itemprop="name">安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -582,6 +616,180 @@
 <p>默认用户名与密码</p>
 <p>admin/password</p>
 <p><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/20200620232516.png" alt="20200620232516"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2020/06/08/在Ubuntu上python2.7安装pcapy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="朴阿杰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AJay13">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/08/在Ubuntu上python2.7安装pcapy/" itemprop="url">layui流加载重复</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-08T17:48:46+08:00">
+                2020-06-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  99
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>关于页面多次加载layui.load的请求问题</p>
+<p>参考：<br><a href="https://fly.layui.com/jie/31947/" target="_blank" rel="noopener">https://fly.layui.com/jie/31947/</a><br><a href="https://fly.layui.com/jie/52950/" target="_blank" rel="noopener">https://fly.layui.com/jie/52950/</a><br><a href="https://blog.csdn.net/xiaojun201593/article/details/104006361?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/xiaojun201593/article/details/104006361?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase</a><br><a href="https://blog.csdn.net/newMan67/article/details/86657539?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/newMan67/article/details/86657539?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase</a><br><a href="https://blog.csdn.net/Richardjgp/article/details/101458313?utm_medium=distribute.pc_relevant.none-task-blog-baidujs-1" target="_blank" rel="noopener">https://blog.csdn.net/Richardjgp/article/details/101458313?utm_medium=distribute.pc_relevant.none-task-blog-baidujs-1</a></p>
 
           
         
@@ -764,6 +972,406 @@
         
       
     </p></div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2020/04/28/在Ubuntu上python2.7安装pcapy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="朴阿杰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AJay13">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/28/在Ubuntu上python2.7安装pcapy/" itemprop="url">在Ubuntu上python2.7安装pcapy</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-28T17:48:46+08:00">
+                2020-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  129
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>How To Install “python-pcapy” Package on Ubuntu</p>
+<p>在Ubuntu上python2.7安装pcapy<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pcapy</span><br></pre></td></tr></table></figure></p>
+<p>报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">pcapdumper.cc:11:10: fatal error: pcap.h: No such file or directory</span><br><span class="line"> #include &lt;pcap.h&gt;</span><br><span class="line">          ^~~~~~~~</span><br><span class="line">compilation terminated.</span><br><span class="line">error: command &apos;x86_64-linux-gnu-gcc&apos; failed with exit status 1</span><br><span class="line">----------------------------------------</span><br><span class="line">ERROR: Failed building wheel for pcapy</span><br></pre></td></tr></table></figure>
+<p>Quick Install Instructions of python-pcapy on Ubuntu Server. It’s Super Easy! simply click on Copy button to copy the command and paste into your command line terminal using built-in APT package manager.</p>
+<p>See below for quick step by step instructions of SSH commands, Copy/Paste to avoid miss-spelling or accidently installing a different packag</p>
+<p>Step 1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update -y</span><br></pre></td></tr></table></figure></p>
+<p>Step 2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y python-pcapy</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2020/04/26/你的HW文章搜索包 | 好用的安全类文章武器库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="朴阿杰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AJay13">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/26/你的HW文章搜索包 | 好用的安全类文章武器库/" itemprop="url">你的HW文章搜索包 | 好用的安全类文章武器库</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-26T17:48:46+08:00">
+                2020-04-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/安全/" itemprop="url" rel="index">
+                    <span itemprop="name">安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="标题：你的HW文章搜索包-好用的安全类文章武器库"><a href="#标题：你的HW文章搜索包-好用的安全类文章武器库" class="headerlink" title="标题：你的HW文章搜索包 | 好用的安全类文章武器库"></a>标题：你的HW文章搜索包 | 好用的安全类文章武器库</h1><p>描述：一款好用的安全文章武器库，多一种搜索方式，多一种选择。</p>
+<blockquote>
+<p>其实这篇文章已经写出来好久了，一直没有找到合适的机会发出来。</p>
+</blockquote>
+<p>一年一度的HW活动即将到来，按照去年的个人总结，存在以下的痛点。</p>
+<ul>
+<li><p>事前的准备：已经看到有几个平台都在整理各自的武器库文档，说实话前期不论准备的多充分现场都不够用，但是准备是必不可少的，之后汇报战况也会用到。<strong>（这个时候一个好的文章库多么重要）</strong></p>
+</li>
+<li><p>事中的应对：在摸到某个陌生的系统，或者碰到自己薄弱的知识点，总要临时谷歌百度一波。现场环境中有可能谷歌比较麻烦的，多少人公用一个代理速度可想而知，然鹅百度的结果还只能凑合凑合。<strong>（这个时候一个好的文章库多么重要）</strong></p>
+</li>
+<li><p>事后的文档编写：事后编写一手漂亮的文档，参考资料的来源还要避免与百度的结果相似。众所周知微信的流量还是相对封闭。<strong>（这个时候一个好的文章库多么重要）</strong></p>
+</li>
+</ul>
+<p><strong>重要的事情说三遍！！！</strong></p>
+<p>预测今年的活动更加的有意思，去年常规漏洞基本被搂了一遍。今年再搞就会更偏向于线下的攻击。操作越来越骚，还记得去年的简书某蓝队文章吗？某些公众号的师傅可能会发出被秒删的文章，事后想看到被删除的内容？</p>
+<h2 id="推荐工具"><a href="#推荐工具" class="headerlink" title="推荐工具"></a>推荐工具</h2><p>公众号文章搜索工具：<a href="http://wechat.doonsec.com" target="_blank" rel="noopener">http://wechat.doonsec.com</a></p>
+<p>原github地址：<a href="https://github.com/DropsDevopsOrg/ECommerceCrawlers/tree/master/WechatCrawler" target="_blank" rel="noopener">WechatCrawler</a></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>“现在很多好的东西都是在公众号上发布的，而且公众号搜索比较费劲 百度搜不到  只能搜狗搜  一般人不会找  所以想找个之前看过的文章都麻烦” —- 佚名师傅原话</p>
+<p>“安全圈内的公众号发布的文章超级优秀，每家社区的平台会选择各自社区的优质文章，个人公众号发一些技术总结，奇淫技巧。这些都是一笔超级宝贵的知识库。” —- 佚名师傅原话</p>
+<p>圈内有名的文章聚合大佬<code>secwiki</code>对公众号内容关注不多，微信聚合网站可以填充这个方面</p>
+<p>此站采集了安全圈内的公众号发布的历史文章。共收录公众号222个。采集文章6万篇。</p>
+<p>监控微信公众号发布的文章。收集每天发布的平均180篇文章。文章呈现在WEB端浏览。每周精选干货总结。汇总信息微信内二次发布。指定关键字查找，缩小索引范围。同步github存储。挖掘更多功能：搜索功能“招聘”做参考、“cve-xx”做预警、“复现”做学习。数据图表分析一年发布频率、每周发布数量、每天发布时间、关键字词云分析。</p>
+<h3 id="搜索功能"><a href="#搜索功能" class="headerlink" title="搜索功能"></a>搜索功能</h3><p>关键词：<code>复现</code></p>
+<p><img src="https://imgkr.cn-bj.ufileos.com/3e0fa698-f51f-4daf-b2dd-f247b9c0e12d.png" alt></p>
+<p>关键词：<code>CVE</code></p>
+<p><img src="https://imgkr.cn-bj.ufileos.com/beac547f-2647-4dec-8626-e872e554ddf3.png" alt></p>
+<p>关键词：<code>总结</code></p>
+<p><img src="https://imgkr.cn-bj.ufileos.com/d387ffee-b9a5-4f97-b5fe-92eff3e01aa6.png" alt></p>
+<h2 id="另外谈到一个敏感的问题-流量"><a href="#另外谈到一个敏感的问题-流量" class="headerlink" title="另外谈到一个敏感的问题 流量"></a>另外谈到一个敏感的问题 流量</h2><p>媒体运维小哥哥小姐姐可能会担心一点，文章都聚合到你们平台了，我们公众号文章的访问量是不是就被瓜分了？</p>
+<p>因为这确实会涉及到部分公司给出运维的考核指标</p>
+<p>我解释以下几点：</p>
+<ul>
+<li><p>第一、首先关于本站的访问量，通过我们后台观察每天用户的访问总量不过100。确实有几个<code>忠实粉丝</code>与部分有效<code>搜索行为</code>，但绝大多数访问都是看了几个页面然后就再也没有访问记录了，所以从用户基数上基本偷不走公众号的流量。</p>
+</li>
+<li><p>第二、本站非常注重版权，凡是有数据的地方都在<code>最明显的地方</code>标注了出处、作者、公众号名称与原文连接，如有不同意被采集的公众号，后台留言通知，我们将在第一时间删除所有与公众号相关的数据。</p>
+</li>
+<li><p>第三、本站在文章原文展示的页面友好度的方向上停止优化，所以原文展示的界面非常难看！并在明显位置提供了原文链接，为了更好的查看公众号文章排版展示，<code>引导用户访问原文章链接</code>。这样也增加了原文章的访问量。</p>
+</li>
+<li><p>第四、本站原本是团队内部使用的搜索产品，后本着知识共享的精神，上线于公网，初衷是<code>越少人知道、网站活得越久</code>，后来经过几个大佬的了解与肯定，我们决定适当推广本聚合平台，为有心的师傅多一种搜索工具的选择。</p>
+</li>
+</ul>
+<h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><p>感谢<code>neargle</code>在3年前提出一个很小的萌芽想法。</p>
+<p>感谢<code>Joynice</code>、<code>Jdrops</code>、<code>Fenguopeng</code>，在此期间共同开发、完善、维护本项目。</p>
+<p>感谢<code>【hack4】 【admin】 【吴才子】 【Joynice】 【Hatcat123】 【404】 【CyberDefense】 【Cooper】 【沈登年】 【xzw】 【Paper-Pen】 【你们的饭不好吃】 【mmmshuoka】 【Jdrops】 【yichen】 【lengyi】 【crazyman】 【HELEL】 【lsh4ck】 【黑鸟】 【许心痕】 【Tone】 【HacTF】 【hacker520sb】 【0pen1】 【暗影安全团队】 【zonei123】 【冰崖】 【thelostworld】 【梁景普】 【Dooonsec】</code>。这30位贡献者为平台提供给公众号资源。</p>
+<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><blockquote>
+<p>本站文章为爬虫采集，目的是为了方便更好的提供免费聚合服务，如有侵权请告知。具体请在留言告知，我们将清除对此公众号的监控，并清空相关文章。所有内容，均摘自于互联网，不得以任何方式将其用于商业目的。由于传播，利用此文所提供的信息而造成的任何直接或间接的后果和损失，均由使用者本人负责，本站以及文章作者不承担任何责任。</p>
+</blockquote>
+<p>三连：赞赏、再看、转发</p>
+
+          
+        
+      
+    </div>
     
     
     
@@ -1246,7 +1854,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  810
+                  944
                 </span>
               
 
@@ -1262,7 +1870,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  5
+                  3
                 </span>
               
             </div>
@@ -1284,7 +1892,7 @@
 
       
         
-          输入密码继续阅读.
+          <p>人生苦短我用python<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/01/14/redis设置认证密码/#more" rel="contents">
@@ -1294,7 +1902,7 @@
           <!--/noindex-->
         
       
-    </div>
+    </p></div>
     
     
     
@@ -1423,7 +2031,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  205
+                  237
                 </span>
               
 
@@ -1502,542 +2110,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2020/01/08/推荐200个安全公众号/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="朴阿杰">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AJay13">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/01/08/推荐200个安全公众号/" itemprop="url">推荐200个安全公众号</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-08T21:53:34+08:00">
-                2020-01-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/爬虫/" itemprop="url" rel="index">
-                    <span itemprop="name">爬虫</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  9k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  31
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>适合新手关注的公众号。有多少个你已经关注？<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/01/08/推荐200个安全公众号/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2019/12/31/selenium加载插件的动态代理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="朴阿杰">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AJay13">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/12/31/selenium加载插件的动态代理/" itemprop="url">selenium加载插件的动态代理</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-31T23:49:28+08:00">
-                2019-12-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/爬虫/" itemprop="url" rel="index">
-                    <span itemprop="name">爬虫</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  518
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>人生苦短我用python<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/12/31/selenium加载插件的动态代理/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2019/12/31/关于微信公众号的思考/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="朴阿杰">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AJay13">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/12/31/关于微信公众号的思考/" itemprop="url">关于微信公众号的思考</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-31T00:09:37+08:00">
-                2019-12-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/爬虫/" itemprop="url" rel="index">
-                    <span itemprop="name">爬虫</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  1.8k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  6
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>就目前来说，微信公众号是最好的分享平台了，越来越多的大佬从个人的博客、论坛转战到微信公众号，也发现越来越多的安全团队、商业安全公司、个人安全研究员开了自己的公众号平台，并将微信公众号作为对外的接口，分享更多的技术成果与心得。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/12/31/关于微信公众号的思考/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2083,7 +2160,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">109</span>
+                  <span class="site-state-item-count">112</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -2105,7 +2182,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">66</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2123,7 +2200,7 @@
      <span class="site-state-item-name">访客量</span>
 </div>
 <div class="site-state-item site-state-posts">
-      <span class="site-state-item-count">104.7k</span>
+      <span class="site-state-item-count">107.2k</span>
       <span class="site-state-item-name">总字数</span>
 </div>
           
@@ -2249,7 +2326,7 @@
     
       <span class="post-meta-item-text">博客总字数</span>
     
-    <span title="Site words total count">104.7k</span>
+    <span title="Site words total count">107.2k</span>
   
   <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278048714'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1278048714%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 </div>

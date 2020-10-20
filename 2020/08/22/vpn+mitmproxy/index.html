@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="/themes/next/languages/zh-Hans.yml">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="爬虫,mitmproxy,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="问题在使用微信公众号自动化采集的过程中，常常存在下面的情况：1. 采集的数据不够及时。2. 采集过程可能会因为网络问题中断，如果不在电脑身边，无法及时恢复。 解决思路（本片文章是对上述问题解决的一个研究过程，可能最终无结果。所以写到哪，想到哪些方法都记录下来)目前的解决思路是从手机端出发。原来的方式是将微信的流量通过本地搭建的mitmproxy代理获取数据，我们为了让数据可以随时随地被采集，想要从">
+<meta name="keywords" content="爬虫,mitmproxy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vpn+mitmproxy">
+<meta property="og:url" content="https://bjj.dropsec.xyz/2020/08/22/vpn+mitmproxy/index.html">
+<meta property="og:site_name" content="AJay13">
+<meta property="og:description" content="问题在使用微信公众号自动化采集的过程中，常常存在下面的情况：1. 采集的数据不够及时。2. 采集过程可能会因为网络问题中断，如果不在电脑身边，无法及时恢复。 解决思路（本片文章是对上述问题解决的一个研究过程，可能最终无结果。所以写到哪，想到哪些方法都记录下来)目前的解决思路是从手机端出发。原来的方式是将微信的流量通过本地搭建的mitmproxy代理获取数据，我们为了让数据可以随时随地被采集，想要从">
+<meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
+<meta property="og:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/1593185108(1">
+<meta property="og:image" content="https://docs.mitmproxy.org/stable/schematics/proxy-modes-flowchart.png">
+<meta property="og:image" content="https://docs.mitmproxy.org/stable/schematics/proxy-modes-regular.png">
+<meta property="og:image" content="https://docs.mitmproxy.org/stable/schematics/proxy-modes-reverse.png">
+<meta property="og:image" content="https://docs.mitmproxy.org/stable/schematics/proxy-modes-upstream.png">
+<meta property="og:updated_time" content="2020-10-20T07:47:27.388Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vpn+mitmproxy">
+<meta name="twitter:description" content="问题在使用微信公众号自动化采集的过程中，常常存在下面的情况：1. 采集的数据不够及时。2. 采集过程可能会因为网络问题中断，如果不在电脑身边，无法及时恢复。 解决思路（本片文章是对上述问题解决的一个研究过程，可能最终无结果。所以写到哪，想到哪些方法都记录下来)目前的解决思路是从手机端出发。原来的方式是将微信的流量通过本地搭建的mitmproxy代理获取数据，我们为了让数据可以随时随地被采集，想要从">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/1593185108(1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bjj.dropsec.xyz/2020/08/22/vpn+mitmproxy/">
+
+
+
+
+
+  <title>vpn+mitmproxy | AJay13</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="/themes/next/languages/zh-Hans.yml">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/Hatcat123" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AJay13</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home  //首页"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags  //标签"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th   //分类"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive //归档"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-微信聚合">
+          <a href="http:wechat.doonsec.com/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wechat //知识库"></i> <br>
+            
+            微信聚合
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-安全导航">
+          <a href="/sec_web" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-google //安全导航"></i> <br>
+            
+            安全导航
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user  //关于"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2020/08/22/vpn+mitmproxy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="朴阿杰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AJay13">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">vpn+mitmproxy</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-22T21:09:05+08:00">
+                2020-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在使用微信公众号自动化采集的过程中，常常存在下面的情况：1. 采集的数据不够及时。2. 采集过程可能会因为网络问题中断，如果不在电脑身边，无法及时恢复。</p>
+<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><p>（本片文章是对上述问题解决的一个研究过程，可能最终无结果。所以写到哪，想到哪些方法都记录下来)<br>目前的解决思路是从手机端出发。原来的方式是将微信的流量通过本地搭建的mitmproxy代理获取数据，我们为了让数据可以随时随地被采集，想要从手机端采集入手。<br>首先手机上不能再搭建mitmproxy代理服务，所以我选择使用云服务器搭建一个公开代理，让手机的流量走到公开的代理上，在使用手机阅读公众号的时候就能不受限制的将数据采集到数据库中。</p>
+<h3 id="mitmproxy搭建"><a href="#mitmproxy搭建" class="headerlink" title="mitmproxy搭建"></a>mitmproxy搭建</h3><p>在ubuntu18中搭建mitmproxy的方式多种，安装的方式也比较多。之后为了要配合py脚本。我们选择使用pip的形式安装，在虚拟环境中连同py所需要的库都一同安装上。</p>
+<p>为了方便查看数据，我们先用mitmweb运行在web端查看到数据，<code>--set block_global=false</code>的作用是允许互联网的设备访问代理，这种弊端是会有许多扫描器来扫你开放的端口，造成不必要的连接与访问流量。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mitmweb --web-iface 0.0.0.0 --web-port 8003 --set block_global=false --ssl-insecure --mode transparent</span><br></pre></td></tr></table></figure></p>
+<p>验证代理正确性，首先在浏览器上配置一个代理。服务器ip+代理端口。没有问题。<br>然后再手机上使用wifi的时候验证代理。在wifi配置中加上代理地址，也没有问题。</p>
+<p>想用4g的时候也能用代理，毕竟这才是解决问题的最有效的办法。</p>
+<p>打开手机4g，没有找到任何可以直接设置代理的地方，然后求救群友，群友扔出vpn的解决方式。</p>
+<p>手机自带vpn设置配置，需要我在服务器上搭建一个vpn，然后手机访问网站，流量走到vpn上，在将vpn上的流量转发到mitmproxy中，实现mitmproxy也能代理到4g访问的流量。</p>
+<p>在mitmproxy的论坛中找到了一个和自己想法一样老哥的描述<code>https://discourse.mitmproxy.org/t/using-mitmproxy-for-all-http-https-traffic-coming-from-an-ipsec-vpn-server/792</code></p>
+<p>这是他想要表达的想法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">       +----------------------+</span><br><span class="line">       |                      |</span><br><span class="line">       |       iPhone         |</span><br><span class="line">       |                      |</span><br><span class="line">       +-----------+----------+</span><br><span class="line">                   |</span><br><span class="line">                   |</span><br><span class="line">+--------------------------------------+</span><br><span class="line">|      +-----------v----------+        |</span><br><span class="line">|      |                      |        |</span><br><span class="line">|      |        VPN server    +-----+  |</span><br><span class="line">|      |                      |     |  |</span><br><span class="line">|      +----------------------+     |  |</span><br><span class="line">|                 |HTTP/HTTPS       |  | My server</span><br><span class="line">|                 |                 |  |</span><br><span class="line">|      +----------v-----------+     |  |</span><br><span class="line">|      |                      |     |  |</span><br><span class="line">|      |      mitmproxy       |     |  |</span><br><span class="line">|      |                      |     |  |</span><br><span class="line">|      +----------------------+     |  |</span><br><span class="line">+--------------------------------------+</span><br><span class="line">                  |                 |</span><br><span class="line">                  |                 |non-HTTP/HTTPS traffic</span><br><span class="line">                  |                 |</span><br><span class="line">        +---------v-----------+     |</span><br><span class="line">        |                     |     |</span><br><span class="line">        |      Internet       +^----+</span><br><span class="line">        |                     |</span><br><span class="line">        +---------------------+</span><br></pre></td></tr></table></figure></p>
+<p>然后有老哥给出建议<code>https://github.com/abcnews/data-life/tree/master/server</code></p>
+<p>中间会用到iptables端口转化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://gist.github.com/Tyilo/03889ddc651fcf96e1208b65bfc7aa7f#file-docker-compose-yml-L21</span><br></pre></td></tr></table></figure>
+<h3 id="vps搭建"><a href="#vps搭建" class="headerlink" title="vps搭建"></a>vps搭建</h3><p>选择docker一键搭建vps<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull hwdsl2/ipsec-vpn-server</span><br></pre></td></tr></table></figure></p>
+<p>到仓库中<code>https://github.com/hwdsl2/docker-ipsec-vpn-server/blob/master/README-zh.md</code>找到env文件，运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">    --name ipsec-vpn-server \</span><br><span class="line">    --env-file ./vpn.env \</span><br><span class="line">    --restart=always \</span><br><span class="line">    -p 500:500/udp \</span><br><span class="line">    -p 4500:4500/udp \</span><br><span class="line">    --privileged \</span><br><span class="line">    hwdsl2/ipsec-vpn-server</span><br></pre></td></tr></table></figure></p>
+<p>服务器必须要开启500与4500的udp端口。</p>
+<p>运行成功后能看到这些信息，所有的配置信息都在env文件中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Connect to your new VPN with these details:</span><br><span class="line"></span><br><span class="line">Server IP: 你的VPN服务器IP</span><br><span class="line">IPsec PSK: 你的IPsec预共享密钥</span><br><span class="line">Username: 你的VPN用户名</span><br><span class="line">Password: 你的VPN密码</span><br></pre></td></tr></table></figure>
+<p>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Define your own values for these variables</span><br><span class="line"># - DO NOT put &quot;&quot; or &apos;&apos; around values, or add space around =</span><br><span class="line"># - DO NOT use these special characters within values: \ &quot; &apos;</span><br><span class="line">VPN_IPSEC_PSK=foobar</span><br><span class="line">VPN_USER=foo</span><br><span class="line">VPN_PASSWORD=bar</span><br></pre></td></tr></table></figure></p>
+<p>尝试使用苹果手机连接vpn，在设置中找到vpn，添加ip、<code>L2TP</code>，账号、密码等参数。连接成功。</p>
+<p>windows连接vpn需要更改一些配置，详情查看原github文档介绍。</p>
+<h3 id="iptables"><a href="#iptables" class="headerlink" title="iptables"></a>iptables</h3><p>此时流量只会走到vpn中，如何让流量转发到mitm代理？我们选择使用iptable，将端口转发到另一个端口，下面是具体步骤。</p>
+<p><strong>他说他的有效<code>https://github.com/abcnews/data-life/tree/master/server</code></strong></p>
+<p>添加策略<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080</span><br><span class="line">iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8080</span><br><span class="line">ip6tables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080</span><br><span class="line">ip6tables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8080</span><br><span class="line">iptables -A INPUT -p tcp --dport 8080 -j ACCEPT</span><br><span class="line">ip6tables -A INPUT -p tcp --dport 8080 -j ACCEPT</span><br></pre></td></tr></table></figure></p>
+<p>意思是将连接vpn中的http与https数据转发到8080端口。只要我在8080开启代理流量就会进入代理中。</p>
+<p>删除策略<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -D PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080</span><br><span class="line">iptables -t nat -D PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8080</span><br><span class="line">ip6tables -t nat -D PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080</span><br><span class="line">ip6tables -t nat -D PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8080</span><br><span class="line">iptables -D INPUT -p tcp --dport 8080 -j ACCEPT</span><br><span class="line">ip6tables -D INPUT -p tcp --dport 8080 -j ACCEPT</span><br></pre></td></tr></table></figure></p>
+<p>备份测试(验证后无效)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A PREROUTING -i eth+ -p tcp --destination-port 80 -j DNAT --to-destination 47.100.199.103:8080 </span><br><span class="line">iptables -t nat -A PREROUTING -i eth+ -p tcp --destination-port 443 -j DNAT --to-destination 47.100.199.103:8080</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -D PREROUTING -i eth+ -p tcp --destination-port 80 -j DNAT --to-destination 47.47.100.199.103:8080 </span><br><span class="line">iptables -t nat -D PREROUTING -i eth+ -p tcp --destination-port 443 -j DNAT --to-destination 47.100.199.103:8080</span><br></pre></td></tr></table></figure>
+<p>iptables 基础</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables  -nL -t nat</span><br></pre></td></tr></table></figure>
+<h3 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP protocol error in client request: Invalid HTTP request form (expected: authority or absolute, got: relative)</span><br></pre></td></tr></table></figure>
+<p>目前无法解决了，是无效的http请求</p>
+<h3 id="成功案例"><a href="#成功案例" class="headerlink" title="成功案例"></a>成功案例</h3><p><code>https://github.com/abcnews/data-life</code></p>
+<p>查看文件与我们搭建的有何不同。</p>
+<p>下载源码，进入到server目录，构建并运行镜像容器</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker-compose build</span><br><span class="line">docker-compose up</span><br></pre></td></tr></table></figure>
+<p>运行结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Digest: sha256:4b594f1d297314e2ff20082c257db971bda36a13d2df6e863573a29f12cf595b</span><br><span class="line">Status: Downloaded newer image for hwdsl2/ipsec-vpn-server:latest</span><br><span class="line">Creating ipsec-vpn-server ... </span><br><span class="line">Creating mitmproxy ... </span><br><span class="line">Creating ipsec-vpn-server</span><br><span class="line">Creating mitmproxy ... done</span><br><span class="line">Attaching to ipsec-vpn-server, mitmproxy</span><br><span class="line">ipsec-vpn-server | </span><br><span class="line">ipsec-vpn-server | VPN credentials not set by user. Generating random PSK and password...</span><br><span class="line">ipsec-vpn-server | </span><br><span class="line">ipsec-vpn-server | Trying to auto discover IP of this server...</span><br><span class="line">ipsec-vpn-server | </span><br><span class="line">ipsec-vpn-server | ================================================</span><br><span class="line">ipsec-vpn-server | </span><br><span class="line">ipsec-vpn-server | IPsec VPN server is now ready for use!</span><br><span class="line">ipsec-vpn-server | </span><br><span class="line">ipsec-vpn-server | Connect to your new VPN with these details:</span><br><span class="line">ipsec-vpn-server | </span><br><span class="line">ipsec-vpn-server | Server IP: 49.233.171.51</span><br><span class="line">ipsec-vpn-server | IPsec PSK: DypyiWAnwRztowJKCA2c</span><br><span class="line">ipsec-vpn-server | Username: vpnuser</span><br><span class="line">ipsec-vpn-server | Password: E5ZGJvcX7xWpuVnp</span><br><span class="line"></span><br><span class="line">ipsec-vpn-server | Redirecting to: /etc/init.d/ipsec start</span><br><span class="line">ipsec-vpn-server | Starting pluto IKE daemon for IPsec: Initializing NSS database</span><br><span class="line">ipsec-vpn-server | </span><br><span class="line">mitmproxy    | Loading script /home/mitmproxy/.mitmproxy/jsondump.py</span><br><span class="line">mitmproxy    | Writing all data frames to /proxydata/dump.json</span><br><span class="line">mitmproxy    | Loading script /home/mitmproxy/.mitmproxy/tls_passthrough.py</span><br><span class="line">mitmproxy    | Writing all data frames to /proxydata/dump.json</span><br><span class="line">mitmproxy    | Proxy server listening at http://*:8080</span><br></pre></td></tr></table></figure></p>
+<p>连接上vpn，日志中显示连接记录并且访问网页mitm也有记录。</p>
+<p>分析下这个server中每个文件的作用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;3&quot;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  vpn:</span><br><span class="line">    image: hwdsl2/ipsec-vpn-server</span><br><span class="line">    environment:</span><br><span class="line">      - VPN_IPSEC_PSK=$&#123;VPN_IPSEC_PSK&#125;</span><br><span class="line">      - VPN_USER=$&#123;VPN_USER&#125;</span><br><span class="line">      - VPN_PASSWORD=$&#123;VPN_PASSWORD&#125;</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;500:500/udp&quot;</span><br><span class="line">      - &quot;4500:4500/udp&quot;</span><br><span class="line">    hostname: ipsec-vpn-server</span><br><span class="line">    privileged: true</span><br><span class="line">    container_name: ipsec-vpn-server</span><br><span class="line">    volumes:</span><br><span class="line">      - /lib/modules:/lib/modules:ro</span><br><span class="line">    command: /opt/src/run.sh</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    networks:</span><br><span class="line">      static-network:</span><br><span class="line">        ipv4_address: 172.20.128.3</span><br><span class="line">#    network_mode: &quot;host&quot;</span><br><span class="line">  mitmproxy:</span><br><span class="line">    build: .</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;8080:8080/tcp&quot;</span><br><span class="line">    volumes: </span><br><span class="line">      - proxydata:/proxydata</span><br><span class="line">    hostname: mitmproxy</span><br><span class="line">    container_name: mitmproxy</span><br><span class="line">    # command: mitmdump --mode transparent --showhost</span><br><span class="line">    command: mitmdump --ssl-insecure # --set proxyauth=$&#123;PROXY_USER&#125;:$&#123;PROXY_PASS&#125;</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    networks:</span><br><span class="line">      static-network:</span><br><span class="line">        ipv4_address: 172.20.128.2</span><br><span class="line">#    network_mode: &quot;host&quot;</span><br><span class="line">volumes:</span><br><span class="line">  proxydata:</span><br><span class="line">networks:</span><br><span class="line">  static-network:</span><br><span class="line">    ipam:</span><br><span class="line">      config:</span><br><span class="line">        - subnet: 172.20.0.0/16</span><br></pre></td></tr></table></figure>
+<p>可以看出：用了一个ipsec的镜像，然后自己构造了一个镜像mitm</p>
+<p>看下dockerfile中的内容</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> mitmproxy/mitmproxy:<span class="number">4.0</span>.<span class="number">4</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span> --chown=mitmproxy .mitmproxy/* /home/mitmproxy/.mitmproxy/</span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span> requirements.txt /tmp/requirements.txt</span><br><span class="line"><span class="keyword">RUN</span> pip3 install -r /tmp/requirements.txt &amp;&amp; rm /tmp/requirements.txt</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span> mkdir /proxydata &amp;&amp; chown mitmproxy:mitmproxy /proxydata</span><br></pre></td></tr></table></figure>
+<p>这个dockerfile是原始镜像<code>mitmproxy/mitmproxy:4.0.4</code>的构造。加了一个<code>.mitmproxy/*</code>目录与python库。</p>
+<p>另外还有一个有价值的文件，是vpn的配置信息，应该是通过docker-compose配置的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export VPN_IPSEC_PSK=&lt;YourSharedKey&gt;</span><br><span class="line">export VPN_USER=&lt;YourUserName&gt;</span><br><span class="line">export VPN_PASSWORD=&lt;YourPassword&gt;</span><br><span class="line">export VPN_IP=&lt;IPAddrewssOfDockerHost&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这个我们可以设置.env后缀的文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>2020年6月26日中午<br>经过测试vpn是连接上了，就是不知道mitmdump有没有获取到流量，进入到mitm的docker容器中，mitm容器没有bash，通过sh执行命令。查看文件发现是空的。似乎没有捕获到流量，然后我想者将mitmdump换成mitmweb，找到server文件夹下的docker-compose.yml文件更改成为mitmweb，并且加上web-iface等信息。并映射出docker的8003端口。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mitmweb --web-iface 0.0.0.0 --web-port 8003 --ssl-insecure</span><br></pre></td></tr></table></figure></p>
+<p><em>很神奇的地方，mitmweb对用的host有的是web-host有的是web-iface应该与版本有关系</em></p>
+<p>测试过程终还是失败？github原作者说他这是个成功的例子，可流量还是没有经过mitm。再一次爆出下面的问题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP protocol error in client request: Invalid HTTP request form (expected: authority or absolute, got: relative)</span><br></pre></td></tr></table></figure></p>
+<p>这句话到底是什么意思，然后晚上我又去google一波，在仔细看了一遍所有的网页，找到之前漏掉的内容。</p>
+<p>在mitmproxy的github issue中发现也有人提出的问题与我的类似，作者回答的内容都是指向了<strong>mitmproxy的官方文档中代理这一章</strong>。</p>
+<p>在文档中介绍了mitmproxy这几种代理模式：</p>
+<ol>
+<li>Regular (the default)常规代理</li>
+<li>Transparent 透明代理</li>
+<li>Reverse Proxy 反向代理</li>
+<li>Upstream Proxy 上游代理</li>
+<li>SOCKS Proxy socks代理</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/1593185108(1" alt="1593185108(1)">.jpg)</p>
+<p><img src="https://docs.mitmproxy.org/stable/schematics/proxy-modes-flowchart.png" alt></p>
+<p><strong>1. 常规代理</strong></p>
+<p>Mitmproxy的常规模式是最简单，最容易设置的。</p>
+<p>在一个网段路由下启动mitm，默认会在8080端口开启代理服务，客户端配置代理模式为mitm，https需安装证书。</p>
+<p><img src="https://docs.mitmproxy.org/stable/schematics/proxy-modes-regular.png" alt="常规代理"></p>
+<p><strong>2. 透明代理</strong></p>
+<p>使用透明代理时，流量将重定向到网络层的代理中，而无需任何客户端配置。这使得透明代理非常适合那些您无法更改客户端行为的情况-代理不兼容的移动应用程序<br>重定向机制，可以透明地将发往Internet上服务器的TCP连接重新路由到侦听代理服务器。这通常采用与代理服务器位于同一主机上的防火墙的形式 -Linux 上的iptables或OSX 上的 pf。</p>
+<p><strong>3. 反向代理</strong></p>
+<p>使用反向代理模式，可以使用mitmproxy充当普通的HTTP服务器。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mitmproxy --mode reverse:https://example.com</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://docs.mitmproxy.org/stable/schematics/proxy-modes-reverse.png" alt></p>
+<p><strong>4. 上游代理</strong></p>
+<p>使用上游代理模式，可以在其他代理服务器前加上mitm代理，官网说理论上可以无限加。</p>
+<p><img src="https://docs.mitmproxy.org/stable/schematics/proxy-modes-upstream.png" alt></p>
+<p><strong>5. SOCKS5代理</strong></p>
+<p>可以充当socks5代理</p>
+<h3 id="最终解决方案"><a href="#最终解决方案" class="headerlink" title="最终解决方案"></a>最终解决方案</h3><p>在了解了mitm的几种代理与测试后，发现问题就出现在透明代理上，以上出错的脚本或者配置都是只是用了普通代理，导致流量转发到mitm中后不知道下一跳指向哪里。</p>
+<p>现在使用透明代理配置一次</p>
+<p>mitmproxy与iptables重定向机制集成在一起以实现透明模式</p>
+<ol>
+<li><p>开启端口转发</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sysctl -w net.ipv4.ip_forward=1</span><br><span class="line">sysctl -w net.ipv6.conf.all.forwarding=1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>禁用ICMP重定向</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl -w net.ipv4.conf.all.send_redirects=0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>iptables重定向到8080端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080</span><br><span class="line">iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8080</span><br><span class="line">ip6tables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080</span><br><span class="line">ip6tables -t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8080</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>iptables 基础</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables  -nL -t nat</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><p>mitm开启透明代理模式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mitmproxy --mode transparent --showhost</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动vpn</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>再次测试，连接vpn，重新安装证书，信任证书，vpn流量经过mitm。</p>
+<h3 id="配置采集微信公众号"><a href="#配置采集微信公众号" class="headerlink" title="配置采集微信公众号"></a>配置采集微信公众号</h3><p>下载源码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/Hatcat123/WechatSpiderDocker.git</span><br></pre></td></tr></table></figure></p>
+<p>开启透明代理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd server/spider</span><br><span class="line">mitmweb --web-iface 0.0.0.0 --web-port 8004 -p 8080 -s capture_packet.py  --set block_global=false --ssl-insecure --mode transparent</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mitmdump -s capture_packet.py  --set block_global=false --ssl-insecure --mode tranarent</span><br></pre></td></tr></table></figure>
+<p>开启vpn</p>
+<p>在<code>.env</code>同级目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">    --name ipsec-vpn-server \</span><br><span class="line">    --env-file ./.env \</span><br><span class="line">    --restart=always \</span><br><span class="line">    -p 500:500/udp \</span><br><span class="line">    -p 4500:4500/udp \</span><br><span class="line">    --privileged \</span><br><span class="line">    hwdsl2/ipsec-vpn-server</span><br></pre></td></tr></table></figure></p>
+<p>重定向参照上面配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">见上</span><br></pre></td></tr></table></figure></p>
+<p>docker安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">略</span><br></pre></td></tr></table></figure>
+<p>配置手机的vnp配置参考<br><code>https://github.com/hwdsl2/docker-ipsec-vpn-server/blob/master/README-zh.md</code></p>
+<p>客户端配置</p>
+<p><code>https://github.com/hwdsl2/setup-ipsec-vpn/blob/master/docs/clients-zh.md</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/爬虫/" rel="tag" class=" fa  fa-tag  "> 爬虫</a>
+          
+            <a href="/tags/mitmproxy/" rel="tag" class=" fa  fa-tag  "> mitmproxy</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/28/验证码识别/" rel="next" title="验证码识别">
+                <i class="fa fa-chevron-left"></i> 验证码识别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/22/sql注入学习/" rel="prev" title="sql注入学习">
+                sql注入学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">朴阿杰</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">112</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+	<br>
+<br>
+<div class="site-state-item site-state-posts" style="border-left:none;">
+       <span class="site-state-item-count" id="busuanzi_value_site_pv"></span>
+       <span class="site-state-item-name">浏览量</span>
+</div>
+<div class="site-state-item site-state-posts">
+      <span class="site-state-item-count" id="busuanzi_value_site_uv"></span>
+     <span class="site-state-item-name">访客量</span>
+</div>
+<div class="site-state-item site-state-posts">
+      <span class="site-state-item-count">107.2k</span>
+      <span class="site-state-item-name">总字数</span>
+</div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/DropsDevopsOrg" target="_blank" title="团队GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>团队GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.dropsec.xyz/" target="_blank" title="团队主页">
+                      
+                        <i class="fa fa-fw fa-dropsec"></i>团队主页</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/DropsOfZut/awesome-security-weixin-official-accounts" target="_blank" title="安全公众号">
+                      
+                        <i class="fa fa-fw fa-xx"></i>安全公众号</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://bjj.dropsec.xyz/2019/10/06/ddaylog/" target="_blank" title="开发记录">
+                      
+                        <i class="fa fa-fw fa-xx"></i>开发记录</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://bjj.dropsec.xyz/2019/09/23/fix%E7%94%9F%E6%B4%BB/" target="_blank" title="日记">
+                      
+                        <i class="fa fa-fw fa-xx"></i>日记</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://thief.one" title="nMask" target="_blank">nMask</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.doonsec.com/" title="洞见安全" target="_blank">洞见安全</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://byd.dropsec.xyz/" title="瓦都剋" target="_blank">瓦都剋</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://lr.dropsec.xyz/" title="Joynice" target="_blank">Joynice</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/DropsDevopsOrg/ECommerceCrawlers" title="爬虫项目" target="_blank">爬虫项目</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://422926799.github.io/" title="九世" target="_blank">九世</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.youknowi.xin/" title="图先生" target="_blank">图先生</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://47.100.199.103:8000" title="微信聚合平台" target="_blank">微信聚合平台</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.hacking8.com/" title="hacking8" target="_blank">hacking8</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决思路"><span class="nav-number">2.</span> <span class="nav-text">解决思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mitmproxy搭建"><span class="nav-number">2.1.</span> <span class="nav-text">mitmproxy搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vps搭建"><span class="nav-number">2.2.</span> <span class="nav-text">vps搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iptables"><span class="nav-number">2.3.</span> <span class="nav-text">iptables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#报错"><span class="nav-number">2.4.</span> <span class="nav-text">报错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成功案例"><span class="nav-number">2.5.</span> <span class="nav-text">成功案例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最终解决方案"><span class="nav-number">2.6.</span> <span class="nav-text">最终解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置采集微信公众号"><span class="nav-number">2.7.</span> <span class="nav-text">配置采集微信公众号</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2016-2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">朴阿杰</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">博客总字数</span>
+    
+    <span title="Site words total count">107.2k</span>
+  
+  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278048714'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1278048714%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+            
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
