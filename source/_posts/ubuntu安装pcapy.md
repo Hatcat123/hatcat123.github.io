@@ -1,3 +1,19 @@
+---
+title: 在Ubuntu上python2.7安装pcapy
+tags:
+  - python
+categories:
+  - python
+copyright: true
+permalink: 在Ubuntu上python2.7安装pcapy
+top: 0
+password: 
+abstract: 输入密码继续阅读.
+message: 欢迎来到我的博客，输入密码继续阅读.
+date: 2020-04-28 17:48:46
+---
+
+
 How To Install "python-pcapy" Package on Ubuntu
 
 

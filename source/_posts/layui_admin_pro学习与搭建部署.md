@@ -1,4 +1,17 @@
-
+---
+title: layui_admin_pro学习与搭建部署
+tags:
+  - layui
+categories:
+  - 前端
+copyright: true
+permalink: layui_admin_pro学习与搭建部署
+top: 0
+password: 
+abstract: 输入密码继续阅读.
+message: 欢迎来到我的博客，输入密码继续阅读.
+date: 2020-09-04 21:09:05
+---
 具体内容仍然要看官网的文档。
 
 记录下今天的收获

@@ -1,4 +1,18 @@
-
+---
+title: vpn+mitmproxy
+tags:
+  - 爬虫
+  - mitmproxy
+categories:
+  - python
+copyright: true
+permalink: vpn+mitmproxy
+top: 0
+password: 
+abstract: 输入密码继续阅读.
+message: 欢迎来到我的博客，输入密码继续阅读.
+date: 2020-08-22 21:09:05
+---
 ## 问题
 
 在使用微信公众号自动化采集的过程中，常常存在下面的情况：1. 采集的数据不够及时。2. 采集过程可能会因为网络问题中断，如果不在电脑身边，无法及时恢复。

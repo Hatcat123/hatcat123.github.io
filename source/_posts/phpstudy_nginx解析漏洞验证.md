@@ -1,4 +1,17 @@
-
+---
+title: phpstudy_nginx解析漏洞验证
+tags:
+  - phpstudy
+categories:
+  - 安全
+copyright: true
+permalink: phpstudy_nginx解析漏洞验证
+top: 0
+password: 
+abstract: 输入密码继续阅读.
+message: 欢迎来到我的博客，输入密码继续阅读.
+date: 2020-09-03 21:09:05
+---
 
 ## 一、环境搭建
 

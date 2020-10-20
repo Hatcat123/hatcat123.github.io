@@ -1,4 +1,17 @@
-
+---
+title: wtforms笔记
+tags:
+  - flask
+categories:
+  - python
+copyright: true
+permalink: wtforms笔记
+top: 0
+password: 
+abstract: 输入密码继续阅读.
+message: 欢迎来到我的博客，输入密码继续阅读.
+date: 2020-10-19 21:09:05
+---
 
 具体的内容看源码。
 官方文档：https://wtforms.readthedocs.io/en/2.3.x/validators/
