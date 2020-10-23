@@ -1,5 +1,5 @@
 ---
-title: nginx重定向端口丢失解决方案
+title: nginx配置
 tags:
     - flask
     - 运维
@@ -75,4 +75,53 @@ listen       80;
 
 server_name  www.yuyangblog.net;
 
- 
+## nginx配置支持下划线。
+
+在请求头中传递了一个带有下划线的参数，结果web服务器得不到这个参数一致报错。 
+
+如果想要支持下划线的话，需要增加如下配置：
+underscores_in_headers on;
+
+可以加到http或者server中
+
+语法：underscores_in_headers on|off
+默认值：off
+使用字段：http, server
+是否允许在header的字段中带下划线
+
+
+## Nginx一个server配置多个location
+
+
+
+公司测试环境使用nginx部署多个前端项目。网上查到了两个办法：
+
+在配置文件中增加多个location，每个location对应一个项目
+比如使用80端口，location / 访问官网； location /train 访问培训管理系统
+配置多个站点
+我选择了配置多个location。
+```
+   location / {
+         root   /data/html/;
+         index  index.html index.html;
+    }
+    location /train {
+         root   /data/trainning/;
+         index  index.html index.html;
+    }
+```
+
+配置完以后访问。http://xxxx/train 提示404
+找了好久才搞明白， location如果一个特定的url 要使用别名，不能用root，alias指定的目录是准确的，root是指定目录的上级目录，改动后即可以使用了
+```
+location /train {
+     alias  /data/trainning/;
+     index  index.html index.html;
+}
+```
+
+==========================================
+补充
+==========================================
+留言中有小伙伴问及alias和root区别，个人理解：
+root与alias主要区别在于nginx如何解释location后面的uri，这会使两者分别以不同的方式将请求映射到服务器文件上。 root的处理结果是：root路径＋location路径 alias的处理结果是：使用alias路径替换location路径 alias是一个目录别名的定义，root则是最上层目录的定义。 还有一个重要的区别是alias后面必须要用“/”结束，否则会找不到文件的。。。而root则可有可无~~
