@@ -10,7 +10,7 @@ top: 0
 password: 
 abstract: 输入密码继续阅读.
 message: 欢迎来到我的博客，输入密码继续阅读.
-date: 2019-10-23 23:56:33
+date: 2020-10-23 23:56:33
 ---
 
 Ubuntu下apt装的superviosr突然失效。由于安装的是老版本的supervisor，重启supervisor自身服务的时候告诉我python找不到supervisor.supervisord的库。
@@ -29,19 +29,23 @@ ImportError: No module named supervisor.supervisord
 
 ## Uninstall supervisor
 To remove just supervisor package itself from Ubuntu 16.04 (Xenial Xerus) execute on terminal:
-
+```
 sudo apt-get remove supervisor
+```
 Uninstall supervisor and it's dependent packages
 To remove the supervisor package and any other dependant package which are no longer needed from Ubuntu Xenial.
-
+```
 sudo apt-get autoremove supervisor
+```
 Purging supervisor
 If you also want to delete configuration and/or data files of supervisor from Ubuntu Xenial then this will work:
-
+```
 sudo apt-get purge supervisor
+```
 To delete configuration and/or data files of supervisor and it's dependencies from Ubuntu Xenial then execute:
-
+```
 sudo apt-get autoremove --purge supervisor
+```
 More information about apt-get remove
 Advanced Package Tool, or APT, is a free software user interface that works with core libraries to handle the installation and removal of software on Debian, Ubuntu and other Linux distributions. APT simplifies the process of managing software on Unix-like computer systems by automating the retrieval, configuration and installation of software packages, either from precompiled files or by compiling source code.
 
@@ -63,11 +67,11 @@ pip install supervisor
 Creating a Configuration File
 Once the Supervisor installation has completed, run echo_supervisord_conf. This will print a “sample” Supervisor configuration file to your terminal’s stdout.
 
-Once you see the file echoed to your terminal, reinvoke the command as echo_supervisord_conf > /etc/supervisord.conf. This won’t work if you do not have root access.
+Once you see the file echoed to your terminal, reinvoke the command as `echo_supervisord_conf > /etc/supervisord.conf`. This won’t work if you do not have root access.
 
-If you don’t have root access, or you’d rather not put the supervisord.conf file in /etc/supervisord.conf, you can place it in the current directory (echo_supervisord_conf > supervisord.conf) and start supervisord with the -c flag in order to specify the configuration file location.
+If you don’t have root access, or you’d rather not put the supervisord.conf file in `/etc/supervisord.conf`, you can place it in the current directory (`echo_supervisord_conf > supervisord.conf`) and start supervisord with the -c flag in order to specify the configuration file location.
 
-For example, supervisord -c supervisord.conf. Using the -c flag actually is redundant in this case, because supervisord searches the current directory for a supervisord.conf before it searches any other locations for the file, but it will work. See Running Supervisor for more information about the -c flag.
+For example, `supervisord -c supervisord.conf`. Using the `-c flag` actually is redundant in this case, because supervisord searches the current directory for a supervisord.conf before it searches any other locations for the file, but it will work. See Running Supervisor for more information about the -c flag.
 
 我默认放到的路径在`/etc/supervisor`于原来保持一致。
 
@@ -162,7 +166,7 @@ supervisorctl status #查看所有任务状态
 
 
 
-### 开机启动
+## 开机启动
 
 **a.在指定目录下创建文件supervisord.service**
 ```
