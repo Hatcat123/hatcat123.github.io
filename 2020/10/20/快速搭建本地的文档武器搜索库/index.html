@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="碰到问题在本地磁盘中有许多的文档。如果希望找到一篇文档">
+<meta name="description" content="碰到问题在本地磁盘中有许多的文档。如果希望找到一篇文档全文检索是很多同学的刚需，如果你有一大堆的 Office 文档，想找到某一个文档，但不记得名字，只知道大概的内容，就需要全文搜索了。 平台上搜索功能只有搜索的标题+描述，导致限制结果的准确度。所有的文章我们没有精力一一打上标签。我们也尝试利用sql查询检索所有的数据文本。可是效果十分不理想，毕竟sql不适用于这种超大文本的查询。">
 <meta name="keywords" content="安全,爬虫">
 <meta property="og:type" content="article">
 <meta property="og:title" content="快速搭建本地的文档武器搜索库">
 <meta property="og:url" content="https://bjj.dropsec.xyz/2020/10/20/快速搭建本地的文档武器搜索库/index.html">
 <meta property="og:site_name" content="AJay13">
-<meta property="og:description" content="碰到问题在本地磁盘中有许多的文档。如果希望找到一篇文档">
+<meta property="og:description" content="碰到问题在本地磁盘中有许多的文档。如果希望找到一篇文档全文检索是很多同学的刚需，如果你有一大堆的 Office 文档，想找到某一个文档，但不记得名字，只知道大概的内容，就需要全文搜索了。 平台上搜索功能只有搜索的标题+描述，导致限制结果的准确度。所有的文章我们没有精力一一打上标签。我们也尝试利用sql查询检索所有的数据文本。可是效果十分不理想，毕竟sql不适用于这种超大文本的查询。">
 <meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
-<meta property="og:updated_time" content="2020-10-20T08:12:25.361Z">
+<meta property="og:updated_time" content="2020-10-23T03:39:26.169Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速搭建本地的文档武器搜索库">
-<meta name="twitter:description" content="碰到问题在本地磁盘中有许多的文档。如果希望找到一篇文档">
+<meta name="twitter:description" content="碰到问题在本地磁盘中有许多的文档。如果希望找到一篇文档全文检索是很多同学的刚需，如果你有一大堆的 Office 文档，想找到某一个文档，但不记得名字，只知道大概的内容，就需要全文搜索了。 平台上搜索功能只有搜索的标题+描述，导致限制结果的准确度。所有的文章我们没有精力一一打上标签。我们也尝试利用sql查询检索所有的数据文本。可是效果十分不理想，毕竟sql不适用于这种超大文本的查询。">
 
 
 
@@ -398,7 +398,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  34
+                  427
                 </span>
               
 
@@ -435,9 +435,24 @@
       
 
       
-        <h2 id="碰到问题"><a href="#碰到问题" class="headerlink" title="碰到问题"></a>碰到问题</h2><p>在本地磁盘中有许多的文档。如果希望找到一篇文档</p>
+        <h2 id="碰到问题"><a href="#碰到问题" class="headerlink" title="碰到问题"></a>碰到问题</h2><p>在本地磁盘中有许多的文档。如果希望找到一篇文档<br>全文检索是很多同学的刚需，如果你有一大堆的 Office 文档，想找到某一个文档，但不记得名字，只知道大概的内容，就需要全文搜索了。</p>
+<p>平台上<br>搜索功能只有搜索的标题+描述，导致限制结果的准确度。所有的文章我们没有精力一一打上标签。我们也尝试利用sql查询检索所有的数据文本。可是效果十分不理想，毕竟sql不适用于这种超大文本的查询。</p>
 <a id="more"></a>
 <p><a href="https://mp.weixin.qq.com/s/Q_ZPHQNVtK_UOy-NiFRjLQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Q_ZPHQNVtK_UOy-NiFRjLQ</a></p>
+<p>对比了 zotero 、DocFetcher、FileLocator、Google Desktop等，最终选择了anytxt</p>
+<p><a href="https://www.jianshu.com/p/de86ea3e5f0f" target="_blank" rel="noopener">https://www.jianshu.com/p/de86ea3e5f0f</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/122216717" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/122216717</a></p>
+<p><a href="https://www.ershicimi.com/p/be74b6377b8c68768741932273b48153" target="_blank" rel="noopener">https://www.ershicimi.com/p/be74b6377b8c68768741932273b48153</a></p>
+<h3 id="搭建本地文档武器库"><a href="#搭建本地文档武器库" class="headerlink" title="搭建本地文档武器库"></a>搭建本地文档武器库</h3><p>anytxt搭建教程</p>
+<h3 id="本地文档武器库exe版本（难哦）"><a href="#本地文档武器库exe版本（难哦）" class="headerlink" title="本地文档武器库exe版本（难哦）"></a>本地文档武器库exe版本（难哦）</h3><p>使用hedisql版本写一个本地tk版本的文件搜索<br><a href="https://my.oschina.net/zhiyonghe/blog/1789371" target="_blank" rel="noopener">https://my.oschina.net/zhiyonghe/blog/1789371</a></p>
+<h3 id="改进本地武器文档库exe版本"><a href="#改进本地武器文档库exe版本" class="headerlink" title="改进本地武器文档库exe版本"></a>改进本地武器文档库exe版本</h3><p>名字叫：洞见微信聚合离线版<br>使用flask hedisql写一个简单的前端界面版本，包含分类，公众号仓库,搜索，上传数据，数据去重，公告。</p>
+<p>轮播图公众号的图片。<br>公告写版本的信息或者【公告的接口为远程的接口】。</p>
+<p>数据包含文章list数据，公众号数据，分类数据</p>
+<ul>
+<li>对数据的字段进行删除处理</li>
+</ul>
+<p><strong>拓展功能</strong>【没有必要】<br>自定义类：添加公众号（添加自己的分类）<br>自定义数据：标题，路径链接</p>
+<p>pyinstaller 加密打包   核心内容打包成.so文件</p>
 
       
     </div>
@@ -555,7 +570,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">112</span>
+                  <span class="site-state-item-count">113</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -595,7 +610,7 @@
      <span class="site-state-item-name">访客量</span>
 </div>
 <div class="site-state-item site-state-posts">
-      <span class="site-state-item-count">107.2k</span>
+      <span class="site-state-item-count">109.5k</span>
       <span class="site-state-item-name">总字数</span>
 </div>
           
@@ -703,7 +718,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#碰到问题"><span class="nav-number">1.</span> <span class="nav-text">碰到问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#碰到问题"><span class="nav-number">1.</span> <span class="nav-text">碰到问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建本地文档武器库"><span class="nav-number">1.1.</span> <span class="nav-text">搭建本地文档武器库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地文档武器库exe版本（难哦）"><span class="nav-number">1.2.</span> <span class="nav-text">本地文档武器库exe版本（难哦）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改进本地武器文档库exe版本"><span class="nav-number">1.3.</span> <span class="nav-text">改进本地武器文档库exe版本</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -737,7 +752,7 @@
     
       <span class="post-meta-item-text">博客总字数</span>
     
-    <span title="Site words total count">107.2k</span>
+    <span title="Site words total count">109.5k</span>
   
   <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278048714'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1278048714%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 </div>
