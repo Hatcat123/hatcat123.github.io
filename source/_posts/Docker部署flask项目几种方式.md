@@ -1,7 +1,23 @@
-
+---
+title: Docker flask部署项目的几种方式
+tags:
+  - 开发
+categories:
+  - 开发
+copyright: true
+permalink: Docker flask部署项目的几种方式
+top: 0
+password: 
+abstract: 输入密码继续阅读.
+message: 欢迎来到我的博客，输入密码继续阅读.
+date: 2019-11-04 19:29:52
+---
 
 
 Docker flask部署项目的几种方式
+<!--more-->
+
+
 
 无非是运行的flask项目的方式
 一、 python直接运行flask项目

