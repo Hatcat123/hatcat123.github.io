@@ -1,3 +1,20 @@
+---
+title: wsl2
+tags:
+
+  - 运维
+categories:
+  - 运维
+copyright: true
+permalink: wsl2
+top: 0
+password: 
+abstract: 输入密码继续阅读.
+message: 欢迎来到我的博客，输入密码继续阅读.
+date: 2020-11-11 21:09:05
+---
+关于使用WSL2出现“参考的对象类型不支持尝试的操作”的解决方法
+<!--more-->
 
 ### 关于使用WSL2出现“参考的对象类型不支持尝试的操作”的解决方法。
 

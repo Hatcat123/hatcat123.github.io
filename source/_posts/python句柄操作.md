@@ -1,8 +1,21 @@
+---
+title: python句柄操作
+tags:
+  - python
+  - 开发
+categories:
+  - python
+copyright: true
+permalink: python句柄操作
+top: 0
+password: 
+abstract: 输入密码继续阅读.
+message: 欢迎来到我的博客，输入密码继续阅读.
+date: 2020-12-09 21:09:05
+---
 
-
-
-
-
+句柄理解为程序id ，可以使用它后台自动化操作程序
+<!--more-->
 ## 句柄
 
 理解为程序id 

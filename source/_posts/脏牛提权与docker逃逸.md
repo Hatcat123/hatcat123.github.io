@@ -1,4 +1,21 @@
+---
+title: 脏牛提权与docker逃逸
+tags:
+  - 复现
+  - 安全
+categories:
+  - 复现
+copyright: true
+permalink: 脏牛提权与docker逃逸
+top: 0
+password: 
+abstract: 输入密码继续阅读.
+message: 欢迎来到我的博客，输入密码继续阅读.
+date: 2020-12-02 21:09:05
+---
 
+脏牛的影响范围很大，几乎涵盖了主流的Linux发行版。
+<!--more-->
 
 
 

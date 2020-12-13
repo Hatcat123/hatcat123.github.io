@@ -1,4 +1,20 @@
+---
+title: AWD整理记录
+tags:
+  - ctf
+  - 安全
+categories:
+  - 安全
+copyright: true
+permalink: AWD整理记录
+top: 0
+password: woaini2.
+abstract: 输入密码继续阅读.
+message: 欢迎来到我的博客，输入密码继续阅读.
+date: 2020-11-19 21:09:05
+---
 
+<!--more-->
 整理复现的内容都是几年前awd的知识，好久没有玩过awd。
 
 

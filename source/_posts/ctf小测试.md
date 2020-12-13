@@ -1,4 +1,23 @@
+---
+title: ctf小测试
+tags:
+  - ctf
+  - 安全
+categories:
+  - 安全
+copyright: true
+permalink: ctf小测试
+top: 0
+password: 
+abstract: 输入密码继续阅读.
+message: 欢迎来到我的博客，输入密码继续阅读.
+date: 2020-12-08 21:09:05
+---
+
 搞了个谷安学院的报名测试题目
+<!--more-->
+
+
 
 ![20201208142555](https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/20201208142555.png)
 

@@ -1,4 +1,21 @@
+---
+title: flask_apscheduler
+tags:
+  - flask
+  - 开发
+categories:
+  - flask
+copyright: true
+permalink: flask_apscheduler
+top: 0
+password: 
+abstract: 输入密码继续阅读.
+message: 欢迎来到我的博客，输入密码继续阅读.
+date: 2020-11-11 21:09:05
+---
 
+Flask-Apscheduler 是集成了 Apscheduler 的扩展, 给 Flask 程序提供了 定时任务 的支持, 使用此扩展能够很方便的添加定时任务, 删除任务。
+<!--more-->
 
 ### 介绍flask_apscheduler
 

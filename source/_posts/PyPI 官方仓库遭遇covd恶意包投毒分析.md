@@ -1,6 +1,22 @@
- 
+---
+title: pypi的官方包covid投毒事件
+tags:
+  - python
+  - 安全
+categories:
+  - 安全
+copyright: true
+permalink: pypi的官方包covid投毒事件
+top: 0
+password: 
+abstract: 输入密码继续阅读.
+message: 欢迎来到我的博客，输入密码继续阅读.
+date: 2020-11-18 21:09:05
+---
 
 腾讯发现pypi的官方包投毒事件https://mp.weixin.qq.com/s?__biz=MjM5NzE1NjA0MQ==&mid=2651202917&idx=1&sn=d3ea45078ee4e311214b1209c0487801
+<!--more-->
+
 
 第一时间看了下，这已经不是第一次遭遇投毒了，上次还是更有名的requests的投毒，就少拼写一个字符。
 
