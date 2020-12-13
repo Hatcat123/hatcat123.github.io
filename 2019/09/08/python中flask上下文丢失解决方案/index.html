@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="AJay13">
 <meta property="og:description" content="RuntimeError: Working outside of application context. 这个问题的原因是在没有激活程序上下文之前进行了一些程序上下文或请求上下文的操作">
 <meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
-<meta property="og:updated_time" content="2020-10-19T10:04:03.183Z">
+<meta property="og:updated_time" content="2020-12-13T02:12:38.898Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python中flask上下文丢失解决方案">
 <meta name="twitter:description" content="RuntimeError: Working outside of application context. 这个问题的原因是在没有激活程序上下文之前进行了一些程序上下文或请求上下文的操作">
@@ -398,7 +398,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  127
+                  956
                 </span>
               
 
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  3
                 </span>
               
             </div>
@@ -440,6 +440,22 @@
 <p>解决办法很简单就是推送程序上下文，在获得程序上下文后再执行相应的操作<br>方法 1</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rom myapp import app#myapp是我的程序文件，里面初始了Flask对象app</span><br><span class="line">from flask import current_app</span><br><span class="line">with app.app_context():</span><br><span class="line">    print current_app.name</span><br></pre></td></tr></table></figure>
 <p>方法二<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from myapp import app</span><br><span class="line">from flask import current_app</span><br><span class="line">app_ctx = app.app_context()</span><br><span class="line">app_ctx.push()</span><br><span class="line"></span><br><span class="line">print current_app.name</span><br><span class="line"></span><br><span class="line">app_ctx.pop()</span><br></pre></td></tr></table></figure></p>
+<h2 id="循环导入"><a href="#循环导入" class="headerlink" title="循环导入"></a>循环导入</h2><p>碰到的问题：循环导入问题，初始化某个插件，需要导入flask实例化的配置信息。但是还没有实例化完，就导致了初始化失败，提示循环导入没有上下文。</p>
+<p>之前对着一知半解，今天又专门看了一些文章，才缕清一直以来的疑惑，为什么解决循环导入可以从上下文中找到实例化的对象？</p>
+<p>在初始化flask的时候，如果加入了三方的库，会用到<code>xx.init_app(app)</code>的方法，还有一个方式<code>xx.app=app</code>。在此之前我一直认为他们的作用是一样的，看源码的时候大致看了下都包含在一个类里面，就觉得是一致的东西。</p>
+<p>现在发现他们是两个不一样的方法。而且不同的三方库还有可能更不一样。所以用三方库的时候，可以大致的看一眼源码的内容。</p>
+<p><code>init_app(app)</code>初始化app。将app里面的配置信息传给三方库调用</p>
+<p><code>xx.app=app</code>传入一个app的实例。</p>
+<p>为啥说他门不一样。都有三方库写的时候将<code>xx.app=app</code>的方法放到<code>init_app</code>的方法中。而有的源码是将两者分开的。</p>
+<p>这也就是我一开始没有注意到。有的时候能在第三方库中调用app。有的时候提示我上下文中没有初始得app。</p>
+<p>如看下面的源码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class SQLite3(object):</span><br><span class="line"></span><br><span class="line">    def __init__(self, app=None):</span><br><span class="line">        if app is not None:</span><br><span class="line">            self.app = app</span><br><span class="line">            self.init_app(self.app)</span><br><span class="line">        else:</span><br><span class="line">            self.app = None</span><br><span class="line"></span><br><span class="line">    def init_app(self, app):</span><br><span class="line">        app.config.setdefault(&apos;SQLITE3_DATABASE&apos;, &apos;:memory:&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>只有<code>xx.app=app</code>的方法才会将app的实例对象传入到插件中，另外也会执行初始化<code>init_app</code>加载配置文件<br>而单单的<code>xx.init_app(app)</code>只会加载配置，并不会传入对象，所以这下明白了为啥后面再上下文中缺少<code>app</code>的实例化对象。</p>
+<p>更稳妥的方式是看一眼源码再决定是否使用<code>xx.app=app</code>。绝大多数<code>xx.app=app</code>包含了<code>init_app()</code>的方法，但不能保证那个晕子开发者的奇葩写法。</p>
+<h3 id="实际问题"><a href="#实际问题" class="headerlink" title="实际问题"></a>实际问题</h3><p>这也是我遗留下得老问题了。之前初始化app得时候使用得<code>flask_sqlalchemy</code>。以至于我写redis初始化加载配置得时候，找不到app.config。就算引入得上下文得函数，还是提示我找不到上下文。</p>
+<p>现在看来一切都是明朗的。没有使用<code>db.app=app</code>确实不会再上下文中找到<code>app</code>的配置。</p>
+<h2 id="动态加载配置"><a href="#动态加载配置" class="headerlink" title="动态加载配置"></a>动态加载配置</h2><h3 id="动态加载邮件服务求配置"><a href="#动态加载邮件服务求配置" class="headerlink" title="动态加载邮件服务求配置"></a>动态加载邮件服务求配置</h3><p>写好邮件服务器功能后，想要在后台动态配置邮件服务器的内容，又笨的方法加载和修改一个本地文件来重启邮件服务器。这样相对麻烦且不友好。</p>
+<p>当修改邮件配置后，我们重新的将appconfig的配置信息更新一次，更新配置文件可以使用<code>current_app.config.update</code>的方式。但是这中更新只是更新了配置信息。email加载的实例还是没有更新，实例的配置仍然是上次配置的信息。</p>
+<p>我们还有重新的实例化一次email插件成对象。</p>
 
       
     </div>
@@ -534,8 +550,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -550,7 +575,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">127</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -561,7 +586,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -572,7 +597,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -590,7 +615,7 @@
      <span class="site-state-item-name">访客量</span>
 </div>
 <div class="site-state-item site-state-posts">
-      <span class="site-state-item-count">109.4k</span>
+      <span class="site-state-item-count">129.6k</span>
       <span class="site-state-item-name">总字数</span>
 </div>
           
@@ -689,6 +714,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#循环导入"><span class="nav-number">1.</span> <span class="nav-text">循环导入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实际问题"><span class="nav-number">1.1.</span> <span class="nav-text">实际问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态加载配置"><span class="nav-number">2.</span> <span class="nav-text">动态加载配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态加载邮件服务求配置"><span class="nav-number">2.1.</span> <span class="nav-text">动态加载邮件服务求配置</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -716,7 +757,7 @@
     
       <span class="post-meta-item-text">博客总字数</span>
     
-    <span title="Site words total count">109.4k</span>
+    <span title="Site words total count">129.6k</span>
   
   <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278048714'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1278048714%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 </div>
