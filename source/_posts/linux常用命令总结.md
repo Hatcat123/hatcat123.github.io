@@ -32,8 +32,13 @@ Codename:	xenial
 
 ```
 这个命令适用于所有的Linux发行版，包括RedHat、SUSE、Debian…等发行版
+```
+uname -a
+```
+```
+Linux user 4.15.0-124-generic #127-Ubuntu SMP Fri Nov 6 10:54:43 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
 
-
+```
 ## linux解压
 ```
 linux解压
@@ -68,4 +73,57 @@ su root
 切换普通用户
 ```
 su 用户名
+```
+
+
+## 挂载u盘
+
+查看磁盘的内容
+
+```
+cat /proc/partitions 
+```
+```
+major minor  #blocks  name
+
+   7        0     100084 loop0
+   7        1      88964 loop1
+   2        0       1440 fd0
+   8        0   20971520 sda
+   8        1       1024 sda1
+   8        2   20968448 sda2
+  11        0      63900 sr0
+  11        1     831488 sr1
+
+```
+
+挂在磁盘
+
+```
+sudo mount -t vfat /dev/U盘位置  /挂在位置
+```
+## 查看端口占用
+```
+lsof -i:21
+```
+
+```
+netstat -anop|grep 22
+```
+
+## 查看进程
+结果比较详细
+```
+ps -aux|grep xx
+```
+
+```
+root      63701  0.1  0.0      0     0 ?        I    06:23   0:01 [kworker/0:2]
+root      65559  0.0  0.3 105704  6916 ?        Ss   03:24   0:00 sshd: user [priv]
+root      65578  0.0  0.3 105704  6916 ?        Ss   03:24   0:00 sshd: user [priv]
+user      65789  0.0  0.3 108000  6208 ?        S    03:24   0:00 sshd: user@notty
+user      65790  1.1  0.3 108352  6444 ?        R    03:24   2:22 sshd: user@pts/0,pts/1
+user      65791  0.0  0.1  13068  2172 ?        Ss   03:24   0:00 /usr/lib/openssh/sftp-server
+user      65793  0.0  0.2  21588  5464 pts/0    Ss   03:24   0:00 -bash
+
 ```
