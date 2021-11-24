@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="/themes/next/languages/zh-Hans.yml">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="开发,flask,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Flask-Apscheduler 是集成了 Apscheduler 的扩展, 给 Flask 程序提供了 定时任务 的支持, 使用此扩展能够很方便的添加定时任务, 删除任务。">
+<meta name="keywords" content="开发,flask">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flask_apscheduler">
+<meta property="og:url" content="https://bjj.dropsec.xyz/2020/11/11/flask_apscheduler/index.html">
+<meta property="og:site_name" content="AJay13">
+<meta property="og:description" content="Flask-Apscheduler 是集成了 Apscheduler 的扩展, 给 Flask 程序提供了 定时任务 的支持, 使用此扩展能够很方便的添加定时任务, 删除任务。">
+<meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
+<meta property="og:updated_time" content="2020-12-13T05:48:48.385Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="flask_apscheduler">
+<meta name="twitter:description" content="Flask-Apscheduler 是集成了 Apscheduler 的扩展, 给 Flask 程序提供了 定时任务 的支持, 使用此扩展能够很方便的添加定时任务, 删除任务。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bjj.dropsec.xyz/2020/11/11/flask_apscheduler/">
+
+
+
+
+
+  <title>flask_apscheduler | AJay13</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="/themes/next/languages/zh-Hans.yml">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/Hatcat123" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AJay13</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home  //首页"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags  //标签"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th   //分类"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive //归档"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-微信聚合">
+          <a href="http:wechat.doonsec.com/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wechat //知识库"></i> <br>
+            
+            微信聚合
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-安全导航">
+          <a href="/sec_web" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-google //安全导航"></i> <br>
+            
+            安全导航
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user  //关于"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2020/11/11/flask_apscheduler/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="朴阿杰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AJay13">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">flask_apscheduler</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-11T21:09:05+08:00">
+                2020-11-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/flask/" itemprop="url" rel="index">
+                    <span itemprop="name">flask</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Flask-Apscheduler 是集成了 Apscheduler 的扩展, 给 Flask 程序提供了 定时任务 的支持, 使用此扩展能够很方便的添加定时任务, 删除任务。<br><a id="more"></a></p>
+<h3 id="介绍flask-apscheduler"><a href="#介绍flask-apscheduler" class="headerlink" title="介绍flask_apscheduler"></a>介绍flask_apscheduler</h3><p>Flask-Apscheduler 是集成了 Apscheduler 的扩展, 给 Flask 程序提供了 定时任务 的支持, 使用此扩展能够很方便的添加定时任务, 删除任务。如果将作业存储在数据库中，它们也将在调度程序重新启动后继续运行并保持其状态。重新启动调度程序后，它将运行它应该在脱机时运行的所有作业。</p>
+<p>除此之外，APScheduler还可以用作特定于平台的调度程序（如cron守护程序或Windows任务调度程序）的跨平台，特定于应用程序的替代程序。但请注意，APScheduler本身不是守护程序或服务，也不附带任何命令行工具。它主要用于在现有应用程序中运行。也就是说，APScheduler确实为您提供了一些构建块来构建调度程序服务或运行专用的调度程序进程。</p>
+<p>APScheduler是一个python的第三方库，用来提供python的后台程序。包含四个组件，分别是：</p>
+<ul>
+<li>triggers： 任务触发器组件，提供任务触发方式，支持三种任务触发方式：date、interval、corn</li>
+<li>job stores： 任务商店组件，提供任务保存方式，支持四种任务存储方式：memory、mongdb、sqlachemy、redis</li>
+<li>executors： 任务调度组件，提供任务调度方式</li>
+<li>schedulers： 任务调度组件，提供任务工作方式，调度器主要分三种，一种独立运行的，一种是后台运行的，最后一种是配合其它程序使用</li>
+</ul>
+<h3 id="apscheduler的几种写法"><a href="#apscheduler的几种写法" class="headerlink" title="apscheduler的几种写法"></a>apscheduler的几种写法</h3><p>在GitHub源码中提供了几种写法：<a href="https://github.com/viniciuschiele/flask-apscheduler/tree/master/examples" target="_blank" rel="noopener">https://github.com/viniciuschiele/flask-apscheduler/tree/master/examples</a></p>
+<p>封装任务到配置中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore</span><br><span class="line">from flask import Flask</span><br><span class="line">from flask_apscheduler import APScheduler</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Config(object):</span><br><span class="line">    JOBS = [</span><br><span class="line">        &#123;</span><br><span class="line">            &apos;id&apos;: &apos;job1&apos;,</span><br><span class="line">            &apos;func&apos;: &apos;advanced:job1&apos;,</span><br><span class="line">            &apos;args&apos;: (1, 2),</span><br><span class="line">            &apos;trigger&apos;: &apos;interval&apos;,</span><br><span class="line">            &apos;seconds&apos;: 10</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    SCHEDULER_JOBSTORES = &#123;</span><br><span class="line">        &apos;default&apos;: SQLAlchemyJobStore(url=&apos;sqlite://&apos;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    SCHEDULER_EXECUTORS = &#123;</span><br><span class="line">        &apos;default&apos;: &#123;&apos;type&apos;: &apos;threadpool&apos;, &apos;max_workers&apos;: 20&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    SCHEDULER_JOB_DEFAULTS = &#123;</span><br><span class="line">        &apos;coalesce&apos;: False,</span><br><span class="line">        &apos;max_instances&apos;: 3</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    SCHEDULER_API_ENABLED = True</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def job1(a, b):</span><br><span class="line">    print(str(a) + &apos; &apos; + str(b))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    app = Flask(__name__)</span><br><span class="line">    app.config.from_object(Config())</span><br><span class="line"></span><br><span class="line">    scheduler = APScheduler()</span><br><span class="line">    scheduler.init_app(app)</span><br><span class="line">    scheduler.start()</span><br><span class="line"></span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure></p>
+<p>直接写<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line">from flask_apscheduler import APScheduler</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Config(object):</span><br><span class="line">    SCHEDULER_API_ENABLED = True</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">scheduler = APScheduler()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># interval examples</span><br><span class="line">@scheduler.task(&apos;interval&apos;, id=&apos;do_job_1&apos;, seconds=30, misfire_grace_time=900)</span><br><span class="line">def job1():</span><br><span class="line">    print(&apos;Job 1 executed&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># cron examples</span><br><span class="line">@scheduler.task(&apos;cron&apos;, id=&apos;do_job_2&apos;, minute=&apos;*&apos;)</span><br><span class="line">def job2():</span><br><span class="line">    print(&apos;Job 2 executed&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@scheduler.task(&apos;cron&apos;, id=&apos;do_job_3&apos;, week=&apos;*&apos;, day_of_week=&apos;sun&apos;)</span><br><span class="line">def job3():</span><br><span class="line">    print(&apos;Job 3 executed&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    app = Flask(__name__)</span><br><span class="line">    app.config.from_object(Config())</span><br><span class="line"></span><br><span class="line">    # it is also possible to enable the API directly</span><br><span class="line">    # scheduler.api_enabled = True</span><br><span class="line">    scheduler.init_app(app)</span><br><span class="line">    scheduler.start()</span><br><span class="line"></span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure></p>
+<p>数据库上下文<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore</span><br><span class="line">from flask import Flask</span><br><span class="line">from flask_apscheduler import APScheduler</span><br><span class="line">from flask_sqlalchemy import SQLAlchemy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">db = SQLAlchemy()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class User(db.Model):</span><br><span class="line">    id = db.Column(db.Integer, primary_key=True)</span><br><span class="line">    username = db.Column(db.String(80), unique=True)</span><br><span class="line">    email = db.Column(db.String(120), unique=True)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def show_users():</span><br><span class="line">    with db.app.app_context():</span><br><span class="line">        print(User.query.all())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Config(object):</span><br><span class="line">    JOBS = [</span><br><span class="line">        &#123;</span><br><span class="line">            &apos;id&apos;: &apos;job1&apos;,</span><br><span class="line">            &apos;func&apos;: show_users,</span><br><span class="line">            &apos;trigger&apos;: &apos;interval&apos;,</span><br><span class="line">            &apos;seconds&apos;: 2</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    SCHEDULER_JOBSTORES = &#123;</span><br><span class="line">        &apos;default&apos;: SQLAlchemyJobStore(url=&apos;sqlite:///flask_context.db&apos;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    SCHEDULER_API_ENABLED = True</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    app = Flask(__name__)</span><br><span class="line">    app.config.from_object(Config())</span><br><span class="line"></span><br><span class="line">    db.app = app</span><br><span class="line">    db.init_app(app)</span><br><span class="line"></span><br><span class="line">    scheduler = APScheduler()</span><br><span class="line">    scheduler.init_app(app)</span><br><span class="line">    scheduler.start()</span><br><span class="line"></span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure></p>
+<h3 id="高级配置"><a href="#高级配置" class="headerlink" title="高级配置"></a>高级配置</h3><p>高级的内容我们可以查看文档<a href="https://apscheduler.readthedocs.io/en/latest/genindex.html" target="_blank" rel="noopener">https://apscheduler.readthedocs.io/en/latest/genindex.html</a><br>开启api接口</p>
+<p>获取任务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scheduler.get_job()</span><br></pre></td></tr></table></figure></p>
+<p>获取全部任务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scheduler.get_jobs()</span><br></pre></td></tr></table></figure></p>
+<p>删除任务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scheduler.remove_job(str(job_id))</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scheduler.start() # 开始调度</span><br><span class="line">scheduler.shutdown() # 停止调度</span><br><span class="line">scheduler.pause_job(job_id=&apos;my_job_id&apos;) # 暂停指定JOB调度</span><br><span class="line">scheduler.resume_job(job_id=&apos;my_job_id&apos;) # 恢复指定JOB调度</span><br><span class="line">scheduler.pause() # 暂停调度</span><br><span class="line">scheduler.resume() # 恢复调度</span><br></pre></td></tr></table></figure>
+<h3 id="job-stores搭配数据库"><a href="#job-stores搭配数据库" class="headerlink" title="job stores搭配数据库"></a>job stores搭配数据库</h3><p><strong>redis</strong> 、<strong>sql</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SCHEDULER_JOBSTORES = &#123;</span><br><span class="line">    &apos;default&apos;: SQLAlchemyJobStore(url=&apos;sqlite:///flask_context.db&apos;</span><br><span class="line">    &quot;redis&quot;:RedisJobStore(host=&apos;172.16.120.120&apos;, port=&apos;6379&apos;))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>不过我配置上带有密码的redis好像没有加入到数据库中。</p>
+<h3 id="triggers三种模式的定时任务"><a href="#triggers三种模式的定时任务" class="headerlink" title="triggers三种模式的定时任务"></a>triggers三种模式的定时任务</h3><p>举例</p>
+<p><strong>date</strong>：固定日期触发器，任务只运行一次，运行完毕自动清除；若错过指定运行时间，任务不会被创建</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">run_date (datetime 或 str)</td>
+<td style="text-align:center">作业的运行日期或时间</td>
+</tr>
+<tr>
+<td style="text-align:center">timezone (datetime.tzinfo 或 str)</td>
+<td style="text-align:center">指定时区</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">例如# 在 2019-4-24 00:00:01 时刻运行一次 start_system 方法</span><br><span class="line">scheduler .add_job(start_system, &apos;date&apos;, run_date=&apos;2019-4-24 00:00:01&apos;, args=[&apos;text&apos;])</span><br></pre></td></tr></table></figure>
+<p><strong>interval</strong>：时间间隔触发器，每个一定时间间隔执行一次。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">weeks (int)</td>
+<td style="text-align:center">间隔几周</td>
+</tr>
+<tr>
+<td style="text-align:center">days (int)</td>
+<td style="text-align:center">间隔几天</td>
+</tr>
+<tr>
+<td style="text-align:center">hours (int)</td>
+<td style="text-align:center">间隔几小时</td>
+</tr>
+<tr>
+<td style="text-align:center">minutes (int)</td>
+<td style="text-align:center">间隔几分钟</td>
+</tr>
+<tr>
+<td style="text-align:center">seconds (int)</td>
+<td style="text-align:center">间隔多少秒</td>
+</tr>
+<tr>
+<td style="text-align:center">start_date (datetime 或 str)</td>
+<td style="text-align:center">开始日期</td>
+</tr>
+<tr>
+<td style="text-align:center">end_date (datetime 或 str)</td>
+<td style="text-align:center">结束日期</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 在 2019-4-24 00:00:00 - 2019-4-24 08:00:00 之间, 每隔两小时执行一次 alarm_job 方法</span><br><span class="line">scheduler .add_job(alarm_job, &apos;interval&apos;, hours=2, start_date=&apos;2019-4-24 00:00:00&apos; , end_date=&apos;2019-4-24 08:00:00&apos;)</span><br><span class="line">scheduler.add_job(func=print_args, args=[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], trigger=&apos;interval&apos;, days=3, hours=17, minutes=19,seconds=7) # 表示每隔3天17时19分07秒执行一次任务</span><br><span class="line">scheduler.add_job(func=print_args, args=[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], trigger=&apos;interval&apos;, hours=17, minutes=19,seconds=7) # 表示每隔17时19分07秒执行一次任务</span><br><span class="line">scheduler.add_job(func=print_args, args=[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], trigger=&apos;interval&apos;, minutes=19, seconds=7) # 表示每隔19分07秒执行一次任务</span><br><span class="line">scheduler.add_job(func=print_args, args=[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], trigger=&apos;interval&apos;, minutes=19) # 表示每隔19分执行一次任务</span><br><span class="line">scheduler.add_job(func=print_args, args=[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], trigger=&apos;interval&apos;, seconds=1) # 表示每秒执行一次任务</span><br><span class="line">scheduler.add_job(func=print_args, args=[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], trigger=&apos;interval&apos;, seconds=0.5) # 表示每500毫秒执行一次任务</span><br></pre></td></tr></table></figure>
+<p><strong>cron</strong>：cron风格的任务触发</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">year (int 或 str)</td>
+<td style="text-align:center">表示四位数的年份 （2019）</td>
+</tr>
+<tr>
+<td style="text-align:center">month（int\    str）</td>
+<td style="text-align:center">月 (范围1-12)</td>
+</tr>
+<tr>
+<td style="text-align:center">day（int\    str）</td>
+<td style="text-align:center">日 (范围1-31）</td>
+</tr>
+<tr>
+<td style="text-align:center">week（int\    str）</td>
+<td style="text-align:center">周 (范围1-53)</td>
+</tr>
+<tr>
+<td style="text-align:center">day_of_week (int\    str)</td>
+<td style="text-align:center">表示一周中的第几天，既可以用0-6表示也可以用其英语缩写表示</td>
+</tr>
+<tr>
+<td style="text-align:center">hour (int\    str)</td>
+<td style="text-align:center">表示取值范围为0-23时</td>
+</tr>
+<tr>
+<td style="text-align:center">minute (int\    str)</td>
+<td style="text-align:center">表示取值范围为0-59分</td>
+</tr>
+<tr>
+<td style="text-align:center">second (int\    str)</td>
+<td style="text-align:center">表示取值范围为0-59秒</td>
+</tr>
+<tr>
+<td style="text-align:center">start_date</td>
+<td style="text-align:center">(datetime\    str)</td>
+<td>表示开始时间</td>
+</tr>
+<tr>
+<td style="text-align:center">end_date (datetime\    str)</td>
+<td style="text-align:center">表示结束时间</td>
+</tr>
+<tr>
+<td style="text-align:center">timezone (datetime.tzinfo\    str)</td>
+<td style="text-align:center">表示时区取值</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>(int|str) 表示参数既可以是int类型，也可以是str类型<br>(datetime | str) 表示参数既可以是datetime类型，也可以是str类型</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># [参数取值格式]</span><br><span class="line"># * any Fire on every value 如: day=&apos;*&apos; 即,每天执行</span><br><span class="line"># */a any Fire every a values, starting from the minimum 如: hour=&apos;*/2&apos; 即,每两小时执行</span><br><span class="line"># a-b any Fire on any value within the a-b range (a must be smaller than b) 如: minute=&apos;6-8,21-23&apos; 即,6-8点和21-23点执行</span><br><span class="line"># a-b/c any Fire every c values within the a-b range 如: minute=&apos;9-21/2&apos; 即,9点-21点之间每两小时执行</span><br><span class="line"># xth y day Fire on the x -th occurrence of weekday y within the month</span><br><span class="line"># last x day Fire on the last occurrence of weekday x within the month</span><br><span class="line"># last day Fire on the last day within the month</span><br><span class="line"># x,y,z any Fire on any matching expression; can combine any number of any of the above expressions # 表达式之间用逗号进行分隔</span><br><span class="line"></span><br><span class="line">例如：表示每5秒执行该程序一次，相当于interval 间隔调度中seconds = 5</span><br><span class="line"></span><br><span class="line">sched.add_job(my_job, &apos;cron&apos;,second = &apos;*/5&apos;)</span><br><span class="line"></span><br><span class="line">scheduler.add_job(func=print_args, args=[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], trigger=&apos;cron&apos;, year=2018, month=3, day=21, hour=21, minute=19,</span><br><span class="line">second=8) # 表示2018年3月21日21时19分08秒执行</span><br><span class="line">scheduler.add_job(func=print_args, args=[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], trigger=&apos;cron&apos;, day_of_week=&apos;mon-fri&apos;, hour=5, minute=30,start_date=&apos;2016-06-06&apos;,end_date=&apos;2018-08-08&apos;) # 表示周一到周五的5点半执行,有效日期是2016-06-06 00:00:00 至 2018-08-08 00:00:00</span><br><span class="line">scheduler.add_job(func=print_args, args=[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], trigger=&apos;cron&apos;, second=&apos;*/10&apos;) # 表示每10秒执行该程序一次，相当于interval 间隔调度中seconds = 10</span><br></pre></td></tr></table></figure>
+<h2 id="部署的问题"><a href="#部署的问题" class="headerlink" title="部署的问题"></a>部署的问题</h2><h3 id="多次执行任务问题"><a href="#多次执行任务问题" class="headerlink" title="多次执行任务问题"></a>多次执行任务问题</h3><p>添加文件锁、线程锁、端口锁、redis数据库锁</p>
+<p>多进程部署，定时任务重复启动解决方法</p>
+<p>文件锁<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">def create_app():</span><br><span class="line">    app =Flask(__name__)</span><br><span class="line">    # 启动定时任务</span><br><span class="line">    scheduler_init(app)</span><br><span class="line">    return app</span><br><span class="line"></span><br><span class="line">def scheduler_init(app):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    保证系统只启动一次定时任务</span><br><span class="line">    :param app:</span><br><span class="line">    :return:</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    if platform.system() != &apos;Windows&apos;:</span><br><span class="line">        fcntl = __import__(&quot;fcntl&quot;)</span><br><span class="line">        f = open(&apos;scheduler.lock&apos;, &apos;wb&apos;)</span><br><span class="line">        try:</span><br><span class="line">            fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)</span><br><span class="line">            scheduler.init_app(app)</span><br><span class="line">            scheduler.start()</span><br><span class="line">            app.logger.debug(&apos;Scheduler Started,---------------&apos;)</span><br><span class="line">        except:</span><br><span class="line">            pass</span><br><span class="line"></span><br><span class="line">        def unlock():</span><br><span class="line">            fcntl.flock(f, fcntl.LOCK_UN)</span><br><span class="line">            f.close()</span><br><span class="line"></span><br><span class="line">        atexit.register(unlock)</span><br><span class="line">    else:</span><br><span class="line">        msvcrt = __import__(&apos;msvcrt&apos;)</span><br><span class="line">        f = open(&apos;scheduler.lock&apos;, &apos;wb&apos;)</span><br><span class="line">        try:</span><br><span class="line">            msvcrt.locking(f.fileno(), msvcrt.LK_NBLCK, 1)</span><br><span class="line">            scheduler.init_app(app)</span><br><span class="line">            scheduler.start()</span><br><span class="line">            app.logger.debug(&apos;Scheduler Started,----------------&apos;)</span><br><span class="line">        except:</span><br><span class="line">            pass</span><br><span class="line"></span><br><span class="line">        def _unlock_file():</span><br><span class="line">            try:</span><br><span class="line">                f.seek(0)</span><br><span class="line">                msvcrt.locking(f.fileno(), msvcrt.LK_UNLCK, 1)</span><br><span class="line">            except:</span><br><span class="line">                pass</span><br><span class="line"></span><br><span class="line">        atexit.register(_unlock_file)</span><br></pre></td></tr></table></figure></p>
+<p><strong>端口锁</strong><br>当一个端口被占用时候，就不能创建新的任务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Fix to ensure only one Gunicorn worker grabs the scheduled task</span><br><span class="line">try:</span><br><span class="line">    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">    sock.bind((&quot;127.0.0.1&quot;, 47200))</span><br><span class="line">except socket.error:</span><br><span class="line">    pass</span><br><span class="line">else:</span><br><span class="line">    scheduler.init_app(app)</span><br><span class="line">    scheduler.start()</span><br></pre></td></tr></table></figure></p>
+<h3 id="gun的问题"><a href="#gun的问题" class="headerlink" title="gun的问题"></a>gun的问题</h3><p><strong>gun下改模式</strong></p>
+<p>用–preload启动gunicorn，确保scheduler只在loader的时候创建一次</p>
+<p><strong>服务器时区</strong></p>
+<p>部署生产环境时，一上去就给我丢了一个大大的异常：“TimeZone offset does not match system offset”，大致意思是说我的运行的时区和系统时区不匹配。</p>
+<p>读了下 flask-apscheduler 的源码发现，他会读取 SCHEDULER_TIMEZONE 这个值，作为当前运行的时区。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">timezone = self.app.config.get(&apos;SCHEDULER_TIMEZONE&apos;)</span><br><span class="line">if timezone:</span><br><span class="line">    options[&apos;timezone&apos;] = timezone</span><br></pre></td></tr></table></figure></p>
+<p>心想这简单，我在配置文件里把这个时区配置上应该就完事了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># config.py</span><br><span class="line">SCHEDULER_TIMEZONE = &quot;Asia/Shanghai&quot;</span><br></pre></td></tr></table></figure></p>
+<p>配置了时区为“Asia/Shanghai”后，发现依然报这个错，既然运行环境的时区正确了，那会不会我生产环境的时区也有问题？</p>
+<p>生产环境是 docker 容器，进入容器用 date 查看了他的当前时间，发现时间是和系统时间一致的，再查看 cat /etc/timezone 的时区，发现这里出了问题，显示的是 Etc/UTC，解决的思路是修改 Dockerfile，配置正确的时区，在 Dockerfile 中加入此行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RUN echo &quot;Asia/Shanghai&quot; &gt; /etc/timezone</span><br></pre></td></tr></table></figure></p>
+<p>修改之后重新运行，已经没有出现上述报错了，这个坑算是到这就排完了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/开发/" rel="tag" class=" fa  fa-tag  "> 开发</a>
+          
+            <a href="/tags/flask/" rel="tag" class=" fa  fa-tag  "> flask</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/11/文件包含/" rel="next" title="文件包含">
+                <i class="fa fa-chevron-left"></i> 文件包含
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/11/11/wsl2/" rel="prev" title="wsl2">
+                wsl2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">朴阿杰</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">127</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+	<br>
+<br>
+<div class="site-state-item site-state-posts" style="border-left:none;">
+       <span class="site-state-item-count" id="busuanzi_value_site_pv"></span>
+       <span class="site-state-item-name">浏览量</span>
+</div>
+<div class="site-state-item site-state-posts">
+      <span class="site-state-item-count" id="busuanzi_value_site_uv"></span>
+     <span class="site-state-item-name">访客量</span>
+</div>
+<div class="site-state-item site-state-posts">
+      <span class="site-state-item-count">129.7k</span>
+      <span class="site-state-item-name">总字数</span>
+</div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/DropsDevopsOrg" target="_blank" title="团队GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>团队GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.dropsec.xyz/" target="_blank" title="团队主页">
+                      
+                        <i class="fa fa-fw fa-dropsec"></i>团队主页</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/DropsOfZut/awesome-security-weixin-official-accounts" target="_blank" title="安全公众号">
+                      
+                        <i class="fa fa-fw fa-xx"></i>安全公众号</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://bjj.dropsec.xyz/2019/10/06/ddaylog/" target="_blank" title="开发记录">
+                      
+                        <i class="fa fa-fw fa-xx"></i>开发记录</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://bjj.dropsec.xyz/2019/09/23/fix%E7%94%9F%E6%B4%BB/" target="_blank" title="日记">
+                      
+                        <i class="fa fa-fw fa-xx"></i>日记</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://thief.one" title="nMask" target="_blank">nMask</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.doonsec.com/" title="洞见安全" target="_blank">洞见安全</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://byd.dropsec.xyz/" title="瓦都剋" target="_blank">瓦都剋</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://lr.dropsec.xyz/" title="Joynice" target="_blank">Joynice</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/DropsDevopsOrg/ECommerceCrawlers" title="爬虫项目" target="_blank">爬虫项目</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://422926799.github.io/" title="九世" target="_blank">九世</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.youknowi.xin/" title="图先生" target="_blank">图先生</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://47.100.199.103:8000" title="微信聚合平台" target="_blank">微信聚合平台</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.hacking8.com/" title="hacking8" target="_blank">hacking8</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍flask-apscheduler"><span class="nav-number">1.</span> <span class="nav-text">介绍flask_apscheduler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apscheduler的几种写法"><span class="nav-number">2.</span> <span class="nav-text">apscheduler的几种写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高级配置"><span class="nav-number">3.</span> <span class="nav-text">高级配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#job-stores搭配数据库"><span class="nav-number">4.</span> <span class="nav-text">job stores搭配数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#triggers三种模式的定时任务"><span class="nav-number">5.</span> <span class="nav-text">triggers三种模式的定时任务</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#部署的问题"><span class="nav-number"></span> <span class="nav-text">部署的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多次执行任务问题"><span class="nav-number">1.</span> <span class="nav-text">多次执行任务问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gun的问题"><span class="nav-number">2.</span> <span class="nav-text">gun的问题</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2016-2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">朴阿杰</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">博客总字数</span>
+    
+    <span title="Site words total count">129.7k</span>
+  
+  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278048714'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1278048714%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+            
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

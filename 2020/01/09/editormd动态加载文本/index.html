@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="/themes/next/languages/zh-Hans.yml">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="研发,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="输入密码继续阅读.">
+<meta name="keywords" content="研发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="editormd动态加载文本">
+<meta property="og:url" content="https://bjj.dropsec.xyz/2020/01/09/editormd动态加载文本/index.html">
+<meta property="og:site_name" content="AJay13">
+<meta property="og:description" content="输入密码继续阅读.">
+<meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
+<meta property="og:updated_time" content="2020-10-19T10:04:03.172Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="editormd动态加载文本">
+<meta name="twitter:description" content="输入密码继续阅读.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://bjj.dropsec.xyz/2020/01/09/editormd动态加载文本/">
+
+
+
+
+
+  <title>editormd动态加载文本 | AJay13</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="/themes/next/languages/zh-Hans.yml">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/Hatcat123" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AJay13</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home  //首页"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags  //标签"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th   //分类"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive //归档"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-微信聚合">
+          <a href="http:wechat.doonsec.com/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wechat //知识库"></i> <br>
+            
+            微信聚合
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-安全导航">
+          <a href="/sec_web" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-google //安全导航"></i> <br>
+            
+            安全导航
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user  //关于"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://bjj.dropsec.xyz/2020/01/09/editormd动态加载文本/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="朴阿杰">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AJay13">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">editormd动态加载文本</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-09T16:10:47+08:00">
+                2020-01-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/研发/" itemprop="url" rel="index">
+                    <span itemprop="name">研发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  239
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script> <div id="security"> <div class="input-container"> <label for="pass"> 欢迎来到我的博客，输入密码继续阅读. </label> <input type="password" class="form-control" id="pass" placeholder=" 欢迎来到我的博客，输入密码继续阅读. "> <div class="bottom-line"></div> </div> </div> <div id="encrypt-blog" style="display:none"> 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 </div><script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/研发/" rel="tag" class=" fa  fa-tag  "> 研发</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/08/推荐200个安全公众号/" rel="next" title="推荐200个安全公众号">
+                <i class="fa fa-chevron-left"></i> 推荐200个安全公众号
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/14/redis设置认证密码/" rel="prev" title="redis设置认证密码">
+                redis设置认证密码 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">朴阿杰</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">127</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+	<br>
+<br>
+<div class="site-state-item site-state-posts" style="border-left:none;">
+       <span class="site-state-item-count" id="busuanzi_value_site_pv"></span>
+       <span class="site-state-item-name">浏览量</span>
+</div>
+<div class="site-state-item site-state-posts">
+      <span class="site-state-item-count" id="busuanzi_value_site_uv"></span>
+     <span class="site-state-item-name">访客量</span>
+</div>
+<div class="site-state-item site-state-posts">
+      <span class="site-state-item-count">129.7k</span>
+      <span class="site-state-item-name">总字数</span>
+</div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/DropsDevopsOrg" target="_blank" title="团队GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>团队GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.dropsec.xyz/" target="_blank" title="团队主页">
+                      
+                        <i class="fa fa-fw fa-dropsec"></i>团队主页</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/DropsOfZut/awesome-security-weixin-official-accounts" target="_blank" title="安全公众号">
+                      
+                        <i class="fa fa-fw fa-xx"></i>安全公众号</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://bjj.dropsec.xyz/2019/10/06/ddaylog/" target="_blank" title="开发记录">
+                      
+                        <i class="fa fa-fw fa-xx"></i>开发记录</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://bjj.dropsec.xyz/2019/09/23/fix%E7%94%9F%E6%B4%BB/" target="_blank" title="日记">
+                      
+                        <i class="fa fa-fw fa-xx"></i>日记</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://thief.one" title="nMask" target="_blank">nMask</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.doonsec.com/" title="洞见安全" target="_blank">洞见安全</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://byd.dropsec.xyz/" title="瓦都剋" target="_blank">瓦都剋</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://lr.dropsec.xyz/" title="Joynice" target="_blank">Joynice</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/DropsDevopsOrg/ECommerceCrawlers" title="爬虫项目" target="_blank">爬虫项目</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://422926799.github.io/" title="九世" target="_blank">九世</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.youknowi.xin/" title="图先生" target="_blank">图先生</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://47.100.199.103:8000" title="微信聚合平台" target="_blank">微信聚合平台</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.hacking8.com/" title="hacking8" target="_blank">hacking8</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2016-2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">朴阿杰</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">博客总字数</span>
+    
+    <span title="Site words total count">129.7k</span>
+  
+  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278048714'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1278048714%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+            
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
