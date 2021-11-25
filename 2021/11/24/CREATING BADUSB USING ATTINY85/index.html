@@ -79,18 +79,26 @@
 
 
 
-<meta name="description" content="人生苦短我用python">
+<meta name="description" content="Badusb原理及制作并简单免杀实现远控">
 <meta name="keywords" content="BADUSB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CREATING BADUSB USING ATTINY85">
 <meta property="og:url" content="https://bjj.dropsec.xyz/2021/11/24/CREATING BADUSB USING ATTINY85/index.html">
 <meta property="og:site_name" content="AJay13">
-<meta property="og:description" content="人生苦短我用python">
+<meta property="og:description" content="Badusb原理及制作并简单免杀实现远控">
 <meta property="og:locale" content="/themes/next/languages/zh-Hans.yml">
-<meta property="og:updated_time" content="2021-11-24T09:13:41.250Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/img2/20211125150112.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/img2/20211125145641.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/img2/20211125145841.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/img2/20211125145956.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/img2/20211125150617.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/img2/20211125150750.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/img2/20211125150950.png">
+<meta property="og:updated_time" content="2021-11-25T07:25:09.410Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CREATING BADUSB USING ATTINY85">
-<meta name="twitter:description" content="人生苦短我用python">
+<meta name="twitter:description" content="Badusb原理及制作并简单免杀实现远控">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/img2/20211125150112.png">
 
 
 
@@ -398,7 +406,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  7
+                  647
                 </span>
               
 
@@ -414,7 +422,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  3
                 </span>
               
             </div>
@@ -435,7 +443,43 @@
       
 
       
-        <p>人生苦短我用python<br><a id="more"></a></p>
+        <p>Badusb原理及制作并简单免杀实现远控</p>
+<a id="more"></a>
+<p><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/img2/20211125150112.png" alt="20211125150112"></p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ul>
+<li>Digispark ATtiny 85<ul>
+<li>Arduino IDE 1.8.4 (parrot 中的ide是2.x版本的没有Board Manager)<br><a href="https://www.arduino.cc/en/Main/Software" target="_blank" rel="noopener">https://www.arduino.cc/en/Main/Software</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Digispark驱动程序 (Windows)<br>  <a href="https://github.com/digistump/DigistumpArduino/releases" target="_blank" rel="noopener">https://github.com/digistump/DigistumpArduino/releases</a></li>
+</ul>
+<p>能够制作BadUSB的几种常见载体有：leonardo_Arduino、Phison、Teensy、Attiny85、PS2303（芯片）、Rubber_Ducky等，本次使用样本是diy的Digispark，看到芯片上标注的Attiny85。</p>
+<p>Digispark <a href="http://digistump.com/wiki/digispark/tutorials/connecting" target="_blank" rel="noopener">http://digistump.com/wiki/digispark/tutorials/connecting</a> 是一个基于ATTINY85微控制器的USB开发板，体积小且价钱便宜，功能方面则没有Arduino般强大。代码与Arduino大同小异，更可贵的是使用Arduino IDE来开发。淘宝上直接搜索Digispark就能看到了，价格在7-10元不等。</p>
+<h2 id="配置Arduino-IDE"><a href="#配置Arduino-IDE" class="headerlink" title="配置Arduino IDE"></a>配置Arduino IDE</h2><p><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/img2/20211125145641.png" alt="20211125145641"></p>
+<p>打开 文件-&gt;首选项<br><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/img2/20211125145841.png" alt="20211125145841"></p>
+<p>把这个网址添加到附加开发板管理网址</p>
+<p><a href="https://raw.githubusercontent.com/digistump/arduino-boards-index/master/package_digistump_index.json" target="_blank" rel="noopener">https://raw.githubusercontent.com/digistump/arduino-boards-index/master/package_digistump_index.json</a></p>
+<p>然后打开开发板管理器</p>
+<p>在Arduino中添加Digispark的支持<br>等待开发板管理器加载完成，搜索digistump并安装第一个Digistump AVR Boards<br><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/img2/20211125145956.png" alt="20211125145956"></p>
+<h2 id="安装Windows下的驱动"><a href="#安装Windows下的驱动" class="headerlink" title="安装Windows下的驱动"></a>安装Windows下的驱动</h2><p>打开上面的链接,下载Digistump.Drivers。<br>不下载驱动，会找不到设备。无法烧录。</p>
+<h2 id="制作与烧录"><a href="#制作与烧录" class="headerlink" title="制作与烧录"></a>制作与烧录</h2><p>初次上手来一个helloword</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * Generated with &lt;3 by Dckuino.js, an open source project !</span><br><span class="line"> */</span><br><span class="line">#include &lt;avr/pgmspace.h&gt;</span><br><span class="line">#include &quot;DigiKeyboard.h&quot;</span><br><span class="line">const char line1[] PROGMEM = &quot;notepad&quot;;</span><br><span class="line">const char line2[] PROGMEM = &quot;Happy Hacking!!!&quot;;</span><br><span class="line">char buffer[256];</span><br><span class="line">#define GetPsz(x) (strncpy_P(buffer, (char*)x, 256))</span><br><span class="line">#define KEY_UP_ARROW 0x52</span><br><span class="line">#define KEY_DOWN_ARROW 0x51</span><br><span class="line">#define KEY_LEFT_ARROW 0x50</span><br><span class="line">#define KEY_RIGHT_ARROW 0x4F</span><br><span class="line">#define KEY_LEFT_GUI 0xE3</span><br><span class="line">#define KEY_ESC 0x29</span><br><span class="line">#define KEY_TAB 0x2B</span><br><span class="line">void digiBegin() &#123;</span><br><span class="line"> DigiKeyboard.sendKeyStroke(0,0);</span><br><span class="line"> DigiKeyboard.delay(50);</span><br><span class="line">&#125;</span><br><span class="line">void digiEnd() &#123;</span><br><span class="line"> const int led=1;</span><br><span class="line"> pinMode(led, OUTPUT);</span><br><span class="line"> while (1) &#123;</span><br><span class="line"> digitalWrite(led, !digitalRead(led));</span><br><span class="line"> DigiKeyboard.delay(1000);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">void printText(char *txt) &#123;</span><br><span class="line"> DigiKeyboard.print(txt);</span><br><span class="line"> DigiKeyboard.update();</span><br><span class="line">&#125;</span><br><span class="line">void setup() &#123;</span><br><span class="line"> digiBegin();</span><br><span class="line"> DigiKeyboard.delay(3000);</span><br><span class="line"> DigiKeyboard.sendKeyStroke(KEY_R,MOD_GUI_LEFT);</span><br><span class="line"> DigiKeyboard.delay(500);</span><br><span class="line"> // notepad</span><br><span class="line"> printText(GetPsz(line1));</span><br><span class="line"> DigiKeyboard.delay(500);</span><br><span class="line"> DigiKeyboard.sendKeyStroke(KEY_ENTER);</span><br><span class="line"> DigiKeyboard.sendKeyStroke(KEY_ENTER);</span><br><span class="line"> DigiKeyboard.delay(750);</span><br><span class="line"> // Happy Hacking!!!</span><br><span class="line"> printText(GetPsz(line2));</span><br><span class="line"> DigiKeyboard.sendKeyStroke(KEY_ENTER);</span><br><span class="line"> digiEnd();</span><br><span class="line">&#125;</span><br><span class="line">/* Unused endless loop */</span><br><span class="line">void loop() &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>上传</p>
+<p>Ardunio IDE中选择工具-&gt;开发板-&gt;Digispark (Default - 16.5mhz)</p>
+<p>然后点击项目-&gt;上传等待编译完成<br><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/img2/20211125150617.png" alt="20211125150617"></p>
+<p>然后插入Digispark 开始上传</p>
+<p>只要60s内插入，就可以写入脚本。<br><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/img2/20211125150750.png" alt="20211125150750"></p>
+<p>测试是否写入成功。插入u盘后，自动打开记事本写入字符</p>
+<p><img src="https://raw.githubusercontent.com/Hatcat123/GraphicBed/master/img2/20211125150950.png" alt="20211125150950"></p>
+<h2 id="上线与免杀"><a href="#上线与免杀" class="headerlink" title="上线与免杀"></a>上线与免杀</h2><p>windows上线的形式，基本上是psl或exe。利用隐藏cmd或者powershell执行命令。</p>
+<p><a href="https://github.com/hak5darren/USB-Rubber-Ducky/wiki/Payloads" target="_blank" rel="noopener">https://github.com/hak5darren/USB-Rubber-Ducky/wiki/Payloads</a></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://github.com/MTK911/Attiny85" target="_blank" rel="noopener">https://github.com/MTK911/Attiny85</a></p>
+<p><a href="https://devreyakan.com/en/attiny85-ile-20-per-second-wifi-sifresi-hackle/amp/" target="_blank" rel="noopener">https://devreyakan.com/en/attiny85-ile-20-per-second-wifi-sifresi-hackle/amp/</a></p>
+<p><a href="https://github.com/Catboy96/Automator/" target="_blank" rel="noopener">https://github.com/Catboy96/Automator/</a><br><a href="https://github.com/hak5darren/USB-Rubber-Ducky/wiki/Payloads" target="_blank" rel="noopener">https://github.com/hak5darren/USB-Rubber-Ducky/wiki/Payloads</a></p>
+<p>免杀对比Invoke-Obfuscation混淆免杀过360和火绒 <a href="https://blog.csdn.net/csdnmmd/article/details/117454031" target="_blank" rel="noopener">https://blog.csdn.net/csdnmmd/article/details/117454031</a></p>
+<p> badusb 例子 <a href="https://gitee.com/wwy2018/BadUSB" target="_blank" rel="noopener">https://gitee.com/wwy2018/BadUSB</a></p>
 
       
     </div>
@@ -475,6 +519,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/11/24/数据库防火墙/" rel="prev" title="数据库防火墙">
+                数据库防火墙 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -526,8 +574,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -542,7 +599,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">128</span>
+                  <span class="site-state-item-count">129</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -553,7 +610,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -564,7 +621,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -582,7 +639,7 @@
      <span class="site-state-item-name">访客量</span>
 </div>
 <div class="site-state-item site-state-posts">
-      <span class="site-state-item-count">130k</span>
+      <span class="site-state-item-count">130.6k</span>
       <span class="site-state-item-name">总字数</span>
 </div>
           
@@ -681,6 +738,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Arduino-IDE"><span class="nav-number">2.</span> <span class="nav-text">配置Arduino IDE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Windows下的驱动"><span class="nav-number">3.</span> <span class="nav-text">安装Windows下的驱动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#制作与烧录"><span class="nav-number">4.</span> <span class="nav-text">制作与烧录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上线与免杀"><span class="nav-number">5.</span> <span class="nav-text">上线与免杀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -708,7 +781,7 @@
     
       <span class="post-meta-item-text">博客总字数</span>
     
-    <span title="Site words total count">130k</span>
+    <span title="Site words total count">130.6k</span>
   
   <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278048714'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1278048714%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 </div>
